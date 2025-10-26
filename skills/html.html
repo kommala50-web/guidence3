@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>C++ Full Roadmap - TechPath</title>
+<link rel="stylesheet" href="../skills/style.css">
+<script defer src="../skills/script.js"></script>
+</head>
+<body>
+<div class="floating-code" id="floatingCode"></div>
+
+<header>
+  <h1>TechPath</h1>
+  <nav>
+    <a href="../index.html">Home</a>
+    <a href="../career.html">Career Paths</a>
+    <a href="../skills.html">Skill Roadmaps</a>
+    <a href="../company.html">Company Questions</a>
+  </nav>
+</header>
+
+<section class="banner">
+  <h2>💻 C++ Full Roadmap</h2>
+  <p>From beginner to advanced — detailed explanations, example questions, and runnable C++ code snippets to learn end-to-end.</p>
+</section>
+
+<div class="top-buttons">
+  <a href="../skills.html" class="btn">← Back to Skills</a>
+  <a href="../pdf/cpp.pdf" download="C++_Roadmap.pdf" class="btn">Download PDF</a>
+  <a href="../pdf/C++_Notes.pdf" download="C++_Notes.pdf" class="btn">Notes</a>
+  <a href="https://www.youtube.com/watch?v=vLnPwxZdW4Y" target="_blank" class="btn">Video Resource</a>
+</div>
+
+<section class="topic-container">
+
+<!-- Example of one topic card with separate description and code -->
+<div class="topic-card">
+  <h3>1. C++ Basics & Setup</h3>
+  <div class="description">
+    <p><strong>Description:</strong><br>
+    C++ is a high-performance, general-purpose language that builds on C. It is used in systems programming, game development, embedded systems, and high-performance applications. A C++ program consists of headers, the <code>main()</code> function, and statements within curly braces. Input/output is performed using <code>cin</code> and <code>cout</code> from the <code>&lt;iostream&gt;</code> library. Comments can be single-line (<code>//</code>) or multi-line (<code>/* */</code>).</p>
+    <p><strong>Example Question:</strong> Write a program to input your name and age, then display them using <code>cout</code>.</p>
+  </div>
+  <div class="code-snippet">
+    <pre><code class="language-cpp">
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    string name;
+    int age;
+    cout &lt;&lt; "Enter your name: ";
+    cin &gt;&gt; name;
+    cout &lt;&lt; "Enter your age: ";
+    cin &gt;&gt; age;
+    cout &lt;&lt; "Hello, " &lt;&lt; name &lt;&lt; "! You are " &lt;&lt; age &lt;&lt; " years old." &lt;&lt; endl;
+    return 0;
+}
+    </code></pre>
+  </div>
+</div>
+
+<!-- 2. Data Types & Variables -->
+<div class="topic-card">
+  <h3>2. Data Types & Variables</h3>
+  <div class="description">
+    <p><strong>Description:</strong><br>
+    Data types specify what kind of data a variable can hold. Common types include <code>int</code>, <code>char</code>, <code>float</code>, <code>double</code>, and <code>bool</code>. Variables must be declared before use. Constants declared with <code>const</code> or <code>constexpr</code> cannot be changed. Type casting converts values from one type to another.</p>
+    <p><strong>Example Question:</strong> Write a program demonstrating constants and type casting.</p>
+  </div>
+  <div class="code-snippet">
+    <pre><code class="language-cpp">
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    const double PI = 3.14159;
+    int radius = 5;
+    double area = PI * radius * radius; // implicit casting
+    cout &lt;&lt; "Area of circle: " &lt;&lt; area &lt;&lt; endl;
+
+    double num = 7.8;
+    int converted = static_cast&lt;int&gt;(num); // explicit cast
+    cout &lt;&lt; "Converted value: " &lt;&lt; converted &lt;&lt; endl;
+
+    return 0;
+}
+    </code></pre>
+  </div>
+</div>
+
+<!-- 3. Operators -->
+<div class="topic-card">
+  <h3>3. Operators</h3>
+  <div class="description">
+    <p><strong>Description:</strong><br>
+    Operators are symbols that perform operations on variables and values. C++ has arithmetic, relational, logical, bitwise, assignment, increment/decrement, ternary, sizeof, and comma operators.</p>
+    <p><strong>Example Question:</strong> Write a program to demonstrate all arithmetic and logical operators.</p>
+  </div>
+  <div class="code-snippet">
+    <pre><code class="language-cpp">
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int a = 10, b = 3;
+
+    // Arithmetic
+    cout &lt;&lt; "a + b = " &lt;&lt; a + b &lt;&lt; endl;
+    cout &lt;&lt; "a - b = " &lt;&lt; a - b &lt;&lt; endl;
+    cout &lt;&lt; "a * b = " &lt;&lt; a * b &lt;&lt; endl;
+    cout &lt;&lt; "a / b = " &lt;&lt; a / b &lt;&lt; endl;
+    cout &lt;&lt; "a % b = " &lt;&lt; a % b &lt;&lt; endl;
+
+    // Logical
+    cout &lt;&lt; "(a &gt; b) && (b &gt; 0) = " &lt;&lt; ((a &gt; b) && (b &gt; 0)) &lt;&lt; endl;
+    cout &lt;&lt; "(a == b) || (b &gt; 0) = " &lt;&lt; ((a == b) || (b &gt; 0)) &lt;&lt; endl;
+
+    return 0;
+}
+    </code></pre>
+  </div>
+</div>
+
+<!-- 4. Control Flow -->
+<div class="topic-card">
+  <h3>4. Control Flow</h3>
+  <div class="description">
+    <p><strong>Description:</strong><br>
+    Control flow statements determine the order in which statements execute: if-else, switch, loops, break, continue, goto.</p>
+    <p><strong>Example Question:</strong> Write a program using if-else and loops to print all even numbers from 1 to 20.</p>
+  </div>
+  <div class="code-snippet">
+    <pre><code class="language-cpp">
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    cout &lt;&lt; "Even numbers from 1 to 20: ";
+    for(int i = 1; i &lt;= 20; i++) {
+        if(i % 2 == 0) {
+            cout &lt;&lt; i &lt;&lt; " ";
+        }
+    }
+    cout &lt;&lt; endl;
+    return 0;
+}
+    </code></pre>
+  </div>
+</div>
+
+<!-- Continue adding the remaining topics similarly -->
+<!-- Each topic-card should have a <div class="description"> and <div class="code-snippet"> -->
+
+</section>
+</body>
+</html>

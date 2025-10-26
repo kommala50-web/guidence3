@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Career Paths - TechPath</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(120deg, #0a192f, #1e293b);
+      color: #e2e8f0;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Floating Code Animation */
+    .floating-code {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -1;
+    }
+    .code-particle {
+      position: absolute;
+      color: rgba(0, 255, 255, 0.2);
+      font-family: monospace;
+      font-size: 14px;
+      animation: floatCode 15s linear infinite;
+    }
+    @keyframes floatCode {
+      0% { transform: translateY(100vh) rotate(0deg); opacity: 0.8; }
+      100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* Header */
+    header {
+      background: #0d1b2a;
+      color: #00b4d8;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    header h1 { font-size: 26px; letter-spacing: 1px; }
+    nav a {
+      color: #e2e8f0;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: 600;
+      position: relative;
+      transition: color 0.3s;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -3px;
+      width: 0;
+      height: 2px;
+      background: #00b4d8;
+      transition: width 0.3s;
+    }
+    nav a:hover { color: #00b4d8; }
+    nav a:hover::after { width: 100%; }
+
+    /* Page Title Section */
+    .page-title {
+      text-align: center;
+      padding: 60px 20px 20px 20px;
+    }
+    .page-title h2 { font-size: 36px; color: #00b4d8; margin-bottom: 10px; }
+    .page-title p { font-size: 18px; color: #e2e8f0; }
+
+    /* Career Cards */
+    .career-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      padding: 40px 50px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .career-card {
+      background: rgba(255,255,255,0.05);
+      border-radius: 15px;
+      padding: 25px;
+      text-align: left;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+    }
+    .career-card:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 8px 20px rgba(0,255,255,0.3);
+      background: rgba(0,255,255,0.05);
+    }
+    .career-card h3 { color: #00b4d8; margin-bottom: 10px; font-size: 20px; }
+    .career-card p { font-size: 14px; margin-bottom: 10px; }
+    .career-card .salary {
+      display: inline-block;
+      margin-top: 10px;
+      font-weight: bold;
+      color: #48cae4;
+    }
+
+    /* Footer */
+    footer {
+      background: #0d1b2a;
+      color: #90e0ef;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+
+    @media(max-width:768px) {
+      header { flex-direction: column; text-align: center; }
+      nav { margin-top: 10px; }
+      .career-container { padding: 20px; }
+      .page-title { padding: 40px 20px 10px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="floating-code" id="floatingCode"></div>
+
+<!-- Header -->
+<header>
+  <h1>TechPath</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="career.html">Career Paths</a>
+    <a href="skills.html">Skill Roadmaps</a>
+    <a href="company.html">Company Questions</a>
+    <a href="resoueces.html">Resources</a>
+    <a href="about.html">About</a>
+  </nav>
+</header>
+
+<!-- Page Title -->
+<section class="page-title">
+  <h2>Explore IT Career Paths</h2>
+  <p>Find your dream role and learn what skills companies expect</p>
+</section>
+
+<!-- Career Cards -->
+<section class="career-container">
+
+  <a href="career/software.html" class="career-card">
+    <h3>Software Developer / Engineer</h3>
+    <p><b>Role:</b> Write, debug, and maintain software applications.</p>
+    <p><b>Skills:</b> Java, Python, C++, Problem-solving.</p>
+    <p><b>Example:</b> Building a mobile app or web platform.</p>
+    <p class="salary">Salary: ₹8–10 LPA</p>
+  </a>
+
+  <a href="career/frontend.html" class="career-card">
+    <h3>Frontend Developer</h3>
+    <p><b>Role:</b> Build user interfaces for websites or apps.</p>
+    <p><b>Skills:</b> HTML, CSS, JavaScript, React, Angular.</p>
+    <p><b>Example:</b> Designing a responsive website for e-commerce.</p>
+    <p class="salary">Salary: ₹6–8 LPA</p>
+  </a>
+
+  <a href="career/backend.html" class="career-card">
+    <h3>Backend Developer</h3>
+    <p><b>Role:</b> Manage server-side logic and databases.</p>
+    <p><b>Skills:</b> Node.js, Python, Java, SQL, MongoDB.</p>
+    <p><b>Example:</b> Creating APIs for Instagram backend.</p>
+    <p class="salary">Salary: ₹8–12 LPA</p>
+  </a>
+
+  <a href="career/fullstack.html" class="career-card">
+      <h3>Full Stack Developer</h3>
+      <p><b>Role:</b> Work on both frontend and backend.</p>
+      <p><b>Skills:</b> JavaScript, Node.js, React.</p>
+      <p><b>Example:</b> Developing an e-learning platform.</p>
+      <p class="salary">Salary: ₹7–12 LPA</p>
+    </a>
+
+    <a href="career/devops.html" class="career-card">
+      <h3>DevOps Engineer</h3>
+      <p><b>Role:</b> Automate development and operations.</p>
+      <p><b>Skills:</b> Docker, Kubernetes, AWS, CI/CD, Linux.</p>
+      <p><b>Example:</b> Automating server setup for SaaS.</p>
+      <p class="salary">Salary: ₹9–15 LPA</p>
+    </a>
+
+    <a href="career/datascientist.html" class="career-card">
+      <h3>Data Scientist</h3>
+      <p><b>Role:</b> Analyze large datasets for insights.</p>
+      <p><b>Skills:</b> Python, R, ML, Data Visualization.</p>
+      <p><b>Example:</b> Predicting customer trends for Amazon.</p>
+      <p class="salary">Salary: ₹10–15 LPA</p>
+    </a>
+
+    <a href="career/ai.html" class="career-card">
+      <h3>Machine Learning / AI Engineer</h3>
+      <p><b>Role:</b> Build intelligent ML models.</p>
+      <p><b>Skills:</b> Python, TensorFlow, PyTorch.</p>
+      <p><b>Example:</b> Netflix recommendation engine.</p>
+      <p class="salary">Salary: ₹12–20 LPA</p>
+    </a>
+
+    <a href="career/mobile.html" class="career-card">
+      <h3>Mobile App Developer</h3>
+      <p><b>Role:</b> Build apps for mobile devices.</p>
+      <p><b>Skills:</b> Kotlin, Swift, Flutter, React Native.</p>
+      <p><b>Example:</b> Developing WhatsApp app.</p>
+      <p class="salary">Salary: ₹6–10 LPA</p>
+    </a>
+
+    <a href="career/cloud.html" class="career-card">
+      <h3>Cloud Engineer</h3>
+      <p><b>Role:</b> Design & maintain cloud infrastructure.</p>
+      <p><b>Skills:</b> AWS, Azure, Google Cloud, Docker.</p>
+      <p><b>Example:</b> Deploying SaaS on AWS.</p>
+      <p class="salary">Salary: ₹12–20 LPA</p>
+    </a>
+
+    <a href="career/security.html" class="career-card">
+      <h3>Security Engineer / Ethical Hacker</h3>
+      <p><b>Role:</b> Protect systems from cyber threats.</p>
+      <p><b>Skills:</b> Ethical Hacking, Cryptography.</p>
+      <p><b>Example:</b> Testing banking app security.</p>
+      <p class="salary">Salary: ₹10–18 LPA</p>
+    </a>
+
+    <a href="career/uiux.html" class="career-card">
+      <h3>UI/UX Designer</h3>
+      <p><b>Role:</b> Design user interfaces & experiences.</p>
+      <p><b>Skills:</b> Figma, Adobe XD, Design Principles.</p>
+      <p><b>Example:</b> Designing fintech app interface.</p>
+      <p class="salary">Salary: ₹6–12 LPA</p>
+    </a>
+
+    <a href="career/product.html" class="career-card">
+      <h3>Product Manager</h3>
+      <p><b>Role:</b> Manage product lifecycle & teams.</p>
+      <p><b>Skills:</b> Project Management, Communication.</p>
+      <p><b>Example:</b> Managing SaaS roadmap.</p>
+      <p class="salary">Salary: ₹15–25 LPA</p>
+    </a>
+
+    <a href="career/dba.html" class="career-card">
+      <h3>Database Administrator (DBA)</h3>
+      <p><b>Role:</b> Manage and maintain databases.</p>
+      <p><b>Skills:</b> SQL, Database Design, Performance Tuning.</p>
+      <p><b>Example:</b> Maintaining Amazon product DB.</p>
+      <p class="salary">Salary: ₹7–12 LPA</p>
+    </a>
+
+    <a href="career/architect.html" class="career-card">
+      <h3>System / Solutions Architect</h3>
+      <p><b>Role:</b> Design scalable software systems.</p>
+      <p><b>Skills:</b> Cloud Architecture, Software Design.</p>
+      <p><b>Example:</b> Banking backend design.</p>
+      <p class="salary">Salary: ₹20–35 LPA</p>
+    </a>
+  <!-- Repeat all other career cards as in original HTML -->
+
+</section>
+
+<!-- Footer -->
+<footer>
+  Contact: kommala50@gmail.com | &copy; 2025 TechPath
+</footer>
+
+<!-- Floating Code Script -->
+<script>
+  const floating = document.getElementById('floatingCode');
+  const symbols = ['<','div','{','}','CSS','JS','React','</>','=>','let','const'];
+  for(let i=0;i<60;i++){
+    const span = document.createElement('span');
+    span.classList.add('code-particle');
+    span.textContent = symbols[Math.floor(Math.random()*symbols.length)];
+    span.style.left = Math.random()*100 + 'vw';
+    span.style.animationDuration = (8 + Math.random()*10)+'s';
+    span.style.fontSize = (12 + Math.random()*10)+'px';
+    floating.appendChild(span);
+  }
+</script>
+
+</body>
+</html>

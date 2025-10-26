@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wipro Interview Questions - TechPath</title>
+<style>
+/* ------------------ Colors ------------------ */
+:root {
+  --primary: #225560;
+  --secondary: #f4f8fb;
+  --accent: #00a3e0;
+  --accent2: #0072ff;
+  --card-bg: rgba(255,255,255,0.95);
+  --card-shadow: rgba(0,0,0,0.1);
+  --text-primary: #1b1b2f;
+  --text-secondary: #555;
+  --modal-bg: rgba(255,255,255,0.98);
+}
+
+/* ------------------ Base ------------------ */
+* {
+  margin: 0; padding: 0; box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+body { background: var(--secondary); color: var(--text-primary); min-height: 100vh; }
+a { text-decoration: none; color: inherit; }
+
+/* ---------- Header ---------- */
+header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 16px 32px; background: var(--primary); color: white;
+  border-radius: 0 0 12px 12px;
+  position: sticky; top: 0; z-index: 20;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+header h1 { font-size: 24px; color: white; }
+nav a { margin-left: 20px; font-weight: 600; color: white; }
+nav a:hover { color: var(--accent); }
+
+/* ---------- Container ---------- */
+.container { max-width: 1100px; margin: 24px auto; padding: 0 20px; }
+.btn {
+  padding: 10px 18px; background: var(--primary); color: white;
+  border-radius: 12px; font-weight: 600; cursor: pointer;
+  box-shadow: 0 4px 12px var(--card-shadow);
+  transition: all .2s; margin-bottom: 16px;
+}
+.btn:hover { transform: translateY(-3px); box-shadow: 0 6px 18px var(--card-shadow); }
+
+/* ---------- Round Cards ---------- */
+.rounds { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 20px; }
+.round-card {
+  flex: 1 1 220px; padding: 20px; border-radius: 14px;
+  background: var(--card-bg); box-shadow: 0 4px 12px var(--card-shadow);
+  text-align: center; font-weight: 700; color: var(--text-primary);
+  cursor: pointer; transition: all .3s; position: relative;
+}
+.round-card:hover {
+  transform: translateY(-6px) scale(1.04);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+/* ---------- Question List ---------- */
+.q-list { display: none; flex-direction: column; gap: 14px; margin-top: 20px; }
+.q-card {
+  background: var(--card-bg); padding: 16px; border-radius: 12px;
+  cursor: pointer; transition: all .3s; box-shadow: 0 2px 8px var(--card-shadow);
+}
+.q-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+.q-title { font-weight: 600; font-size: 16px; margin-bottom: 6px; }
+.q-meta { font-size: 13px; color: var(--text-secondary); }
+
+/* ---------- Modal ---------- */
+.modal {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.6);
+  display: flex; align-items: center; justify-content: center;
+  visibility: hidden; opacity: 0; transition: opacity .3s; z-index: 50;
+}
+.modal.show { visibility: visible; opacity: 1; }
+.modal-content {
+  background: var(--modal-bg); padding: 24px; border-radius: 16px;
+  max-width: 800px; width: 90%; max-height: 90vh; overflow-y: auto;
+  position: relative; animation: scaleUp .3s ease-out;
+}
+@keyframes scaleUp { 0% { transform: scale(0.9) } 100% { transform: scale(1) } }
+.modal-close {
+  position: absolute; top: 14px; right: 14px; font-size: 22px;
+  font-weight: 700; cursor: pointer; color: var(--accent2);
+}
+
+/* ---------- Answer & Tip ---------- */
+.answer { background: rgba(0,163,224,0.05); padding: 12px; border-radius: 10px; margin-bottom: 8px; }
+.explain { font-size: 14px; color: #333; margin-bottom: 6px; }
+.tip { font-size: 13px; font-style: italic; color: var(--accent2); }
+
+/* Proper code formatting */
+pre {
+  background: rgba(0,0,0,0.05);
+  padding: 8px;
+  border-radius: 6px;
+  overflow-x: auto;
+  white-space: pre;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 6px 0;
+}
+
+/* ---------- Responsive ---------- */
+@media(max-width:768px) { .rounds { flex-direction: column; } }
+</style>
+</head>
+
+<body>
+<header>
+  <h1>TechPath</h1>
+  <nav>
+    <a href="../index.html">Home</a>
+    <a href="../career.html">Career Dashboard</a>
+    <a href="../company.html">Company Dashboard</a>
+  </nav>
+</header>
+
+<main class="container">
+  <button class="btn" id="backBtn">← Back to Companies</button>
+
+  <h2>Select a Round:</h2>
+  <div class="rounds">
+    <div class="round-card" data-round="oa">Online Assessment (OA)</div>
+    <div class="round-card" data-round="tech1">Technical Round 1</div>
+    <div class="round-card" data-round="tech2">Technical Round 2</div>
+    <div class="round-card" data-round="managerial">Managerial / Leadership</div>
+    <div class="round-card" data-round="hr">HR / Logistics</div>
+  </div>
+
+  <!-- ========= ROUND 1: OA ========= -->
+  <div class="q-list" id="oa">
+    <div class="q-card" data-title="Two Sum">
+      <div class="q-title">Two Sum (Return indices)</div>
+      <div class="q-meta">Hashmap — O(n)</div>
+      <div class="answer">
+        <strong>Solution / Approach:</strong> Iterate through the array, storing each number and its index in a hashmap. For each number, check if the complement (target - number) exists in the map. If yes, return the pair of indices.
+        <pre><code>def two_sum(nums, target):
+    map = {}
+    for i, num in enumerate(nums):
+        if target - num in map:
+            return [map[target - num], i]
+        map[num] = i
+</code></pre>
+      </div>
+      <div class="explain">Time Complexity: O(n) — each element is processed once.<br>Space Complexity: O(n).</div>
+      <div class="tip">Tip: Clarify if array is sorted before coding.</div>
+    </div>
+
+    <div class="q-card" data-title="Palindrome Number">
+      <div class="q-title">Check if number is palindrome (without converting to string)</div>
+      <div class="q-meta">Math — O(log n)</div>
+      <div class="answer">
+        <strong>Solution / Approach:</strong> Reverse half of the number and compare with first half.
+        <pre><code>def is_palindrome(x):
+    if x < 0 or (x % 10 == 0 and x != 0):
+        return False
+    rev = 0
+    while x > rev:
+        rev = rev * 10 + x % 10
+        x //= 10
+    return x == rev or x == rev // 10
+</code></pre>
+      </div>
+      <div class="explain">O(log n) time, O(1) space.</div>
+      <div class="tip">Tip: Avoid converting to string — use math.</div>
+    </div>
+
+    <div class="q-card" data-title="Valid Parentheses">
+      <div class="q-title">Valid Parentheses</div>
+      <div class="q-meta">Stack — O(n)</div>
+      <div class="answer">
+        <strong>Solution:</strong> Use stack to match brackets.
+        <pre><code>def is_valid(s):
+    stack = []
+    mapping = {")":"(", "]":"[", "}":"{"}
+    for c in s:
+        if c in mapping.values():
+            stack.append(c)
+        elif c in mapping:
+            if not stack or stack.pop() != mapping[c]:
+                return False
+    return not stack
+</code></pre>
+      </div>
+      <div class="explain">O(n) time, O(n) space.</div>
+      <div class="tip">Tip: Discuss edge cases like empty string.</div>
+    </div>
+
+    <div class="q-card" data-title="Remove Duplicates">
+      <div class="q-title">Remove duplicates from sorted array</div>
+      <div class="q-meta">Two-pointer — O(n)</div>
+      <div class="answer">
+        <strong>Solution:</strong> Use two pointers to overwrite duplicates.
+        <pre><code>def remove_duplicates(nums):
+    if not nums:
+        return 0
+    i = 0
+    for j in range(1, len(nums)):
+        if nums[j] != nums[i]:
+            i += 1
+            nums[i] = nums[j]
+    return i + 1
+</code></pre>
+      </div>
+      <div class="explain">O(n) time, O(1) space.</div>
+      <div class="tip">Tip: Explain in-place operation.</div>
+    </div>
+
+    <div class="q-card" data-title="Climbing Stairs">
+      <div class="q-title">Climbing Stairs</div>
+      <div class="q-meta">DP / Fibonacci — O(n)</div>
+      <div class="answer">
+        <strong>Solution:</strong> Each step = sum of previous two steps.
+        <pre><code>def climb_stairs(n):
+    if n <= 2:
+        return n
+    a, b = 1, 2
+    for _ in range(3, n + 1):
+        a, b = b, a + b
+    return b
+</code></pre>
+      </div>
+      <div class="explain">O(n) time, O(1) space.</div>
+      <div class="tip">Tip: Mention Fibonacci relation.</div>
+    </div>
+  </div>  
+
+  <div class="q-list" id="tech1">
+    <div class="q-card" data-title="Binary Search">
+  <div class="q-title">Binary Search</div>
+  <div class="q-meta">Divide & Conquer</div>
+  <div class="answer">
+    <strong>Solution:</strong> Binary search on sorted array.
+    <pre><code class="language-python">
+def binary_search(arr, target):
+    left, right = 0, len(arr) - 1
+    while left <= right:
+        mid = (left + right) // 2
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+    return -1
+    </code></pre>
+  </div>
+  <div class="explain">O(log n) time, O(1) space.</div>
+  <div class="tip">Test edge cases (empty array, first/last element).</div>
+</div>
+
+<div class="q-card" data-title="Linked List Cycle">
+  <div class="q-title">Detect Cycle in Linked List</div>
+  <div class="q-meta">Floyd’s Tortoise & Hare</div>
+  <div class="answer">
+    <strong>Solution:</strong> Slow and fast pointers.
+    <pre><code class="language-python">
+def has_cycle(head):
+    slow = fast = head
+    while fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next
+        if slow == fast:
+            return True
+    return False
+    </code></pre>
+  </div>
+  <div class="explain">O(n) time, O(1) space.</div>
+  <div class="tip">Explain approach before coding.</div>
+</div>
+
+<div class="q-card" data-title="Reverse Linked List">
+  <div class="q-title">Reverse Linked List</div>
+  <div class="q-meta">Iterative / Recursive</div>
+  <div class="answer">
+    <strong>Solution:</strong> Reverse pointers iteratively.
+    <pre><code class="language-python">
+def reverse_list(head):
+    prev = None
+    curr = head
+    while curr:
+        nxt = curr.next
+        curr.next = prev
+        prev = curr
+        curr = nxt
+    return prev
+    </code></pre>
+  </div>
+  <div class="explain">O(n) time, O(1) space. Recursive also possible.</div>
+  <div class="tip">Walk through small linked list example.</div>
+</div>
+
+<div class="q-card" data-title="Merge Two Sorted Lists">
+  <div class="q-title">Merge Two Sorted Linked Lists</div>
+  <div class="q-meta">Linked List / Merge</div>
+  <div class="answer">
+    <strong>Solution:</strong> Use dummy node & merge iteratively.
+    <pre><code class="language-python">
+def merge_two_lists(l1, l2):
+    dummy = cur = ListNode(0)
+    while l1 and l2:
+        if l1.val < l2.val:
+            cur.next = l1
+            l1 = l1.next
+        else:
+            cur.next = l2
+            l2 = l2.next
+        cur = cur.next
+    cur.next = l1 or l2
+    return dummy.next
+    </code></pre>
+  </div>
+  <div class="explain">O(n+m) time, O(1) space.</div>
+  <div class="tip">Clarify input and test example lists.</div>
+</div>
+
+<div class="q-card" data-title="Climbing Stairs">
+  <div class="q-title">Climbing Stairs</div>
+  <div class="q-meta">Dynamic Programming</div>
+  <div class="answer">
+    <strong>Solution:</strong> Number of ways = fib(n).
+    <pre><code class="language-python">
+def climb_stairs(n):
+    if n <= 2:
+        return n
+    a, b = 1, 2
+    for _ in range(3, n + 1):
+        a, b = b, a + b
+    return b
+    </code></pre>
+  </div>
+  <div class="explain">O(n) time, O(1) space.</div>
+  <div class="tip">Explain recurrence and base cases.</div>
+</div>
+
+<div class="q-card" data-title="House Robber">
+  <div class="q-title">House Robber</div>
+  <div class="q-meta">Dynamic Programming</div>
+  <div class="answer">
+    <strong>Solution:</strong> Max loot at i = max(prev, prev2 + nums[i]).
+    <pre><code class="language-python">
+def rob(nums):
+    prev = curr = 0
+    for n in nums:
+        prev, curr = curr, max(curr, prev + n)
+    return curr
+    </code></pre>
+  </div>
+  <div class="explain">O(n) time, O(1) space. Avoid consecutive houses.</div>
+  <div class="tip">Draw example to show DP transition.</div>
+</div>
+
+  </div>
+
+   <!-- ========= ROUND 3: TECHNICAL ROUND 2 ========= -->
+<div class="q-list" id="tech2">
+
+  <!-- Top K Frequent Elements -->
+  <div class="q-card" data-title="Top K Frequent Elements">
+    <div class="q-title">Top K Frequent Elements</div>
+    <div class="q-meta">Heap / Hashmap</div>
+    <div class="answer">
+      <strong>Approach:</strong>  
+      - First, count the frequency of each element using a hashmap (Counter).  
+      - Then, use a max-heap (or nlargest in Python) to extract the top K frequent elements efficiently.  
+      - This avoids sorting the entire array and focuses only on the K most common items.  
+
+      <pre><code>
+from collections import Counter
+import heapq
+
+def topKFrequent(nums, k):
+    count = Counter(nums)
+    return heapq.nlargest(k, count.keys(), key=count.get)
+      </code></pre>
+    </div>
+    <div class="explain">O(n log k) time, O(n) space — counting + heap operations.</div>
+    <div class="tip">Discuss when to use sorting vs heap for top-k problems.</div>
+  </div>
+
+  <!-- Product of Array Except Self -->
+  <div class="q-card" data-title="Product of Array Except Self">
+    <div class="q-title">Product of Array Except Self</div>
+    <div class="q-meta">Prefix / Suffix</div>
+    <div class="answer">
+      <strong>Approach:</strong>  
+      - We can’t use division, so compute products in two passes.  
+      - In the first pass, multiply elements from the left (prefix).  
+      - In the second pass, multiply elements from the right (suffix).  
+      - This ensures every index holds the product of all numbers except itself.
+
+      <pre><code>
+def product_except_self(nums):
+    n = len(nums)
+    res = [1]*n
+    prefix = 1
+    for i in range(n):
+        res[i] = prefix
+        prefix *= nums[i]
+    suffix = 1
+    for i in reversed(range(n)):
+        res[i] *= suffix
+        suffix *= nums[i]
+    return res
+      </code></pre>
+    </div>
+    <div class="explain">O(n) time, O(1) extra space. No division used.</div>
+    <div class="tip">Show small example [1,2,3,4] to explain prefix-suffix idea.</div>
+  </div>
+
+  <!-- Word Ladder -->
+  <div class="q-card" data-title="Word Ladder">
+    <div class="q-title">Word Ladder (Shortest Transformation)</div>
+    <div class="q-meta">Breadth-First Search (BFS)</div>
+    <div class="answer">
+      <strong>Approach:</strong>  
+      - Treat each word as a node in a graph, edges exist between words differing by one letter.  
+      - Use BFS to ensure the shortest transformation sequence.  
+      - Keep track of visited words to avoid cycles.  
+
+      <pre><code>
+from collections import deque
+
+def ladder_length(begin, end, word_list):
+    word_set = set(word_list)
+    queue = deque([(begin, 1)])
+    while queue:
+        word, steps = queue.popleft()
+        if word == end:
+            return steps
+        for i in range(len(word)):
+            for c in 'abcdefghijklmnopqrstuvwxyz':
+                next_word = word[:i] + c + word[i+1:]
+                if next_word in word_set:
+                    word_set.remove(next_word)
+                    queue.append((next_word, steps + 1))
+    return 0
+      </code></pre>
+    </div>
+    <div class="explain">O(N * L²) time — N=words, L=length of each word. BFS ensures minimum steps.</div>
+    <div class="tip">Visualize transformations like "hit → hot → dot → dog → cog".</div>
+  </div>
+
+  <!-- Number of Islands -->
+  <div class="q-card" data-title="Number of Islands">
+    <div class="q-title">Number of Islands</div>
+    <div class="q-meta">DFS / BFS on Grid</div>
+    <div class="answer">
+      <strong>Approach:</strong>  
+      - Traverse every cell in the grid.  
+      - When a land cell (‘1’) is found, increment island count and mark all connected land using DFS/BFS.  
+      - Replace visited land cells with ‘0’ to prevent recounting.
+
+      <pre><code>
+def num_islands(grid):
+    if not grid: return 0
+    rows, cols = len(grid), len(grid[0])
+
+    def dfs(r, c):
+        if r<0 or c<0 or r>=rows or c>=cols or grid[r][c]=='0':
+            return
+        grid[r][c] = '0'
+        dfs(r+1,c); dfs(r-1,c); dfs(r,c+1); dfs(r,c-1)
+
+    count = 0
+    for r in range(rows):
+        for c in range(cols):
+            if grid[r][c] == '1':
+                dfs(r, c)
+                count += 1
+    return count
+      </code></pre>
+    </div>
+    <div class="explain">O(M×N) time — each cell visited once. DFS marks connected lands as one island.</div>
+    <div class="tip">Draw a grid example to explain connected land grouping.</div>
+  </div>
+
+  <!-- Serialize / Deserialize Binary Tree -->
+  <div class="q-card" data-title="Serialize/Deserialize Binary Tree">
+    <div class="q-title">Serialize and Deserialize Binary Tree</div>
+    <div class="q-meta">DFS / Recursion</div>
+    <div class="answer">
+      <strong>Approach:</strong>  
+      - Serialization: perform preorder traversal (root-left-right). Add “#” for null nodes.  
+      - Deserialization: read values in the same order to rebuild tree recursively.  
+      - Helps in saving and reconstructing tree structure uniquely.  
+
+      <pre><code>
+def serialize(root):
+    res = []
+    def dfs(node):
+        if not node:
+            res.append('#')
+            return
+        res.append(str(node.val))
+        dfs(node.left)
+        dfs(node.right)
+    dfs(root)
+    return ' '.join(res)
+
+def deserialize(data):
+    vals = iter(data.split())
+    def dfs():
+        val = next(vals)
+        if val == '#': return None
+        node = TreeNode(int(val))
+        node.left = dfs()
+        node.right = dfs()
+        return node
+    return dfs()
+      </code></pre>
+    </div>
+    <div class="explain">O(n) time & space — each node processed once.</div>
+    <div class="tip">Discuss why preorder uniquely reconstructs tree with null markers.</div>
+  </div>
+
+  <!-- LRU Cache -->
+  <div class="q-card" data-title="LRU Cache">
+    <div class="q-title">LRU Cache Implementation</div>
+    <div class="q-meta">Hashmap + Doubly Linked List</div>
+    <div class="answer">
+      <strong>Approach:</strong>  
+      - Use a **Hashmap** for O(1) key lookup.  
+      - Use a **Doubly Linked List (DLL)** to maintain the order of most/least recently used elements.  
+      - On every `get()` or `put()`, move the accessed node to the front (most recent).  
+      - If cache is full, remove the least recently used node from the tail.
+
+      <pre><code>
+class LRUCache:
+    def __init__(self, capacity):
+        self.cap = capacity
+        self.cache = {}
+        self.dll = DoublyLinkedList()
+
+    def get(self, key):
+        if key not in self.cache:
+            return -1
+        node = self.cache[key]
+        self.dll.move_to_front(node)
+        return node.val
+
+    def put(self, key, val):
+        if key in self.cache:
+            node = self.cache[key]
+            node.val = val
+            self.dll.move_to_front(node)
+        else:
+            if len(self.cache) == self.cap:
+                tail = self.dll.remove_tail()
+                del self.cache[tail.key]
+            node = Node(key, val)
+            self.dll.add_front(node)
+            self.cache[key] = node
+      </code></pre>
+    </div>
+    <div class="explain">O(1) for both get() and put() using HashMap + DLL.</div>
+    <div class="tip">Explain why DLL is needed instead of just a list.</div>
+  </div>
+
+</div>
+
+
+
+ <!-- ========= ROUND 4: Behavioral Questions ========= -->
+<div class="q-list" id="managerial">
+  
+  <!-- Behavioral Question 1 -->
+  <div class="q-card" data-title="Behavioral Question 1">
+    <div class="q-title">Tell me about a challenge you faced</div>
+    <div class="q-meta">Behavioral</div>
+    <div class="answer">
+      <strong>How to answer:</strong><br>
+      - Use STAR method (Situation, Task, Action, Result).<br>
+      - Focus on teamwork and how you solved the problem.<br><br>
+      Example:  
+      “During my internship, our project faced a sudden delay due to missing data. I coordinated with my team to collect the data quickly and updated the workflow, finishing the project on time.”
+    </div>
+    <div class="explain">Structure answer clearly. Highlight leadership, problem-solving, and results.</div>
+    <div class="tip">Keep answer short and relevant to Wipro’s work culture.</div>
+  </div>
+
+  <!-- Behavioral Question 2 -->
+  <div class="q-card" data-title="Behavioral Question 2">
+    <div class="q-title">Describe a situation where you handled conflict</div>
+    <div class="q-meta">Behavioral</div>
+    <div class="answer">
+      <strong>How to answer:</strong><br>
+      - Explain the context and conflict clearly.<br>
+      - Show your approach to solve it and the positive outcome.<br><br>
+      Example:  
+      “In a group project, two team members disagreed on implementation. I suggested a discussion to combine ideas and compromise, which helped the team complete the project efficiently.”
+    </div>
+    <div class="explain">Shows empathy, decision-making, and teamwork.</div>
+    <div class="tip">Do not blame anyone; focus on your solution and role.</div>
+  </div>
+
+  <!-- Behavioral Question 3 -->
+  <div class="q-card" data-title="Behavioral Question 3">
+    <div class="q-title">How do you prioritize tasks?</div>
+    <div class="q-meta">Behavioral</div>
+    <div class="answer">
+      <strong>How to answer:</strong><br>
+      - Mention methods like Eisenhower Matrix or planning tools.<br>
+      - Explain how you handle urgent vs important tasks.<br><br>
+      Example:  
+      “I list all tasks and rank them by importance and urgency. I focus on high-priority tasks first and plan the rest using a calendar to stay on track.”
+    </div>
+    <div class="explain">Shows logical thinking, organization, and time management.</div>
+    <div class="tip">Give a real-life example from school, internship, or project.</div>
+  </div>
+
+  <!-- Behavioral Question 4 -->
+  <div class="q-card" data-title="Behavioral Question 4">
+    <div class="q-title">Where do you see yourself in 5 years?</div>
+    <div class="q-meta">Behavioral</div>
+    <div class="answer">
+      <strong>How to answer:</strong><br>
+      - Talk about learning new skills and growing in your role.<br>
+      - Connect your answer to Wipro’s work opportunities.<br><br>
+      Example:  
+      “In 5 years, I aim to become a skilled software developer, contributing to challenging projects and mentoring juniors. I also hope to grow within Wipro and take on more responsibilities.”
+    </div>
+    <div class="explain">Shows ambition, planning, and alignment with the company.</div>
+    <div class="tip">Focus on learning and growth rather than just titles or salary.</div>
+  </div>
+
+  <!-- Behavioral Question 5 -->
+  <div class="q-card" data-title="Behavioral Question 5">
+    <div class="q-title">Why should we hire you?</div>
+    <div class="q-meta">Behavioral</div>
+    <div class="answer">
+      <strong>How to answer:</strong><br>
+      - Highlight your skills, attitude, and learning ability.<br>
+      - Give a short example or achievement.<br><br>
+      Example:  
+      “I am a quick learner with strong programming skills. During my internship, I completed tasks ahead of time and helped my team solve problems. I can contribute effectively to Wipro’s projects.”
+    </div>
+    <div class="explain">Shows confidence, skills, and willingness to contribute.</div>
+    <div class="tip">Be honest and concise. Avoid exaggeration.</div>
+  </div>
+
+  <!-- Behavioral Question 6 -->
+  <div class="q-card" data-title="Behavioral Question 6">
+    <div class="q-title">Give an example of teamwork</div>
+    <div class="q-meta">Behavioral</div>
+    <div class="answer">
+      <strong>How to answer:</strong><br>
+      - Describe a team situation, your role, and contribution.<br>
+      - Highlight communication, cooperation, and results.<br><br>
+      Example:  
+      “During a college coding competition, our team had 24 hours to complete a project. I coordinated tasks, helped debug code, and ensured we met deadlines. We completed the project successfully and won a prize.”
+    </div>
+    <div class="explain">Shows collaboration, leadership, and problem-solving.</div>
+    <div class="tip">Pick a real example from internship, school, or projects.</div>
+  </div>
+
+</div>
+
+
+<!-- ========= ROUND 5: HR / Logistics ========= -->
+<div class="q-list" id="hr">
+  <div class="q-card" data-title="HR Question 1">
+    <div class="q-title">Why do you want to work at Wipro?</div>
+    <div class="q-meta">HR</div>
+    <div class="answer">
+      <strong>Solution:</strong> Talk about Wipro’s values, innovation, learning opportunities, and how they match your career goals.
+    </div>
+    <div class="explain">Show that you have researched Wipro and are genuinely interested in the company.</div>
+    <div class="tip">Avoid generic answers; mention something specific about Wipro that excites you.</div>
+  </div>
+
+  <div class="q-card" data-title="HR Question 2">
+    <div class="q-title">Where do you see yourself in 5 years?</div>
+    <div class="q-meta">HR</div>
+    <div class="answer">
+      <strong>Solution:</strong> Describe your growth plans, ambition, and how you want to contribute to the company.
+    </div>
+    <div class="explain">Balance ambition with realism. Highlight skills you want to develop and value you want to add.</div>
+    <div class="tip">Focus on learning and impact, not just promotions.</div>
+  </div>
+
+  <div class="q-card" data-title="HR Question 3">
+    <div class="q-title">What are your strengths and weaknesses?</div>
+    <div class="q-meta">HR</div>
+    <div class="answer">
+      <strong>Solution:</strong> Mention 2–3 strengths with examples. For weaknesses, show you are aware of them and are improving.
+    </div>
+    <div class="explain">Be honest and show self-awareness. Focus on improvement and learning.</div>
+    <div class="tip">Avoid clichés; give concrete examples to support your points.</div>
+  </div>
+
+  <div class="q-card" data-title="HR Question 4">
+    <div class="q-title">How do you handle stress or pressure?</div>
+    <div class="q-meta">HR</div>
+    <div class="answer">
+      <strong>Solution:</strong> Explain your approach to staying calm, organizing tasks, and solving problems under pressure.
+    </div>
+    <div class="explain">Show that you can manage work effectively even in difficult situations.</div>
+    <div class="tip">Use a real-life example from projects, studies, or internships.</div>
+  </div>
+
+  <div class="q-card" data-title="HR Question 5">
+    <div class="q-title">Do you prefer working alone or in a team?</div>
+    <div class="q-meta">HR</div>
+    <div class="answer">
+      <strong>Solution:</strong> Explain your flexibility: comfortable working in both situations with examples.
+    </div>
+    <div class="explain">Show that you can collaborate but also take responsibility for your tasks independently.</div>
+    <div class="tip">Use examples to highlight teamwork and self-motivation.</div>
+  </div>
+</div>
+
+
+  <!-- Modal -->
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <span class="modal-close" id="modalClose">×</span>
+      <h3 id="modalTitle"></h3>
+      <div id="modalAnswer"></div>
+      <div id="modalExplain"></div>
+      <div id="modalTip"></div>
+    </div>
+  </div>
+</main>
+
+<script>
+document.getElementById('backBtn').addEventListener('click',()=>window.location.href="../company.html");
+
+const rounds = document.querySelectorAll('.round-card');
+const qLists = document.querySelectorAll('.q-list');
+rounds.forEach(r=>{
+  r.addEventListener('click',()=>{
+    const target = r.dataset.round;
+    qLists.forEach(q=>q.style.display='none');
+    document.getElementById(target).style.display='flex';
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+});
+
+const modal = document.getElementById('modal');
+const modalTitle = document.getElementById('modalTitle');
+const modalAnswer = document.getElementById('modalAnswer');
+const modalExplain = document.getElementById('modalExplain');
+const modalTip = document.getElementById('modalTip');
+const modalClose = document.getElementById('modalClose');
+
+document.querySelectorAll('.q-card').forEach(q=>{
+  q.addEventListener('click',()=>{
+    modal.classList.add('show');
+    modalTitle.textContent = q.dataset.title;
+    modalAnswer.innerHTML = q.querySelector('.answer').innerHTML;
+    modalExplain.innerHTML = q.querySelector('.explain').innerHTML;
+    modalTip.innerHTML = q.querySelector('.tip').innerHTML;
+  });
+});
+
+modalClose.addEventListener('click',()=>modal.classList.remove('show'));
+</script>
+</body>
+</html>

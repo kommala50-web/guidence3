@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About & Contact - TechPath</title>
+
+<style>
+  body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(120deg, #0a192f, #1e293b);
+    color: #e2e8f0;
+    overflow-x: hidden;
+  }
+
+  #about-contact {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 150px;
+    perspective: 1500px;
+    padding: 50px;
+    position: relative;
+  }
+
+  /* BACK BUTTONS */
+  .back-buttons {
+    position: absolute;
+    top: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    z-index: 10;
+  }
+
+  .back-buttons a {
+    text-decoration: none;
+    color: #0a192f;
+    background: #00b4d8;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-weight: bold;
+    transition: all 0.3s;
+  }
+
+  .back-buttons a:hover {
+    background: #48cae4;
+    transform: scale(1.05);
+  }
+
+  /* CARD STYLING */
+  .card {
+    width: 350px;
+    height: 300px;
+    perspective: 1500px;
+  }
+
+  .card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.8s;
+    cursor: pointer;
+  }
+
+  .card.flipped .card-inner {
+    transform: rotateY(180deg);
+  }
+
+  .card-tilt {
+    width: 100%;
+    height: 100%;
+    border-radius: 25px;
+    background: rgba(0,0,0,0.2);
+    box-shadow: 0 0 15px rgba(0,255,255,0.15), 0 12px 30px rgba(0,255,255,0.25);
+    transform-style: preserve-3d;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    color: #fff;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .card-tilt h2 {
+    color: #00b4d8;
+    font-size: 26px;
+    margin-bottom: 15px;
+  }
+
+  .card-tilt p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #dbeafe;
+  }
+
+  /* BACK FACE */
+  .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 25px;
+    backface-visibility: hidden;
+    background: rgba(0,0,0,0.45);
+    box-shadow: 0 12px 30px rgba(0,255,255,0.35);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    transform: rotateY(180deg);
+    text-align: center;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    #about-contact {
+      flex-direction: column;
+      gap: 50px;
+    }
+    .card {
+      width: 90%;
+      height: 300px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- BACK BUTTONS -->
+<div class="back-buttons">
+  <a href="../index.html">Home</a>
+  <a href="../career.html">Career Path</a>
+  <a href="../skills.html">Skills</a>
+  <a href="../company.html">Company Questions</a>
+</div>
+
+<div id="about-contact">
+  <!-- About Card -->
+  <div class="card">
+    <div class="card-inner">
+      <div class="card-tilt">
+        <h2>About Me</h2>
+        <p>I am a BTech student exploring the software field. This website helps fellow students with career paths, skill roadmaps, company interview questions, and resources.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact Card -->
+  <div class="card" id="contactCard">
+    <div class="card-inner">
+      <div class="card-tilt front">
+        <h2>Contact</h2>
+        <p>Click to reveal contact details</p>
+      </div>
+      <div class="card-back">
+        <h2>Contact Details</h2>
+        <p>Email: <a href="mailto:kommala50@gmail.com" style="color:#00b4d8;">kommala50@gmail.com</a></p>
+        <p>Phone: <a href="tel:9381522810" style="color:#00b4d8;">9381522810</a></p>
+        <p>Instagram: <a href="https://www.instagram.com/vijay_kamani" target="_blank" style="color:#00b4d8;">vijay kamani</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/placeholder" target="_blank" style="color:#00b4d8;">placeholder</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // FLIP CONTACT CARD ON CLICK
+  const contactCard = document.getElementById('contactCard');
+  contactCard.addEventListener('click', () => {
+    contactCard.classList.toggle('flipped');
+  });
+
+  // TILT BOTH CARDS ON HOVER
+  const tiltCards = document.querySelectorAll('.card-tilt');
+  tiltCards.forEach(card => {
+    card.parentElement.addEventListener('mousemove', (e) => {
+      const rect = card.parentElement.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = ((y - centerY) / centerY) * 10;
+      const rotateY = ((x - centerX) / centerX) * 10;
+      card.style.transform = `rotateX(${-rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+    card.parentElement.addEventListener('mouseleave', () => {
+      card.style.transform = `rotateX(0deg) rotateY(0deg)`;
+    });
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HTML Full Roadmap - TechPath</title>
+<link rel="stylesheet" href="../skills/style.css">
+
+<!-- Link to external JS from your skills folder -->
+<script defer src="../skills/script.js"></script>
+
+
+</head>
+
+<body>
+<div class="floating-code" id="floatingCode"></div>
+
+<header>
+  <h1>TechPath</h1>
+  <nav>
+    <a href="../index.html">Home</a>
+    <a href="../career.html">Career Paths</a>
+    <a href="skills.html">Skill Roadmaps</a>
+  </nav>
+</header>
+
+<section class="banner">
+  <h2>🌐 HTML Full Roadmap</h2>
+  <p>Learn HTML from basics to advanced topics with examples and descriptions.</p>
+</section>
+
+<div class="top-buttons">
+  <a href="../skills.html" class="btn">← Back to Skills</a>
+  <a href="../pdf/HTML_Roadmap.pdf" download="HTML_Roadmap.pdf" class="btn">Download PDF</a>
+  <a href="https://www.youtube.com/watch?v=k2DSi1zGEc8&t=15s" target="_blank" class="btn">Video Resource</a>
+</div>
+
+<section class="topic-container">
+<!-- 22 Topics Start -->
+<div class="topic-card"><h3>1. Introduction to HTML</h3><p><strong>Description:</strong> HTML is the standard language to create web pages and structure content.</p><pre>&lt;!DOCTYPE html&gt;\n&lt;html&gt;\n  &lt;head&gt;&lt;title&gt;My Page&lt;/title&gt;&lt;/head&gt;\n  &lt;body&gt;&lt;h1&gt;Hello World&lt;/h1&gt;&lt;/body&gt;\n&lt;/html&gt;</pre></div>
+
+<div class="topic-card"><h3>2. HTML Document Structure</h3><p><strong>Description:</strong> All HTML documents have &lt;html&gt;, &lt;head&gt;, &lt;body&gt; elements.</p><pre>&lt;!DOCTYPE html&gt;\n&lt;html lang="en"&gt;\n  &lt;head&gt;&lt;title&gt;Structure&lt;/title&gt;&lt;/head&gt;\n  &lt;body&gt;&lt;h1&gt;Heading&lt;/h1&gt;&lt;/body&gt;\n&lt;/html&gt;</pre></div>
+
+<div class="topic-card"><h3>3. Head Elements</h3><p><strong>Description:</strong> &lt;head&gt; contains metadata, title, links, scripts, styles.</p><pre>&lt;head&gt;\n  &lt;title&gt;Example&lt;/title&gt;\n  &lt;link rel="stylesheet" href="style.css"&gt;\n&lt;/head&gt;</pre></div>
+
+<div class="topic-card"><h3>4. Text Formatting Tags</h3><p><strong>Description:</strong> Tags like &lt;h1&gt;-&lt;h6&gt;, &lt;p&gt;, &lt;strong&gt;, &lt;em&gt; format text content.</p><pre>&lt;h1&gt;Main Heading&lt;/h1&gt;\n&lt;p&gt;This is &lt;strong&gt;important&lt;/strong&gt; text.&lt;/p&gt;</pre></div>
+
+<div class="topic-card"><h3>5. Links and Anchors</h3><p><strong>Description:</strong> &lt;a&gt; tags create links to other pages or sections.</p><pre>&lt;a href="https://example.com"&gt;Visit Example&lt;/a&gt;</pre></div>
+
+<div class="topic-card"><h3>6. Images</h3><p><strong>Description:</strong> &lt;img&gt; embeds images using src and alt attributes.</p><pre>&lt;img src="logo.png" alt="Logo"&gt;</pre></div>
+
+<div class="topic-card"><h3>7. Lists</h3><p><strong>Description:</strong> Ordered (&lt;ol&gt;) and unordered (&lt;ul&gt;) lists structure content.</p><pre>&lt;ul&gt;\n  &lt;li&gt;Item 1&lt;/li&gt;\n  &lt;li&gt;Item 2&lt;/li&gt;\n&lt;/ul&gt;</pre></div>
+
+<div class="topic-card"><h3>8. Tables</h3><p><strong>Description:</strong> &lt;table&gt; organizes tabular data with rows and columns.</p><pre>&lt;table&gt;\n  &lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Age&lt;/th&gt;&lt;/tr&gt;\n  &lt;tr&gt;&lt;td&gt;Alice&lt;/td&gt;&lt;td&gt;25&lt;/td&gt;&lt;/tr&gt;\n&lt;/table&gt;</pre></div>
+
+<div class="topic-card"><h3>9. Forms</h3><p><strong>Description:</strong> Forms collect user input using &lt;form&gt;, &lt;input&gt;, &lt;textarea&gt; and buttons.</p><pre>&lt;form action="/submit"&gt;\n  &lt;input type="text" name="name"&gt;\n  &lt;button type="submit"&gt;Submit&lt;/button&gt;\n&lt;/form&gt;</pre></div>
+
+<div class="topic-card"><h3>10. Input Types</h3><p><strong>Description:</strong> HTML offers multiple input types: text, email, password, number, checkbox, radio, etc.</p><pre>&lt;input type="email" name="email"&gt;\n&lt;input type="checkbox" name="subscribe"&gt;</pre></div>
+
+<div class="topic-card"><h3>11. Multimedia (Audio & Video)</h3><p><strong>Description:</strong> &lt;audio&gt; and &lt;video&gt; embed media with controls attribute.</p><pre>&lt;video src="video.mp4" controls&gt;&lt;/video&gt;\n&lt;audio src="audio.mp3" controls&gt;&lt;/audio&gt;</pre></div>
+
+<div class="topic-card"><h3>12. Semantic Tags</h3><p><strong>Description:</strong> Tags like &lt;header&gt;, &lt;footer&gt;, &lt;article&gt;, &lt;section&gt; improve structure and accessibility.</p><pre>&lt;header&gt;Header&lt;/header&gt;\n&lt;article&gt;Article content&lt;/article&gt;</pre></div>
+
+<div class="topic-card"><h3>13. Div & Span</h3><p><strong>Description:</strong> &lt;div&gt; groups block elements, &lt;span&gt; for inline content.</p><pre>&lt;div class="container"&gt;&lt;span&gt;Text&lt;/span&gt;&lt;/div&gt;</pre></div>
+
+<div class="topic-card"><h3>14. HTML Entities</h3><p><strong>Description:</strong> Special characters can be added using entities like &amp;, &lt;, &gt; etc.</p><pre>&amp; &lt; &gt; &quot; &apos;</pre></div>
+
+<div class="topic-card"><h3>15. Headings & Paragraphs</h3><p><strong>Description:</strong> Headings &lt;h1&gt;-&lt;h6&gt; organize content; &lt;p&gt; defines paragraphs.</p><pre>&lt;h1&gt;Heading&lt;/h1&gt;\n&lt;p&gt;Paragraph text.&lt;/p&gt;</pre></div>
+
+<div class="topic-card"><h3>16. Block & Inline Elements</h3><p><strong>Description:</strong> Block elements occupy full width; inline elements fit content.</p><pre>&lt;div&gt;Block&lt;/div&gt;\n&lt;span&gt;Inline&lt;/span&gt;</pre></div>
+
+<div class="topic-card"><h3>17. Iframes</h3><p><strong>Description:</strong> &lt;iframe&gt; embeds other pages within a page.</p><pre>&lt;iframe src="https://example.com" width="300" height="200"&gt;&lt;/iframe&gt;</pre></div>
+
+<div class="topic-card"><h3>18. Meta Tags</h3><p><strong>Description:</strong> &lt;meta&gt; tags provide page metadata like charset, viewport, description, and keywords.</p><pre>&lt;meta charset="UTF-8"&gt;\n&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</pre></div>
+
+<div class="topic-card"><h3>19. Forms Validation</h3><p><strong>Description:</strong> HTML5 validation attributes like required, pattern, minlength, maxlength.</p><pre>&lt;input type="text" required pattern="[A-Za-z]+"&gt;</pre></div>
+
+<div class="topic-card"><h3>20. HTML5 APIs</h3><p><strong>Description:</strong> APIs like Geolocation, LocalStorage, Canvas enhance web functionality.</p><pre>navigator.geolocation.getCurrentPosition(...);\nlocalStorage.setItem('key','value');</pre></div>
+
+<div class="topic-card"><h3>21. HTML Forms Advanced</h3><p><strong>Description:</strong> Input types like date, color, range, email, number improve user input experience.</p><pre>&lt;input type="date"&gt;\n&lt;input type="color"&gt;\n&lt;input type="range"&gt;</pre></div>
+
+<div class="topic-card"><h3>22. Bonus: Accessibility & SEO</h3><p><strong>Description:</strong> Use semantic tags, alt attributes, ARIA labels, proper headings to improve accessibility and SEO.</p><pre>&lt;img src="logo.png" alt="Logo"&gt;\n&lt;header&gt;...&lt;/header&gt;</pre></div>
+<!-- 22 Topics End -->
+</section>
+
+<footer>
+  Contact: techpath@example.com | © 2025 TechPath
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

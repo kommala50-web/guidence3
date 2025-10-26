@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>C++ Full Roadmap - TechPath</title>
+<link rel="stylesheet" href="../skills/style.css">
+<script defer src="../skills/script.js"></script>
+</head>
+<body>
+<div class="floating-code" id="floatingCode"></div>
+
+<header>
+  <h1>TechPath</h1>
+  <nav>
+    <a href="../index.html">Home</a>
+    <a href="../career.html">Career Paths</a>
+    <a href="../skills.html">Skill Roadmaps</a>
+    <a href="../company.html">Company Questions</a>
+  </nav>
+</header>
+
+<section class="banner">
+  <h2>💻 C++ Full Roadmap</h2>
+  <p>From beginner to advanced — detailed explanations, example questions, and runnable C++ code snippets to learn end-to-end.</p>
+</section>
+
+<div class="top-buttons">
+  <a href="../skills.html" class="btn">← Back to Skills</a>
+  <a href="../pdf/cpp.pdf" download="C++_Roadmap.pdf" class="btn">Download PDF</a>
+  <a href="../pdf/C++_Notes.pdf" download="C++_Notes.pdf" class="btn">Notes</a>
+  <a href="https://www.youtube.com/watch?v=vLnPwxZdW4Y" target="_blank" class="btn">Video Resource</a>
+</div>
+
+<section class="topic-container">
+
+<!-- 1. C++ Basics & Setup -->
+<div class="topic-card">
+<h3>1. C++ Basics & Setup</h3>
+<p><strong>Description:</strong><br>
+C++ is a high-performance, general-purpose language that builds on C. It is used in systems programming, game development, embedded systems, and high-performance applications. A C++ program consists of headers, the <code>main()</code> function, and statements within curly braces. Input/output is performed using <code>cin</code> and <code>cout</code> from the <code>&lt;iostream&gt;</code> library. Comments can be single-line (<code>//</code>) or multi-line (<code>/* */</code>).</p>
+<p><strong>Example Question:</strong> Write a program to input your name and age, then display them using <code>cout</code>.</p>
+ <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+<pre><code class="language-cpp">
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    string name;
+    int age;
+    cout &lt;&lt; "Enter your name: ";
+    cin &gt;&gt; name;
+    cout &lt;&lt; "Enter your age: ";
+    cin &gt;&gt; age;
+    cout &lt;&lt; "Hello, " &lt;&lt; name &lt;&lt; "! You are " &lt;&lt; age &lt;&lt; " years old." &lt;&lt; endl;
+    return 0;
+}
+</code></pre>
+</div>
+
+<!-- 2. Data Types & Variables -->
+<div class="topic-card">
+<h3>2. Data Types & Variables</h3>
+<p><strong>Description:</strong><br>
+Data types specify what kind of data a variable can hold. Common built-in types include <code>int</code>, <code>char</code>, <code>float</code>, <code>double</code>, and <code>bool</code>. Variables must be declared before use. Constants declared with <code>const</code> or <code>constexpr</code> cannot be changed after initialization. Type modifiers (<code>signed</code>, <code>unsigned</code>, <code>short</code>, <code>long</code>) control size and range. Type casting converts values from one type to another, either implicitly or explicitly.</p>
+<p><strong>Example Question:</strong> Write a program demonstrating constants and type casting.</p>
+ <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+<pre><code class="language-cpp">
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    const double PI = 3.14159;
+    int radius = 5;
+    double area = PI * radius * radius; // implicit casting
+    cout &lt;&lt; "Area of circle: " &lt;&lt; area &lt;&lt; endl;
+
+    double num = 7.8;
+    int converted = static_cast&lt;int&gt;(num); // explicit cast
+    cout &lt;&lt; "Converted value: " &lt;&lt; converted &lt;&lt; endl;
+
+    return 0;
+}
+</code></pre>
+</div>
+
+
+<!-- 3. Operators - Description -->
+<div class="topic-card">
+  <h3>3. Operators</h3>
+  <div class="description">
+    <p>
+      Operators are symbols that perform operations on variables and values. C++ has several types of operators:
+    </p>
+     <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+    <ul>
+      <li><b>Arithmetic Operators:</b> +, -, *, /, % for addition, subtraction, multiplication, division, and modulo.</li>
+      <li><b>Relational Operators:</b> ==, !=, &gt;, &lt;, &gt;=, &lt;= used to compare values.</li>
+      <li><b>Logical Operators:</b> &&, ||, ! for combining boolean expressions.</li>
+      <li><b>Bitwise Operators:</b> &, |, ^, ~, &lt;&lt;, &gt;&gt; for manipulation at the bit level.</li>
+      <li><b>Assignment Operators:</b> =, +=, -=, *=, /=, %=, etc.</li>
+      <li><b>Increment/Decrement:</b> ++, -- to increase or decrease a variable by 1.</li>
+      <li><b>Ternary Operator:</b> ?: for inline conditional expressions.</li>
+      <li><b>sizeof and comma operator:</b> sizeof gives memory size of a type or variable, comma evaluates multiple expressions in sequence.</li>
+    </ul>
+    <p><strong>Example Question:</strong> Write a program to demonstrate all arithmetic and logical operators.</p>
+  </div>
+</div>
+
+<!-- 3. Operators - Code Snippet -->
+<div class="topic-card">
+    <h3>3. Operators code</h3>
+  <div class="code-snippet">
+    <pre><code class="language-cpp">
+         <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int a = 10, b = 3;
+
+    // Arithmetic
+    cout &lt;&lt; "a + b = " &lt;&lt; a + b &lt;&lt; endl;
+    cout &lt;&lt; "a - b = " &lt;&lt; a - b &lt;&lt; endl;
+    cout &lt;&lt; "a * b = " &lt;&lt; a * b &lt;&lt; endl;
+    cout &lt;&lt; "a / b = " &lt;&lt; a / b &lt;&lt; endl;
+    cout &lt;&lt; "a % b = " &lt;&lt; a % b &lt;&lt; endl;
+
+    // Logical
+    cout &lt;&lt; "(a &gt; b) && (b &gt; 0) = " &lt;&lt; ((a &gt; b) && (b &gt; 0)) &lt;&lt; endl;
+    cout &lt;&lt; "(a == b) || (b &gt; 0) = " &lt;&lt; ((a == b) || (b &gt; 0)) &lt;&lt; endl;
+
+    return 0;
+}
+    </code></pre>
+  </div>
+</div>
+
+
+<!-- 4. Control Flow -->
+<div class="topic-card">
+<h3>4. Control Flow</h3>
+<p><strong>Description:</strong><br>
+Control flow statements determine the order in which statements execute. C++ provides:<br>
+<b>If-Else:</b> Executes blocks based on a condition.<br>
+<b>Nested and Chained Conditions:</b> Multiple if-else can be nested or chained for complex logic.<br>
+<b>Switch Statement:</b> Select one block to execute among many based on a variable's value.<br>
+<b>Loops:</b> for, while, do-while loops repeat code until a condition is met.<br>
+<b>Break & Continue:</b> Break exits a loop early; continue skips the current iteration.<br>
+<b>Goto:</b> Jumps to a labeled statement (rarely used).</p>
+
+<p><strong>Example Question:</strong> Write a program using if-else and loops to print all even numbers from 1 to 20.</p>
+ <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+
+<pre><code class="language-cpp">
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    cout &lt;&lt; "Even numbers from 1 to 20: ";
+    for(int i = 1; i &lt;= 20; i++) {
+        if(i % 2 == 0) {
+            cout &lt;&lt; i &lt;&lt; " ";
+        }
+    }
+    cout &lt;&lt; endl;
+    return 0;
+}
+</code></pre>
+</div>
+<!-- 5. Functions -->
+<div class="topic-card">
+<h3>5. Functions</h3>
+<p><strong>Description:</strong><br>
+Functions are reusable blocks of code that perform a specific task. They help in organizing code, reducing repetition, and improving readability. Functions in C++ can have parameters and return types. Default arguments allow optional parameters. Function overloading lets multiple functions share the same name with different parameters. Recursion allows a function to call itself. Passing by value copies data, whereas passing by reference allows the function to modify the original variable.</p>
+
+<p><strong>Example Question:</strong> Write a function to calculate the factorial of a number using recursion.</p>
+ <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+
+<pre><code class="language-cpp">
+#include &lt;iostream&gt;
+using namespace std;
+
+// Function declaration
+int factorial(int n) {
+    if(n == 0 || n == 1)
+        return 1;
+    else
+        return n * factorial(n - 1); // recursion
+}
+
+int main() {
+    int num;
+    cout &lt;&lt; "Enter a number: ";
+    cin &gt;&gt; num;
+    cout &lt;&lt; "Factorial of " &lt;&lt; num &lt;&lt; " is " &lt;&lt; factorial(num) &lt;&lt; endl;
+    return 0;
+}
+</code></pre>
+</div>
+
+<!-- 6. Arrays & Strings -->
+<div class="topic-card">
+<h3>6. Arrays & Strings</h3>
+<p><strong>Description:</strong><br>
+Arrays are collections of elements of the same data type stored in contiguous memory. 1D arrays hold a single sequence of elements, whereas 2D arrays store elements in rows and columns. Arrays must be declared with a size and can be initialized at declaration. Strings in C++ can be handled either as character arrays (<code>char[]</code>) or using the <code>string</code> class, which provides convenient operations such as <code>append</code>, <code>substr</code>, <code>find</code>, and <code>compare</code>. Command-line arguments allow passing data to the program at runtime.</p>
+
+<p><strong>Example Question:</strong> Write a program to input 5 numbers into an array and find their sum. Then, take a string input and print its substring.</p>
+ <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+
+<pre><code class="language-cpp">
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main() {
+    int arr[5], sum = 0;
+    cout &lt;&lt; "Enter 5 numbers: ";
+    for(int i = 0; i &lt; 5; i++) {
+        cin &gt;&gt; arr[i];
+        sum += arr[i];
+    }
+    cout &lt;&lt; "Sum: " &lt;&lt; sum &lt;&lt; endl;
+
+    string str;
+    cout &lt;&lt; "Enter a string: ";
+    cin &gt;&gt; str;
+    cout &lt;&lt; "Substring (0-2): " &lt;&lt; str.substr(0,3) &lt;&lt; endl;
+
+    return 0;
+}
+</code></pre>
+</div>
+<!-- 7. Pointers -->
+<div class="topic-card">
+<h3>7. Pointers</h3>
+<p><strong>Description:</strong><br>
+Pointers are variables that store the memory address of another variable. They allow direct memory manipulation and efficient data handling. Key concepts include pointer declaration, initialization, pointer arithmetic, pointers to arrays, and pointers to pointers. The <code>nullptr</code> keyword represents a null pointer. Void pointers can point to any data type but require typecasting to be dereferenced. Pointers can be used with functions to enable pass-by-reference behavior. Dynamic memory allocation is done using <code>new</code> and <code>delete</code>. Proper memory management avoids dangling pointers and memory leaks.</p>
+
+<p><strong>Example Question:</strong> Write a program to swap two numbers using pointers.</p>
+ <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+
+<pre><code class="language-cpp">
+#include &lt;iostream&gt;
+using namespace std;
+
+void swap(int *a, int *b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+int main() {
+    int x = 10, y = 20;
+    cout &lt;&lt; "Before swap: x=" &lt;&lt; x &lt;&lt; " y=" &lt;&lt; y &lt;&lt; endl;
+    swap(&x, &y);
+    cout &lt;&lt; "After swap: x=" &lt;&lt; x &lt;&lt; " y=" &lt;&lt; y &lt;&lt; endl;
+    return 0;
+}
+</code></pre>
+</div>
+
+<!-- 8. References -->
+<div class="topic-card">
+<h3>8. References</h3>
+<p><strong>Description:</strong><br>
+References are aliases for existing variables. Unlike pointers, references cannot be null and must be initialized when declared. They allow passing variables by reference to functions without using explicit pointers, which simplifies code and improves readability. Functions can also return references, enabling modifications to the original variable. References differ from pointers in syntax, immutability of the reference binding, and safety.</p>
+
+<p><strong>Example Question:</strong> Write a program to increment a number using reference parameters.</p>
+ <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+
+<pre><code class="language-cpp">
+#include &lt;iostream&gt;
+using namespace std;
+
+void increment(int &num) {
+    num++; // directly modifies original variable
+}
+
+int main() {
+    int value = 5;
+    cout &lt;&lt; "Before increment: " &lt;&lt; value &lt;&lt; endl;
+    increment(value);
+    cout &lt;&lt; "After increment: " &lt;&lt; value &lt;&lt; endl;
+    return 0;
+}
+</code></pre>
+</div>
+<!-- 9. Dynamic Memory & Storage Classes -->
+<div class="topic-card">
+<h3>9. Dynamic Memory & Storage Classes</h3>
+<p><strong>Description:</strong><br>
+Dynamic memory allows allocating memory at runtime using <code>new</code> and releasing it with <code>delete</code>. Unlike static memory, dynamic memory size can change during program execution, enabling flexible data structures. Storage classes define the scope, lifetime, and visibility of variables. Common storage classes are <code>auto</code> (default for local variables), <code>static</code> (preserves value across function calls), <code>register</code> (suggests CPU register storage), <code>extern</code> (declares external variables), and <code>mutable</code> (allows modification of const members in classes). Understanding memory layout (stack vs heap) is crucial for efficient programming.</p>
+
+<p><strong>Example Question:</strong> Write a program to create a dynamic array and calculate its sum.</p>
+ <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+
+<pre><code class="language-cpp">
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int n;
+    cout &lt;&lt; "Enter number of elements: ";
+    cin &gt;&gt; n;
+
+    int *arr = new int[n]; // dynamic memory allocation
+    int sum = 0;
+
+    cout &lt;&lt; "Enter " &lt;&lt; n &lt;&lt; " numbers: ";
+    for(int i = 0; i &lt; n; i++) {
+        cin &gt;&gt; arr[i];
+        sum += arr[i];
+    }
+
+    cout &lt;&lt; "Sum: " &lt;&lt; sum &lt;&lt; endl;
+
+    delete[] arr; // free dynamic memory
+    return 0;
+}
+</code></pre>
+</div>
+
+<!-- 10. Structures & Enumerations -->
+<div class="topic-card">
+<h3>10. Structures & Enumerations</h3>
+<p><strong>Description:</strong><br>
+Structures (<code>struct</code>) group different data types under a single name, allowing organized storage of related data. Nested structures enable hierarchical data modeling. <code>typedef</code> and <code>using</code> provide aliases for complex types. Enumerations (<code>enum</code>) define a set of named integer constants; <code>enum class</code> (C++11+) provides scoped and type-safe enumerations. These constructs improve code readability and maintainability, particularly in complex programs.</p>
+
+<p><strong>Example Question:</strong> Write a program to store student information using struct and display it.</p>
+ <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+
+<pre><code class="language-cpp">
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+struct Student {
+    string name;
+    int age;
+    char grade;
+};
+
+int main() {
+    Student s1;
+    s1.name = "Alice";
+    s1.age = 20;
+    s1.grade = 'A';
+
+    cout &lt;&lt; "Student Info: " &lt;&lt; s1.name &lt;&lt; ", Age: " &lt;&lt; s1.age &lt;&lt; ", Grade: " &lt;&lt; s1.grade &lt;&lt; endl;
+
+    enum class Color {Red, Green, Blue};
+    Color fav = Color::Green;
+    cout &lt;&lt; "Favorite color enum value: " &lt;&lt; static_cast&lt;int&gt;(fav) &lt;&lt; endl;
+
+    return 0;
+}
+</code></pre>
+</div>
+<!-- 11. Object-Oriented Programming (OOP) - Code Snippet -->
+<div class="topic-card">
+    <h3>11. Object-Oriented Programming (OOP)</h3>
+  <div class="code-snippet">
+    <pre><code class="language-cpp">
+         <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+// Base class
+class BankAccount {
+protected:
+    string accountHolder;
+    double balance;
+public:
+    BankAccount(string name, double bal) : accountHolder(name), balance(bal) {}
+    virtual void showAccountType() {
+        cout &lt;&lt; "Generic Bank Account" &lt;&lt; endl;
+    }
+    void deposit(double amount) {
+        balance += amount;
+        cout &lt;&lt; "Deposited: " &lt;&lt; amount &lt;&lt; ", New balance: " &lt;&lt; balance &lt;&lt; endl;
+    }
+    void withdraw(double amount) {
+        if(amount &lt;= balance) {
+            balance -= amount;
+            cout &lt;&lt; "Withdrawn: " &lt;&lt; amount &lt;&lt; ", Remaining balance: " &lt;&lt; balance &lt;&lt; endl;
+        } else {
+            cout &lt;&lt; "Insufficient balance!" &lt;&lt; endl;
+        }
+    }
+};
+
+// Derived class
+class SavingsAccount : public BankAccount {
+public:
+    SavingsAccount(string name, double bal) : BankAccount(name, bal) {}
+    void showAccountType() override {
+        cout &lt;&lt; "Savings Account" &lt;&lt; endl;
+    }
+};
+
+int main() {
+    SavingsAccount sa("Alice", 5000);
+    sa.showAccountType();
+    sa.deposit(2000);
+    sa.withdraw(1000);
+    return 0;
+}
+    </code></pre>
+  </div>
+</div>
+<!-- 11. Object-Oriented Programming (OOP) - Description -->
+<div class="topic-card">
+  <h3>11. Object-Oriented Programming (OOP)</h3>
+  <div class="description">
+    <p>
+      OOP is a programming paradigm that models real-world entities using classes and objects. It focuses on four key principles:
+    </p>
+     <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+    <ul>
+      <li><b>Classes & Objects:</b> Classes define a blueprint with attributes (data members) and behaviors (member functions). Objects are instances of classes. Constructors initialize objects, and destructors clean up resources. The <code>this</code> pointer refers to the current object. Static members belong to the class rather than individual objects.</li>
+      <li><b>Inheritance:</b> Enables a class to acquire properties of another. Types include single, multiple, multilevel, hierarchical, and hybrid. Access specifiers (<code>public</code>, <code>protected</code>, <code>private</code>) control visibility. Constructors and destructors execute in a defined order. Function overriding allows child classes to redefine parent behavior.</li>
+      <li><b>Polymorphism:</b> The ability of a function or object to take multiple forms. Compile-time polymorphism includes function and operator overloading. Run-time polymorphism uses virtual functions. Abstract classes and pure virtual functions define interfaces. Keywords like <code>virtual</code>, <code>override</code>, and <code>final</code> control behavior.</li>
+      <li><b>Encapsulation & Abstraction:</b> Hides implementation details from the user. Getter and setter functions provide controlled access to private data.</li>
+    </ul>
+    <p><strong>Example Question:</strong> Write a class for a bank account with deposit and withdrawal functions. Derive a class for a savings account and override a function to show account type.</p>
+  </div>
+</div>
+
+<!-- 12. Operator Overloading -->
+<div class="topic-card">
+<h3>12. Operator Overloading</h3>
+<p><strong>Description:</strong><br>
+Operator overloading allows developers to redefine the behavior of standard operators (like +, -, *, <<, >>) for user-defined types (classes). It enhances code readability and makes objects interact intuitively. Overloading can be unary (e.g., ++, --) or binary (e.g., +, -). Stream operators (<code>&lt;&lt;</code> and <code>&gt;&gt;</code>) are commonly overloaded for input/output of class objects.</p>
+
+<p><strong>Example Question:</strong> Overload the + operator for a class representing complex numbers.</p>
+ <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+
+<pre><code class="language-cpp">
+#include &lt;iostream&gt;
+using namespace std;
+
+class Complex {
+private:
+    double real, imag;
+public:
+    Complex(double r=0, double i=0) : real(r), imag(i) {}
+    
+    // Overload + operator
+    Complex operator+(const Complex &c) {
+        return Complex(real + c.real, imag + c.imag);
+    }
+
+    void display() {
+        cout &lt;&lt; real &lt;&lt; " + " &lt;&lt; imag &lt;&lt; "i" &lt;&lt; endl;
+    }
+};
+
+int main() {
+    Complex c1(2,3), c2(4,5);
+    Complex c3 = c1 + c2; // calls overloaded +
+    c3.display();
+    return 0;
+}
+</code></pre>
+</div>
+
+<!-- 13. Advanced OOP Concepts -->
+<div class="topic-card">
+<h3>13. Advanced OOP Concepts</h3>
+<p><strong>Description:</strong><br>
+Advanced OOP concepts in C++ include:  
+
+- <b>Friend Functions & Classes:</b> Allow external functions or classes to access private/protected members of a class.  
+- <b>Static Members:</b> Belong to the class rather than an object; shared across all instances.  
+- <b>Const Objects & Member Functions:</b> Ensure data cannot be modified; const member functions cannot alter object state.  
+- <b>Deep Copy vs Shallow Copy:</b> Shallow copy copies only pointers, while deep copy duplicates the actual data, avoiding shared references.  
+- <b>Copy Constructor & Move Constructor:</b> Used for copying or moving objects efficiently.  
+- <b>Rule of 3/5/0:</b> Guides proper implementation of copy constructor, assignment operator, and destructor for resource management.</p>
+
+<p><strong>Example Question:</strong> Write a class with a static member to count number of objects created and implement a copy constructor.</p>
+ <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+
+<pre><code class="language-cpp">
+#include &lt;iostream&gt;
+using namespace std;
+
+class Sample {
+private:
+    int data;
+public:
+    static int objectCount; // static member
+
+    Sample(int d) : data(d) {
+        objectCount++;
+    }
+
+    // Copy constructor
+    Sample(const Sample &s) : data(s.data) {
+        objectCount++;
+    }
+
+    void display() { cout &lt;&lt; "Data: " &lt;&lt; data &lt;&lt; endl; }
+};
+
+int Sample::objectCount = 0;
+
+int main() {
+    Sample s1(10);
+    Sample s2(20);
+    Sample s3 = s1; // copy constructor
+    s1.display();
+    s2.display();
+    s3.display();
+    cout &lt;&lt; "Total objects: " &lt;&lt; Sample::objectCount &lt;&lt; endl;
+    return 0;
+}
+</code></pre>
+</div>
+<!-- 14. File Handling -->
+<div class="topic-card">
+<h3>14. File Handling</h3>
+<p><strong>Description:</strong><br>
+File handling allows C++ programs to read from and write to files. The <code>fstream</code> library provides <code>ifstream</code> for reading, <code>ofstream</code> for writing, and <code>fstream</code> for both. File positioning functions like <code>seekg</code> (get pointer) and <code>seekp</code> (put pointer) allow moving within files. Binary file operations are used for storing raw data efficiently. Proper opening/closing and error checking are essential to prevent data corruption.</p>
+
+<p><strong>Example Question:</strong> Write a program to create a file, write text to it, and then read and display its content.</p>
+ <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+
+<pre><code class="language-cpp">
+#include &lt;iostream&gt;
+#include &lt;fstream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main() {
+    // Writing to a file
+    ofstream outFile("example.txt");
+    if(!outFile) {
+        cout &lt;&lt; "Error opening file for writing!" &lt;&lt; endl;
+        return 1;
+    }
+    outFile &lt;&lt; "Hello C++ File Handling\n";
+    outFile &lt;&lt; "Writing some text to file.\n";
+    outFile.close();
+
+    // Reading from a file
+    ifstream inFile("example.txt");
+    if(!inFile) {
+        cout &lt;&lt; "Error opening file for reading!" &lt;&lt; endl;
+        return 1;
+    }
+    string line;
+    while(getline(inFile, line)) {
+        cout &lt;&lt; line &lt;&lt; endl;
+    }
+    inFile.close();
+
+    return 0;
+}
+</code></pre>
+</div>
+
+<!-- 15. Exception Handling -->
+<div class="topic-card">
+<h3>15. Exception Handling</h3>
+<p><strong>Description:</strong><br>
+Exception handling in C++ allows managing runtime errors gracefully without crashing the program. The <code>try</code> block contains code that may throw exceptions. <code>throw</code> raises an exception, which is caught by a corresponding <code>catch</code> block. Multiple catch blocks can handle different types of exceptions. Custom exceptions can be defined by subclassing the <code>exception</code> class. Proper exception handling ensures program robustness and maintainability.</p>
+
+<p><strong>Example Question:</strong> Write a program to handle division by zero using exception handling.</p>
+
+<pre><code class="language-cpp">
+     <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+#include &lt;iostream&gt;
+using namespace std;
+
+int divide(int a, int b) {
+    if(b == 0) {
+        throw runtime_error("Division by zero!");
+    }
+    return a / b;
+}
+
+int main() {
+    int x = 10, y = 0;
+    try {
+        int result = divide(x, y);
+        cout &lt;&lt; "Result: " &lt;&lt; result &lt;&lt; endl;
+    } catch(runtime_error &amp;e) {
+        cout &lt;&lt; "Caught exception: " &lt;&lt; e.what() &lt;&lt; endl;
+    }
+    return 0;
+}
+</code></pre>
+</div>
+<!-- 16. Templates -->
+<div class="topic-card">
+<h3>16. Templates</h3>
+<p><strong>Description:</strong><br>
+Templates allow writing generic and reusable code in C++. Function templates enable defining functions that work with any data type. Class templates allow creating generic classes. Template specialization lets you provide a custom implementation for a specific type. Non-type template arguments allow using constants or values as template parameters. Templates reduce code duplication and improve flexibility for data structures and algorithms.</p>
+
+<p><strong>Example Question:</strong> Write a function template to find the maximum of two values.</p>
+ <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+
+<pre><code class="language-cpp">
+#include &lt;iostream&gt;
+using namespace std;
+
+// Function template
+template &lt;typename T&gt;
+T getMax(T a, T b) {
+    return (a &gt; b) ? a : b;
+}
+
+int main() {
+    cout &lt;&lt; "Max of 3 and 7: " &lt;&lt; getMax(3,7) &lt;&lt; endl;
+    cout &lt;&lt; "Max of 4.5 and 2.3: " &lt;&lt; getMax(4.5,2.3) &lt;&lt; endl;
+    return 0;
+}
+</code></pre>
+</div>
+
+<!-- 17. Standard Template Library (STL) -->
+<div class="topic-card">
+<h3>17. Standard Template Library (STL)</h3>
+<p><strong>Description:</strong><br>
+The STL provides ready-to-use generic classes and functions for common data structures and algorithms. It includes:  
+
+<b>Containers:</b> <code>vector</code>, <code>list</code>, <code>deque</code>, <code>set</code>, <code>map</code>, <code>unordered_map</code>, <code>stack</code>, <code>queue</code>, <code>priority_queue</code>, etc.  
+<b>Iterators:</b> Allow traversal of container elements. Types include input, output, forward, bidirectional, and random-access iterators.  
+<b>Algorithms:</b> Predefined functions like <code>sort</code>, <code>reverse</code>, <code>count</code>, <code>find</code>, <code>accumulate</code>, and support for lambda expressions and custom comparators.  
+<b>Utility Components:</b> <code>pair</code>, <code>tuple</code>, <code>bitset</code>, <code>optional</code>, <code>variant</code>.  
+
+STL improves productivity, reduces code size, and enhances performance by using efficient data structures and algorithms.</p>
+
+<p><strong>Example Question:</strong> Write a program to store integers in a vector, sort them, and calculate their sum.</p>
+ <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+
+<pre><code class="language-cpp">
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+#include &lt;numeric&gt;
+using namespace std;
+
+int main() {
+    vector&lt;int&gt; numbers = {5,2,9,1,7};
+    
+    sort(numbers.begin(), numbers.end());
+    
+    cout &lt;&lt; "Sorted numbers: ";
+    for(int n : numbers) cout &lt;&lt; n &lt;&lt; " ";
+    cout &lt;&lt; endl;
+
+    int total = accumulate(numbers.begin(), numbers.end(), 0);
+    cout &lt;&lt; "Sum: " &lt;&lt; total &lt;&lt; endl;
+
+    return 0;
+}
+</code></pre>
+</div>
+<!-- 18. Modern C++ (C++11 → C++20+) -->
+<div class="topic-card">
+<h3>18. Modern C++ (C++11 → C++20+)</h3>
+<p><strong>Description:</strong><br>
+Modern C++ introduces features that improve safety, readability, and performance. Key features include:  
+
+<b>auto keyword:</b> Automatically deduces the type of a variable, reducing verbosity.<br>
+<b>Range-based loops:</b> Simplify iteration over containers.<br>
+<b>Lambda expressions:</b> Define anonymous inline functions for short, reusable logic.<br>
+<b>nullptr:</b> Replaces <code>NULL</code> for safer pointer initialization.<br>
+<b>Smart pointers:</b> <code>unique_ptr</code>, <code>shared_ptr</code>, <code>weak_ptr</code> manage dynamic memory automatically to avoid leaks.<br>
+<b>Move semantics & rvalue references:</b> Efficiently transfer resources instead of copying.<br>
+<b>constexpr:</b> Compile-time constant evaluation.<br>
+<b>Structured bindings:</b> Simplify unpacking tuples or pair-like objects.<br>
+<b>std::optional, std::variant, std::any:</b> Safer and more flexible types for optional values or heterogeneous storage.<br>
+<b>Concepts and ranges (C++20):</b> Define constraints on template parameters and provide cleaner container operations.<br>
+<b>Threading basics:</b> Use <code>std::thread</code>, <code>mutex</code>, <code>lock_guard</code> for concurrency.<br>
+<b>File system library:</b> <code>std::filesystem</code> simplifies file and directory operations.</p>
+
+<p><strong>Example Question:</strong> Use modern C++ features to create a vector of integers, filter even numbers using a lambda, and print them.</p>
+ <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+
+<pre><code class="language-cpp">
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+int main() {
+    vector&lt;int&gt; nums = {1,2,3,4,5,6,7,8,9,10};
+
+    // Filter even numbers using lambda
+    vector&lt;int&gt; evens;
+    copy_if(nums.begin(), nums.end(), back_inserter(evens),
+        [](int x) { return x % 2 == 0; });
+
+    cout &lt;&lt; "Even numbers: ";
+    for(auto n : evens) cout &lt;&lt; n &lt;&lt; " ";
+    cout &lt;&lt; endl;
+
+    // Smart pointer example
+    unique_ptr&lt;int&gt; ptr = make_unique&lt;int&gt;(42);
+    cout &lt;&lt; "Unique pointer value: " &lt;&lt; *ptr &lt;&lt; endl;
+
+    return 0;
+}
+</code></pre>
+</div>
+<!-- 19. Advanced Topics -->
+<div class="topic-card">
+<h3>19. Advanced Topics</h3>
+<p><strong>Description:</strong><br>
+Advanced topics in C++ cover powerful language features and internal mechanisms that improve program structure, efficiency, and maintainability:  
+
+<b>Namespaces & Modular Programming:</b> Group related functions, classes, and constants to avoid name conflicts. Use <code>namespace</code> to encapsulate code.<br>
+<b>Type Casting:</b> Modern C++ provides safer casts: <code>static_cast</code>, <code>dynamic_cast</code>, <code>const_cast</code>, <code>reinterpret_cast</code> for explicit conversions.<br>
+<b>Function Pointers:</b> Pointers that store addresses of functions, allowing dynamic function calls.<br>
+<b>Virtual Tables (vtable):</b> Enable run-time polymorphism using virtual functions. Each polymorphic class has a vtable to resolve function calls at runtime.<br>
+<b>Memory Management Internals:</b> Understanding stack vs heap, memory leaks, dangling pointers, and proper dynamic allocation improves program safety.<br>
+<b>Design Patterns:</b> Common solutions to recurring design problems, such as Singleton, Factory, Observer, Strategy, etc.<br>
+<b>Compilation Process:</b> C++ compilation involves preprocessing → compiling → linking. Understanding this helps debug compilation errors and optimize builds.<br>
+<b>Macros & #define:</b> Preprocessor directives for constants, code snippets, and conditional compilation. Modern C++ prefers <code>constexpr</code> over macros for type safety.</p>
+
+<p><strong>Example Question:</strong> Write a function pointer example to call different mathematical operations dynamically.</p>
+ <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+
+<pre><code class="language-cpp">
+#include &lt;iostream&gt;
+using namespace std;
+
+// Functions
+int add(int a, int b) { return a + b; }
+int multiply(int a, int b) { return a * b; }
+
+int main() {
+    int (*operation)(int,int); // Function pointer
+
+    // Point to add function
+    operation = add;
+    cout &lt;&lt; "Add: " &lt;&lt; operation(5,3) &lt;&lt; endl;
+
+    // Point to multiply function
+    operation = multiply;
+    cout &lt;&lt; "Multiply: " &lt;&lt; operation(5,3) &lt;&lt; endl;
+
+    return 0;
+}
+</code></pre>
+</div>
+<!-- Projects / Real-world Applications - Description -->
+<div class="topic-card">
+  <h3>20. Projects / Real-world Applications</h3>
+  <div class="description">
+    <p><strong>Description:</strong></p>
+    <p>Applying C++ concepts in projects consolidates learning and demonstrates real-world problem solving. Common beginner to intermediate projects include:</p>
+     <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+    <ul>
+      <li><b>Mini Calculator:</b> Uses functions, switch statements, loops, and basic operators. Helps practice control flow and arithmetic operations.</li>
+      <li><b>Student Management System:</b> Uses classes, file handling, and data structures to manage student records. Teaches OOP, persistence, and user interaction.</li>
+      <li><b>Banking System:</b> Uses OOP to model accounts, transactions, and customers. Integrates file I/O and exception handling.</li>
+      <li><b>Inventory Management:</b> Combines STL containers (like <code>vector</code>, <code>map</code>) with file handling to track products, quantities, and sales.</li>
+      <li><b>Chat or Game Application:</b> Demonstrates multithreading, networking (sockets), and advanced OOP principles.</li>
+      <li><b>Modern C++ App:</b> Utilizes smart pointers, lambda expressions, and STL algorithms to build efficient, safe, and maintainable applications.</li>
+    </ul>
+  </div>
+</div>
+<!-- Projects / Real-world Applications - Example Code Snippet -->
+<div class="topic-card">
+      <h3>20. Projects / Real-world Applications code</h3>
+  <h3>Example Code: Mini Calculator</h3>
+   <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+  <pre><code class="language-cpp">
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    char op;
+    double num1, num2;
+
+    cout &lt;&lt; "Enter operator (+, -, *, /): ";
+    cin &gt;&gt; op;
+
+    cout &lt;&lt; "Enter two numbers: ";
+    cin &gt;&gt; num1 &gt;&gt; num2;
+
+    switch(op) {
+        case '+': cout &lt;&lt; "Result: " &lt;&lt; num1 + num2 &lt;&lt; endl; break;
+        case '-': cout &lt;&lt; "Result: " &lt;&lt; num1 - num2 &lt;&lt; endl; break;
+        case '*': cout &lt;&lt; "Result: " &lt;&lt; num1 * num2 &lt;&lt; endl; break;
+        case '/': 
+            if(num2 != 0) cout &lt;&lt; "Result: " &lt;&lt; num1 / num2 &lt;&lt; endl;
+            else cout &lt;&lt; "Error: Division by zero!" &lt;&lt; endl;
+            break;
+        default: cout &lt;&lt; "Invalid operator!" &lt;&lt; endl;
+    }
+
+    return 0;
+}
+  </code></pre>
+</div>
+
+<!-- STL Containers: vector & list -->
+<div class="topic-card">
+<h3>STL Containers: vector & list</h3>
+<p><strong>Description:</strong><br>
+<b>vector:</b> Dynamic array, allows random access, automatically resizes. Use when frequent access by index is needed.<br>
+<b>list:</b> Doubly linked list, fast insertions/deletions, but slower random access. Use when frequent insert/delete operations in middle of sequence.</p>
+
+<p><strong>Example Code:</strong></p>
+ <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+<pre><code class="language-cpp">
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;list&gt;
+using namespace std;
+
+int main() {
+    vector&lt;int&gt; v = {1,2,3};
+    v.push_back(4);
+    cout &lt;&lt; "Vector element at index 2: " &lt;&lt; v[2] &lt;&lt; endl;
+
+    list&lt;int&gt; l = {10,20,30};
+    l.push_back(40);
+    cout &lt;&lt; "List front element: " &lt;&lt; l.front() &lt;&lt; endl;
+
+    return 0;
+}
+</code></pre>
+</div>
+<!-- STL Containers: deque & set -->
+<div class="topic-card">
+<h3>STL Containers: deque & set</h3>
+<p><strong>Description:</strong><br>
+<b>deque:</b> Double-ended queue, allows fast insertion/deletion at both front and back. Supports random access like vector.<br>
+<b>set:</b> Ordered collection of unique elements. Automatically sorts and prevents duplicates. Good for fast search, insertion, deletion.</p>
+
+<p><strong>Example Code:</strong></p>
+ <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+<pre><code class="language-cpp">
+#include &lt;iostream&gt;
+#include &lt;deque&gt;
+#include &lt;set&gt;
+using namespace std;
+
+int main() {
+    deque&lt;int&gt; d = {1,2,3};
+    d.push_front(0);
+    d.push_back(4);
+    cout &lt;&lt; "Deque front: " &lt;&lt; d.front() &lt;&lt; ", back: " &lt;&lt; d.back() &lt;&lt; endl;
+
+    set&lt;int&gt; s = {3,1,4,1,5};
+    for(int x : s) cout &lt;&lt; x &lt;&lt; " ";  // Output sorted unique elements
+    cout &lt;&lt; endl;
+
+    return 0;
+}
+</code></pre>
+</div>
+<!-- Advanced C++ Features & Topics - Description -->
+<div class="topic-card">
+  <h3>Advanced C++ Features & Topics</h3>
+  <div class="description">
+     <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+    <p><strong>Description:</strong></p>
+    <ul>
+      <li><b>STL Containers:</b> Standard Template Library containers store data efficiently: <code>vector</code>, <code>list</code>, <code>deque</code>, <code>set</code>, <code>multiset</code>, <code>map</code>, <code>multimap</code>, <code>unordered_map</code>, <code>unordered_set</code>, <code>stack</code>, <code>queue</code>, <code>priority_queue</code>.</li>
+      <li><b>STL Utilities:</b> Useful tools like <code>pair</code>, <code>tuple</code>, <code>bitset</code>, <code>optional</code>, <code>variant</code> simplify data handling.</li>
+      <li><b>Smart Pointers:</b> <code>unique_ptr</code>, <code>shared_ptr</code>, <code>weak_ptr</code> manage dynamic memory safely.</li>
+      <li><b>Inheritance Types:</b> Single, multiple, multilevel, hierarchical, hybrid — different ways to extend classes.</li>
+      <li><b>Threading:</b> Use <code>std::thread</code> for concurrency, protect shared data with <code>mutex</code>, and use <code>lock_guard</code> for safe locking.</li>
+      <li><b>C++20 Features:</b> Concepts, ranges, structured bindings, <code>std::any</code> improve type safety, readability, and flexibility.</li>
+      <li><b>Advanced OOP:</b> Rule of 3/5/0, deep vs shallow copy, move semantics for proper object/resource management.</li>
+      <li><b>Templates:</b> Advanced function/class templates, specialization, non-type template arguments.</li>
+      <li><b>Advanced Casting:</b> <code>static_cast</code>, <code>dynamic_cast</code>, <code>const_cast</code>, <code>reinterpret_cast</code> for controlled conversions.</li>
+      <li><b>Preprocessor & Compilation:</b> Macros, <code>#define</code>, conditional compilation, and understanding compilation phases (preprocessor → compiler → linker).</li>
+    </ul>
+  </div>
+</div>
+<!-- Advanced C++ Features & Topics - Example Code Snippets -->
+<div class="topic-card">
+  <h3>Example Code Snippets</h3>
+
+  <pre><code class="language-cpp">
+     <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+// STL Containers: vector & set
+#include <iostream>
+#include <vector>
+#include <set>
+using namespace std;
+int main() {
+    vector<int> v = {1,2,3}; v.push_back(4);
+    set<int> s = {4,1,3}; 
+    for(int x : s) cout << x << " ";
+    cout << endl; 
+    return 0;
+}
+  </code></pre>
+
+  <pre><code class="language-cpp">
+// Smart Pointer Example
+#include <memory>
+#include <iostream>
+using namespace std;
+int main() {
+    unique_ptr<int> p = make_unique<int>(100);
+    cout << "Value: " << *p << endl;
+}
+  </code></pre>
+
+  <pre><code class="language-cpp">
+// Threading Example
+#include <iostream>
+#include <thread>
+#include <mutex>
+using namespace std;
+mutex mtx;
+void print_msg(string msg){ 
+    lock_guard<mutex> l(mtx); 
+    cout << msg << endl;
+}
+int main() {
+    thread t1(print_msg,"Hello"); 
+    thread t2(print_msg,"World");
+    t1.join(); 
+    t2.join();
+}
+  </code></pre>
+
+  <pre><code class="language-cpp">
+// C++20 Structured Binding & any
+#include <iostream>
+#include <any>
+#include <tuple>
+using namespace std;
+int main() {
+    tuple<int,string> t = {1,"C++"}; 
+    auto [id,name] = t;
+    any a = 10; 
+    cout << id << " " << name << " " << any_cast<int>(a);
+}
+  </code></pre>
+
+  <pre><code class="language-cpp">
+// Advanced Casting
+double d = 3.14; 
+int i = static_cast<int>(d); 
+cout << i << endl;
+  </code></pre>
+
+  <pre><code class="language-cpp">
+// Templates Example
+template <typename T> 
+T add(T a,T b){ return a+b; }
+cout << add(3,4) << endl;
+  </code></pre>
+
+</div>
+
+
+</section>
+<script>
+document.querySelectorAll('.toggle-code').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const code = btn.nextElementSibling;
+    if (code.style.display === 'none' || code.style.display === "") {
+      code.style.display = 'block';
+      code.style.maxHeight = code.scrollHeight + "px";
+    } else {
+      code.style.display = 'none';
+      code.style.maxHeight = 0;
+    }
+  });
+});
+</script>
+
+<footer>
+  Contact: techpath@example.com | © 2025 TechPath
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

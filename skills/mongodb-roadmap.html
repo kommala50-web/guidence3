@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>MongoDB Full Roadmap - TechPath</title>
+
+<link rel="stylesheet" href="../skills/style.css">
+
+<!-- Link to external JS from your skills folder -->
+<script defer src="../skills/script.js"></script>
+</head>
+<body>
+<div class="floating-code" id="floatingCode"></div>
+
+<header>
+  <h1>TechPath</h1>
+  <nav>
+    <a href="../index.html">Home</a>
+    <a href="../career.html">Career Paths</a>
+    <a href="skills.html">Skill Roadmaps</a>
+  </nav>
+</header>
+
+<section class="banner">
+  <h2>🍃 MongoDB Full Roadmap</h2>
+  <p>Learn MongoDB from basics to advanced with clear explanations and practical examples.</p>
+</section>
+
+<div class="top-buttons">
+  <a href="../skills.html" class="btn">← Back to Skills</a>
+  <a href="../pdf/mongodb.pdf" download="MongoDB_Roadmap.pdf" class="btn">Download PDF</a>
+  <a href="../pdf/MongoDB_Notes.pdf" download="MongoDB_Notes.pdf" class="btn">Notes</a>
+  <a href="https://www.mongodb.com/try" target="_blank" class="btn">Official Docs / Try</a>
+</div>
+
+<section class="topic-container">
+
+<!-- 1. Introduction to MongoDB -->
+<div class="topic-card">
+<h3>1. Introduction to MongoDB</h3>
+<p><strong>Description:</strong> MongoDB is a popular NoSQL, document-oriented database that stores data as flexible, JSON-like documents (BSON). Instead of tables and rows, MongoDB uses collections and documents which makes it well-suited for modern applications with evolving schemas. It emphasizes scalability, developer productivity, and performance for read/write-heavy workloads.</p>
+<p>MongoDB is not a drop-in replacement for relational databases — it trades rigid schema and joins for flexible documents and denormalization where appropriate. Use cases include content management, real-time analytics, catalogs, IoT, and any app that benefits from flexible schema and horizontal scaling.</p>
+<pre>// Example document (BSON / JSON-like)
+{
+  "_id": ObjectId("651a3f9a5f1c2a6b7c8d9e0f"),
+  "name": "Ramesh",
+  "age": 22,
+  "skills": ["C","C++","JavaScript"],
+  "joined": ISODate("2023-08-01T10:00:00Z"),
+  "address": { "city":"Mumbai", "zip":"400001" }
+}</pre>
+</div>
+
+<!-- 2. Installing MongoDB & Tools -->
+<div class="topic-card">
+<h3>2. Installing MongoDB & Tools</h3>
+<p><strong>Description:</strong> You can run MongoDB locally (community server), or use managed MongoDB Atlas (cloud). For local development, install the MongoDB server and use the shell `mongosh`. Helpful GUI tools: MongoDB Compass (visual explorer), Studio 3T, Robo 3T, and command-line tools `mongoimport` / `mongoexport`, `mongodump` / `mongorestore` for backups.</p>
+<p>On production prefer managed Atlas for automated backups, monitoring, and easier scaling. For local work, `mongosh` is the interactive shell to run commands. Install drivers for your language (Node.js, Python, Java, etc.) to connect from apps.</p>
+<pre>// Start mongod on default port (example)
+# macOS / Linux (if installed as service)
+sudo systemctl start mongod
+
+# Launch interactive shell
+mongosh
+
+// Import JSON file
+mongoimport --db mydb --collection users --file users.json --jsonArray</pre>
+</div>
+
+<!-- 3. Basics: Databases, Collections & Documents -->
+<div class="topic-card">
+<h3>3. Basics: Databases, Collections & Documents</h3>
+<p><strong>Description:</strong> A MongoDB server (mongod) hosts multiple databases. Each database contains collections (like tables), and collections contain documents (like rows) — documents are BSON objects with fields and values. Documents in the same collection need not share the same schema, allowing flexible data models.</p>
+<p>Common operations: `use <db>` to switch DB, `show dbs`, `show collections`. The special `_id` field uniquely identifies a document; if not provided, MongoDB creates an ObjectId.</p>
+<pre>// Switch DB and insert
+use techpath
+db.users.insertOne({name:"Ramesh",age:22})
+
+// Show collections and databases
+show collections
+show dbs
+
+// Find one document
+db.users.findOne({name:"Ramesh"})</pre>
+</div>
+
+<!-- 4. CRUD - Create, Read, Update, Delete -->
+<div class="topic-card">
+<h3>4. CRUD — Create, Read, Update, Delete</h3>
+<p><strong>Description:</strong> CRUD operations are the basics. Use `insertOne`/`insertMany` for create. Read with `find`/`findOne` (supports rich query filters). Update with `updateOne`, `updateMany`, or `replaceOne` and atomic update operators. Delete with `deleteOne`/`deleteMany`. Operations can return write acknowledgement depending on write concern.</p>
+<p>Always use filters to avoid accidental updates/deletes. For bulk inserts/updates consider `bulkWrite` for performance. Use projection to return only required fields.</p>
+<pre>// Create
+db.products.insertMany([{name:"Pen",price:10},{name:"Book",price:120}])
+
+// Read
+db.products.find({price:{$gt:20}}).pretty()
+
+// Update (use $set to modify specific fields)
+db.products.updateOne({name:"Pen"},{$set:{price:12}})
+
+// Delete
+db.products.deleteMany({price:{$lt:5}})</pre>
+</div>
+
+<!-- 5. Query Filters & Projection -->
+<div class="topic-card">
+<h3>5. Query Filters & Projection</h3>
+<p><strong>Description:</strong> MongoDB query filters use JSON-like syntax. Comparison operators: `$eq`, `$ne`, `$gt`, `$gte`, `$lt`, `$lte`. Logical operators: `$and`, `$or`, `$not`, `$nor`. Use projection (second argument to `find`) to include/exclude fields and minimize transferred data.</p>
+<p>Filtering arrays, nested fields, and types is straightforward: dot notation accesses nested fields, array queries use `$elemMatch`, `$size`, and `$in`. Projections can include computed fields in aggregation pipelines.</p>
+<pre>// Filters & projection
+db.users.find({age:{$gte:18,$lt:30}},{name:1,skills:1,_id:0})
+
+// Array query
+db.posts.find({tags:{$in:["mongodb","database"]}})
+
+// Element match
+db.users.find({scores:{$elemMatch:{score:{$gt:80}}}})</pre>
+</div>
+
+<!-- 6. Update Operators & Array Updates -->
+<div class="topic-card">
+<h3>6. Update Operators & Array Updates</h3>
+<p><strong>Description:</strong> Updates are performed with operators: `$set`, `$unset`, `$inc`, `$mul`, `$rename`, `$push`, `$pull`, `$addToSet`. For arrays use positional operator `$` or arrayFilters for complex updates. `$push` can add elements; `$addToSet` prevents duplicates.</p>
+<p>Update operations are atomic at the single-document level — concurrent updates to different documents are isolated. Use `findOneAndUpdate` to get the old/new document in one call.</p>
+<pre>// Common updates
+db.users.updateOne({name:"Ramesh"},{$inc:{loginCount:1},$set:{lastLogin: new Date()}})
+
+// Array push / pull
+db.users.updateOne({name:"Ramesh"},{$push:{skills:"MongoDB"}})
+db.users.updateOne({name:"Ramesh"},{$pull:{skills:"C"}})
+
+// Update array element with positional operator
+db.inventory.updateOne(
+  {"items.sku":"abc123"},
+  {$set:{"items.$.qty":50}}
+)</pre>
+</div>
+
+<!-- 7. Schema Design & Data Modeling -->
+<div class="topic-card">
+<h3>7. Schema Design & Data Modeling</h3>
+<p><strong>Description:</strong> Designing schema in MongoDB is about choosing between embedding and referencing. Embed related data when you read it together (denormalized), and reference when data is large or shared across many documents. Consider document growth, 16MB document size limit, and common access patterns. Model for queries — optimize schema for expected reads/writes.</p>
+<p>Common patterns: one-to-many via embedded arrays (comments in a blog post), many-to-many via referencing (user-group membership), and bucket pattern for time-series data. Use naming consistency and keep frequently-updated fields in separate documents to avoid rewrite overhead.</p>
+<pre>// Embedding example (post with comments)
+{
+  _id: ObjectId(),
+  title: "Intro to MongoDB",
+  content: "...",
+  comments: [
+    {user:"A",text:"Nice",date:ISODate(...)},
+    {user:"B",text:"Great",date:ISODate(...)}
+  ]
+}
+
+// Referencing example
+{
+  _id: ObjectId("user1"),
+  name: "A",
+  postIds: [ObjectId("p1"), ObjectId("p2")]
+}</pre>
+</div>
+
+<!-- 8. Indexes & Query Performance -->
+<div class="topic-card">
+<h3>8. Indexes & Query Performance</h3>
+<p><strong>Description:</strong> Indexes speed up queries by avoiding collection scans. Types: single-field, compound, multikey (for arrays), text, hashed, and geospatial (2d, 2dsphere). Create indexes based on query patterns and sort/aggregation needs. Use `explain()` to analyze query plans. Remember indexes improve reads but add overhead on writes and storage.</p>
+<p>Use sparse and partial indexes for selective indexing, unique indexes to enforce uniqueness, and TTL indexes for expiring data (e.g., sessions). Monitor index usage and drop unused indexes.</p>
+<pre>// Create single & compound index
+db.users.createIndex({email:1},{unique:true})
+db.orders.createIndex({customerId:1,orderDate:-1})
+
+// Text index for search
+db.articles.createIndex({title:"text",content:"text"})
+
+// Explain query
+db.orders.find({customerId:123}).explain("executionStats")</pre>
+</div>
+
+<!-- 9. Aggregation Framework -->
+<div class="topic-card">
+<h3>9. Aggregation Framework</h3>
+<p><strong>Description:</strong> Aggregation pipelines allow data transformation and computation on the server. Stages include `$match`, `$project`, `$group`, `$sort`, `$limit`, `$skip`, `$unwind`, `$lookup` (join), `$addFields`, `$replaceRoot`. Aggregation is powerful for analytics, reporting, and complex queries that would be expensive in the application layer.</p>
+<p>Use `$group` for grouping and accumulation, `$lookup` to join collections, and `$unwind` to deconstruct arrays. Pipelines can be optimized with indexes and by placing `$match` early.</p>
+<pre>// Example: total spent per customer
+db.orders.aggregate([
+  {$match: {status:"completed"}},
+  {$group: {_id:"$customerId", totalSpent: {$sum:"$amount"}, orders: {$sum:1}}},
+  {$sort: {totalSpent:-1}},
+  {$limit: 10}
+])
+
+// Lookup (join) example
+db.orders.aggregate([
+  {$lookup:{from:"customers",localField:"customerId",foreignField:"_id",as:"customer"}},
+  {$unwind:"$customer"},
+  {$project:{_id:1,amount:1,"customer.name":1}}
+])</pre>
+</div>
+
+<!-- 10. Replication & Replica Sets -->
+<div class="topic-card">
+<h3>10. Replication & Replica Sets</h3>
+<p><strong>Description:</strong> Replication provides high availability via replica sets — a group of mongod instances that maintain the same data set. One primary accepts writes; secondaries replicate data and can serve reads depending on read preference. If primary fails, an election makes a secondary primary. Replica sets enable automated failover and redundancy.</p>
+<p>Use proper election priority settings, arbiter nodes only when necessary, and monitor replication lag. For disaster recovery, combine replica sets with backups. Read preference and write concern control how many replica members are involved in operations (affects consistency and durability).</p>
+<pre>// Example replica set initiation (single-machine sim)
+# start 3 mongod instances on different ports with --replSet "rs0"
+# Then in mongosh:
+rs.initiate()
+rs.status()
+rs.add("hostname:27018")
+rs.add("hostname:27019")
+
+// Set read preference in driver or shell
+db.getMongo().setReadPref("secondaryPreferred")</pre>
+</div>
+
+<!-- 11. Transactions & ACID -->
+<div class="topic-card">
+<h3>11. Transactions & ACID</h3>
+<p><strong>Description:</strong> MongoDB supports multi-document transactions starting from version 4.0 (replica sets) and 4.2 (sharded clusters). Transactions allow multiple read and write operations across multiple documents or collections to execute atomically. MongoDB guarantees ACID properties (Atomicity, Consistency, Isolation, Durability) within transactions.</p>
+<p>Transactions are useful when you need strict consistency for operations that span multiple documents/collections. Use `startSession()` and `withTransaction()` in drivers to handle transactions. Always handle retries for transient network or write conflicts.</p>
+<pre>// Transaction example (Node.js)
+const session = client.startSession();
+await session.withTransaction(async () => {
+  await db.collection("accounts").updateOne(
+    {name:"Alice"}, {$inc:{balance:-100}}, {session});
+  await db.collection("accounts").updateOne(
+    {name:"Bob"}, {$inc:{balance:100}}, {session});
+});
+session.endSession();</pre>
+</div>
+
+<!-- 12. Sharding -->
+<div class="topic-card">
+<h3>12. Sharding</h3>
+<p><strong>Description:</strong> Sharding is horizontal scaling in MongoDB to handle large datasets across multiple servers. Data is partitioned into shards using a shard key. Each shard holds a subset of data. A config server maintains metadata, and a mongos router directs queries to the appropriate shards.</p>
+<p>Sharding is ideal when a single server cannot handle write/read load or storage. Choose shard keys carefully — they affect data distribution and query performance. Monitor chunk migrations and balance load to avoid hot spots.</p>
+<pre>// Enable sharding for a database
+sh.enableSharding("techpath")
+
+// Shard a collection on shard key
+sh.shardCollection("techpath.orders", {customerId:1})</pre>
+</div>
+
+<!-- 13. Backup & Restore -->
+<div class="topic-card">
+<h3>13. Backup & Restore</h3>
+<p><strong>Description:</strong> Regular backups prevent data loss. Methods include mongodump/mongorestore (logical backup), filesystem snapshots, and cloud backup in Atlas. For large datasets, prefer point-in-time recovery with oplog. Test restores periodically to ensure reliability.</p>
+<p>Incremental backups reduce downtime and storage. Use compression for large dumps and maintain versioned backups for critical production databases.</p>
+<pre>// Logical backup
+mongodump --db techpath --out /backup/techpath_dump
+
+// Restore backup
+mongorestore --db techpath /backup/techpath_dump/techpath</pre>
+</div>
+
+<!-- 14. Security & Permissions -->
+<div class="topic-card">
+<h3>14. Security & Permissions</h3>
+<p><strong>Description:</strong> MongoDB provides authentication, authorization, TLS/SSL encryption, and auditing. Enable role-based access control (RBAC) to assign granular privileges. Avoid running without authentication in production. Use SCRAM or X.509 certificates for secure authentication. Audit operations to track access.</p>
+<p>Principle of least privilege: give users only the access they need. Secure network access with firewalls, IP whitelisting, and VPN. For cloud, enable encryption at rest and in transit.</p>
+<pre>// Create user with roles
+db.createUser({
+  user: "appUser",
+  pwd: "strongPassword",
+  roles: [{role:"readWrite", db:"techpath"}]
+})
+
+// Check roles
+db.getUser("appUser")</pre>
+</div>
+
+<!-- 15. Change Streams -->
+<div class="topic-card">
+<h3>15. Change Streams</h3>
+<p><strong>Description:</strong> Change Streams allow applications to listen to real-time changes in collections or databases without polling. Useful for event-driven apps, notifications, or cache invalidation. Change Streams require replica sets or sharded clusters.</p>
+<p>Listen for insert, update, replace, delete events, and process them asynchronously. Combine with aggregation pipelines to filter and transform events before handling in your application.</p>
+<pre>// Node.js example
+const changeStream = db.collection("orders").watch();
+changeStream.on("change", (change) => {
+  console.log("Change detected:", change);
+});
+</pre>
+</div>
+
+<!-- 16. Text Search & Indexing -->
+<div class="topic-card">
+<h3>16. Text Search & Indexing</h3>
+<p><strong>Description:</strong> MongoDB supports full-text search via text indexes. Useful for searching content fields, blogs, or product catalogs. Text indexes can include multiple fields. Use `$text` operator with `$search`. Combine with regex or aggregation for advanced search.</p>
+<p>Text search is language-aware and supports stemming, stop words, and diacritic-insensitive search. Consider using Atlas Search for advanced capabilities with fuzzy search and scoring.</p>
+<pre>// Create text index
+db.articles.createIndex({title:"text", content:"text"})
+
+// Search documents
+db.articles.find({$text:{$search:"MongoDB roadmap"}})
+</pre>
+</div>
+
+<!-- 17. Geospatial Queries -->
+<div class="topic-card">
+<h3>17. Geospatial Queries</h3>
+<p><strong>Description:</strong> MongoDB supports geospatial data using 2d and 2dsphere indexes. Store coordinates as arrays [longitude, latitude] or GeoJSON objects. Query nearby locations, intersections, or within polygons. Useful for maps, delivery apps, ride-sharing, and location-based services.</p>
+<pre>// Create geospatial index
+db.places.createIndex({location:"2dsphere"})
+
+// Find within 5km radius
+db.places.find({
+  location:{
+    $near:{
+      $geometry:{type:"Point",coordinates:[77.5946,12.9716]},
+      $maxDistance:5000
+    }
+  }
+})</pre>
+</div>
+
+<!-- 18. MongoDB Drivers & ORMs -->
+<div class="topic-card">
+<h3>18. MongoDB Drivers & ORMs</h3>
+<p><strong>Description:</strong> MongoDB has official drivers for Node.js, Python (PyMongo), Java, C#, Go, and others. ORMs/ODMs like Mongoose (Node.js) or MongoEngine (Python) provide schema validation, models, middleware, and helper methods. Drivers allow raw access and performance, ORMs simplify development and enforce structure.</p>
+<pre>// Node.js (Mongoose) example
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/techpath');
+
+const userSchema = new mongoose.Schema({
+  name: String,
+  age: Number,
+  skills: [String]
+});
+const User = mongoose.model('User', userSchema);
+
+await User.create({name:"Ramesh", age:22, skills:["MongoDB","JS"]});
+</pre>
+</div>
+
+<!-- 19. Aggregation Advanced -->
+<div class="topic-card">
+<h3>19. Aggregation Advanced</h3>
+<p><strong>Description:</strong> Advanced aggregation includes `$facet` (multiple pipelines), `$bucket`/`$bucketAuto` (grouping ranges), `$graphLookup` (recursive graph traversals), `$merge` (write results to collection), `$out` (export pipeline results). Powerful for analytics, reporting, and pipelines for ETL.</p>
+<pre>// Example: Facet for multiple metrics
+db.orders.aggregate([
+  {$facet:{
+    totalSales:[{$group:{_id:null, total:{$sum:"$amount"}}}],
+    avgPerCustomer:[{$group:{_id:"$customerId", avg:{$avg:"$amount"}}}]
+  }}
+])</pre>
+</div>
+
+<!-- 20. Monitoring & Performance Tuning -->
+<div class="topic-card">
+<h3>20. Monitoring & Performance Tuning</h3>
+<p><strong>Description:</strong> Monitor using `mongostat`, `mongotop`, Atlas Metrics, and logs. Optimize queries using `explain()`. Tune indexes, shard key selection, aggregation pipeline stages, and caching. Identify slow queries and reduce collection scans. Profiling and metrics help maintain high throughput and low latency.</p>
+<p>Set up alerts for replication lag, disk usage, memory, and slow queries. Use `wiredTiger` compression and journaling for storage optimization.</p>
+<pre>// Explain query plan
+db.orders.find({status:"completed"}).explain("executionStats")
+</pre>
+</div>
+
+<!-- 21. TTL & Capped Collections -->
+<div class="topic-card">
+<h3>21. TTL & Capped Collections</h3>
+<p><strong>Description:</strong> MongoDB supports automatic expiration of documents using TTL (Time-To-Live) indexes. TTL is ideal for caching, session data, logs, and temporary records. Capped collections are fixed-size collections that maintain insertion order and automatically overwrite oldest entries when size limit is reached.</p>
+<pre>// TTL index: delete documents 3600 seconds after 'createdAt'
+db.sessions.createIndex({createdAt:1},{expireAfterSeconds:3600})
+
+// Capped collection of 10MB
+db.logs.createCollection("logs",{capped:true, size:10*1024*1024})</pre>
+</div>
+
+<!-- 22. Replica Sets -->
+<div class="topic-card">
+<h3>22. Replica Sets</h3>
+<p><strong>Description:</strong> Replica sets provide high availability and redundancy. A primary node receives writes, secondaries replicate data asynchronously. Automatic failover ensures continuity if the primary fails. Read preference can distribute reads among secondaries. Replica sets are also required for transactions and change streams.</p>
+<pre>// Initiate replica set
+rs.initiate({
+  _id: "rs0",
+  members:[
+    {_id:0, host:"localhost:27017"},
+    {_id:1, host:"localhost:27018"},
+    {_id:2, host:"localhost:27019"}
+  ]
+})
+
+// Check status
+rs.status()</pre>
+</div>
+
+<!-- 23. Atlas Cloud & Managed MongoDB -->
+<div class="topic-card">
+<h3>23. Atlas Cloud & Managed MongoDB</h3>
+<p><strong>Description:</strong> MongoDB Atlas is the cloud-managed service for MongoDB. It offers automated backups, monitoring, global clusters, built-in security, and scaling. Atlas simplifies deployments, eliminates server management, and ensures high availability with minimal manual intervention.</p>
+<pre>// Connect to Atlas (Node.js example)
+mongoose.connect('mongodb+srv://user:pass@cluster0.mongodb.net/techpath?retryWrites=true&w=majority')
+</pre>
+</div>
+
+<!-- 24. Aggregation Optimization -->
+<div class="topic-card">
+<h3>24. Aggregation Optimization</h3>
+<p><strong>Description:</strong> For large datasets, aggregation pipelines should be optimized. Use `$match` early to reduce documents, `$project` to remove unnecessary fields, and indexes for filtering. Avoid `$unwind` on large arrays unless necessary. Monitor performance with `explain("executionStats")`.</p>
+<pre>// Optimized aggregation
+db.orders.aggregate([
+  {$match:{status:"completed"}}, // filter early
+  {$project:{customerId:1, amount:1}}, // only needed fields
+  {$group:{_id:"$customerId", total:{$sum:"$amount"}}}
+]).explain("executionStats")
+</pre>
+</div>
+
+<!-- 25. Backup Strategies Advanced -->
+<div class="topic-card">
+<h3>25. Backup Strategies Advanced</h3>
+<p><strong>Description:</strong> For production, implement regular backups with point-in-time recovery. Use oplog-based backups for minimal downtime. Combine full backups with incremental backups. For sharded clusters, backup each shard and config server. Test restore procedures frequently.</p>
+<pre>// Example: Atlas snapshot automated backups
+// Automated daily snapshots and continuous oplog for PITR
+</pre>
+</div>
+
+<!-- 26. High Availability & Failover -->
+<div class="topic-card">
+<h3>26. High Availability & Failover</h3>
+<p><strong>Description:</strong> High availability ensures the database is reachable even if nodes fail. Replica sets handle automatic failover. Monitor primary elections, replication lag, and node health. Combine with sharding for distributed HA and load balancing. Use monitoring tools and alerts to detect failures early.</p>
+<pre>// Monitor replica set
+rs.status()
+rs.printReplicationInfo()
+</pre>
+</div>
+
+<!-- 27. Advanced Transactions -->
+<div class="topic-card">
+<h3>27. Advanced Transactions</h3>
+<p><strong>Description:</strong> Multi-document and cross-collection transactions in MongoDB allow complex operations to execute atomically. Handle retries for transient errors and deadlocks. Use proper session management and limit transaction duration to avoid performance issues.</p>
+<pre>// Node.js example
+const session = client.startSession();
+await session.withTransaction(async () => {
+  await db.collection("accounts").updateOne({name:"Alice"}, {$inc:{balance:-50}}, {session});
+  await db.collection("accounts").updateOne({name:"Bob"}, {$inc:{balance:50}}, {session});
+});
+session.endSession();
+</pre>
+</div>
+
+<!-- 28. Real-Time Analytics -->
+<div class="topic-card">
+<h3>28. Real-Time Analytics</h3>
+<p><strong>Description:</strong> MongoDB’s aggregation framework and change streams enable real-time analytics. Build dashboards that reflect live updates from data. Combine with tools like Kafka, Spark, or BI connectors for advanced streaming analytics.</p>
+<pre>// Example: Real-time updates with change streams
+db.orders.watch([{ $match: {status: "completed"} }])
+  .on("change", change => { console.log("New completed order:", change.fullDocument); });
+</pre>
+</div>
+
+<!-- 29. Capped Collections Advanced -->
+<div class="topic-card">
+<h3>29. Capped Collections Advanced</h3>
+<p><strong>Description:</strong> Capped collections support high-throughput insert operations with fixed size. Ideal for logs, queues, or caching. Always maintain insertion order and avoid deletes (automatic overwrite). Combine with tailable cursors to stream new entries.</p>
+<pre>// Tailable cursor example
+const cursor = db.logs.find().tailable();
+while(await cursor.hasNext()){
+  console.log(await cursor.next());
+}
+</pre>
+</div>
+
+<!-- 30. Real-World Projects -->
+<div class="topic-card">
+<h3>30. Real-World Projects</h3>
+<p><strong>Description:</strong> Apply MongoDB knowledge in real projects: e-commerce catalog with products/orders, social media feeds, analytics dashboards, IoT sensor storage, and content management systems. Focus on schema design, indexing, aggregation pipelines, transactions, and sharding for scalable solutions.</p>
+<pre>// Example collections: users, products, orders, reviews, sessions
+// Design: embed or reference based on access patterns
+</pre>
+</div>
+
+
+
+</section>
+
+<footer>
+  Contact: kommala50@gmail.com | © 2025 TechPath
+</footer>
+
+
+<script src="app.js"></script>
+</body>
+</html>

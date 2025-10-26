@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Amazon Interview Questions - TechPath</title>
+<style>
+  /* ---------- Template base ---------- */
+  :root{
+    --bg1:#0a192f; --bg2:#1e293b; --accent:#00b4d8; --muted:#9be7f8;
+    --card-bg: rgba(255,255,255,0.04);
+    --card-bg-2: rgba(255,255,255,0.03);
+    --glass: rgba(255,255,255,0.04);
+  }
+  html,body{height:100%; margin:0;}
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(120deg, var(--bg1), var(--bg2));
+    color: #e2e8f0;
+    overflow-x: hidden;
+    position: relative;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+  }
+
+  /* Floating Code Animation */
+  .floating-code {
+    position: fixed; inset:0; width:100%; height:100%; overflow:hidden; z-index:-1;
+  }
+  .code-particle {
+    position: absolute;
+    color: rgba(0, 255, 255, 0.12);
+    font-family: monospace;
+    font-size: 12px;
+    animation: floatCode linear infinite;
+    user-select:none;
+    pointer-events:none;
+  }
+  @keyframes floatCode {
+    0% { transform: translateY(110vh) rotate(0deg); opacity: 0.8; }
+    100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
+  }
+
+  /* Header */
+  header {
+    background: #0d1b2a;
+    color: var(--accent);
+    padding: 18px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  }
+  header h1 { font-size: 22px; letter-spacing: 1px; margin:0; }
+  nav a {
+    color: #e2e8f0;
+    text-decoration: none;
+    margin-left: 18px;
+    font-weight: 600;
+    position: relative;
+    transition: color 0.25s;
+    font-size: 14px;
+  }
+  nav a::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: -4px;
+    width: 0; height: 2px; background: var(--accent);
+    transition: width 0.25s;
+  }
+  nav a:hover { color: var(--accent); }
+  nav a:hover::after { width: 100%; }
+
+  /* Top controls */
+  .container {
+    max-width: 1100px;
+    margin: 22px auto 80px;
+    padding: 0 20px;
+  }
+  .controls {
+    display:flex;
+    gap:10px;
+    align-items:center;
+    flex-wrap:wrap;
+    margin-bottom:14px;
+  }
+  .btn {
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background: var(--accent);
+    color: #0a192f;
+    text-decoration:none;
+    padding:10px 16px;
+    border-radius:10px;
+    font-weight:700;
+    cursor:pointer;
+    border: none;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.35);
+    transition: transform .18s, background .18s;
+  }
+  .btn:hover { transform: translateY(-3px); background:#48cae4; }
+
+  .search {
+    margin-left: auto;
+    display:flex;
+    gap:8px;
+    align-items:center;
+  }
+  .search input{
+    background: rgba(255,255,255,0.04);
+    color: #e6fbff;
+    border: 1px solid rgba(255,255,255,0.04);
+    padding:10px 12px;
+    border-radius: 10px;
+    outline:none;
+    width:320px;
+    transition: box-shadow .15s;
+  }
+  .search input::placeholder{ color: rgba(230,251,255,0.5); }
+  .search input:focus{ box-shadow: 0 6px 20px rgba(0,180,216,0.08); border-color: var(--accent); }
+
+  /* Round Card */
+  .round-card {
+    background: var(--card-bg);
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 18px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.38);
+    border-left: 4px solid rgba(0,180,216,0.12);
+    transition: transform .2s, box-shadow .2s;
+  }
+  .round-card:hover { transform: translateY(-6px); box-shadow: 0 12px 28px rgba(0,255,255,0.04); }
+  .round-header { display:flex; justify-content:space-between; gap:12px; align-items:center; flex-wrap:wrap; }
+  .round-title { color: var(--accent); font-weight:800; font-size:18px; }
+  .round-sub { color: var(--muted); font-size:13px; }
+
+  /* Questions */
+  .q-list { margin-top:12px; }
+  .q-card {
+    background: var(--card-bg-2);
+    border-radius:10px;
+    padding:12px 14px;
+    margin-bottom:12px;
+    border: 1px solid rgba(255,255,255,0.03);
+    cursor:pointer;
+    transition: transform .14s, background .14s;
+    overflow:hidden;
+  }
+  .q-card:hover { transform: translateY(-4px); background: rgba(0,180,216,0.03); }
+  .q-top { display:flex; justify-content:space-between; align-items:center; gap:12px; }
+  .q-title { color:#e6fbff; font-weight:700; font-size:15px; }
+  .q-meta { color: #90e0ef; font-size:12px; }
+
+  /* Collapsible */
+  .q-body {
+    max-height:0;
+    padding:0 0;
+    transition: max-height .36s cubic-bezier(.2,.9,.2,1), padding .2s;
+    overflow:hidden;
+  }
+  .q-body.open { padding-top:10px; padding-bottom:10px; }
+
+  .answer { background: rgba(0,0,0,0.14); border-radius:8px; padding:10px; color:#dbeefe; font-size:14px; line-height:1.5; margin-bottom:8px; }
+  .explain { color:#cfeffd; font-size:13px; margin-bottom:8px; }
+  .tip { font-style:italic; color:#bfeafa; font-size:13px; }
+
+  /* Code block (monospace, scrollable) */
+  pre.code {
+    background: rgba(0,0,0,0.18);
+    border-radius:8px;
+    padding:12px;
+    overflow:auto;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace;
+    font-size:13px;
+    color: #dbeefe;
+    margin:8px 0;
+    border: 1px solid rgba(255,255,255,0.03);
+    white-space: pre;
+  }
+  pre.code code { display:block; min-width:100%; }
+
+  /* small label */
+  .small { font-size:12px; color:#9be7f8; }
+
+  footer {
+    background: #0d1b2a;
+    color: #90e0ef;
+    text-align:center;
+    padding:18px;
+    margin-top:30px;
+  }
+
+  /* Responsive */
+  @media (max-width:820px){
+    .search input{ width:160px; }
+    .controls{ gap:8px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="floating-code" id="floatingCode"></div>
+
+<header>
+  <h1>TechPath</h1>
+  <nav>
+    <a href="../index.html">Home</a>
+    <a href="../career.html">Career Paths</a>
+    <a href="../company.html">Company Questions</a>
+    <a href="../resources.html">Resources</a>
+  </nav>
+</header>
+
+<main class="container">
+  <div class="controls">
+    <a href="../company.html" class="btn">← Back to Company Page</a>
+    <button id="downloadBtn" class="btn">Download Page (HTML)</button>
+
+    <div class="search" title="Search questions & answers">
+      <input id="searchInput" placeholder="Search questions, keywords, tips..." aria-label="Search questions">
+    </div>
+  </div>
+
+  <!-- Brief note -->
+  <div style="color:var(--muted); margin-bottom:10px; font-size:13px;">
+    Live search filters question cards. Click a question to expand code/answer. Code snippets shown in monospace and are scrollable.
+  </div>
+
+  <!-- --------- ROUND A: Online Assessment (OA) / Quick Coding ---------- -->
+  <section class="round-card" data-round="online-assessment">
+    <div class="round-header">
+      <div>
+        <div class="round-title">Round A — Online Assessment (OA)</div>
+        <div class="round-sub">Typically 2–3 timed coding tasks (easy → medium)</div>
+      </div>
+      <div class="small">~60–120 minutes (total)</div>
+    </div>
+
+    <div class="q-list">
+      <!-- Q A1 -->
+      <div class="q-card">
+        <div class="q-top">
+          <div class="q-title">1) Two Sum (return indices)</div>
+          <div class="q-meta">Hashmap — O(n)</div>
+        </div>
+        <div class="q-body" aria-hidden="true">
+          <div class="answer"><strong>Solution:</strong> Use a map to store seen numbers and their indices. For each number, check complement (target - num) in map.</div>
+          <pre class="code"><code># Python (clean)
+def two_sum(nums, target):
+    seen = {}
+    for i, n in enumerate(nums):
+        comp = target - n
+        if comp in seen:
+            return [seen[comp], i]
+        seen[n] = i
+    return []</code></pre>
+          <div class="explain">This is O(n) time and O(n) extra space. Mention edgecases: duplicates and negative numbers.</div>
+          <div class="tip">Tip: Talk through example and complexity before coding; state that you're assuming one valid answer exists (or discuss alternatives).</div>
+        </div>
+      </div>
+
+      <!-- Q A2 -->
+      <div class="q-card">
+        <div class="q-top">
+          <div class="q-title">2) Check if a number is palindrome (without converting to string)</div>
+          <div class="q-meta">Math / Two-pointer</div>
+        </div>
+        <div class="q-body">
+          <div class="answer"><strong>Solution:</strong> Reverse half of the number and compare to remaining half to avoid overflow and extra space.</div>
+          <pre class="code"><code># Python (reverse half approach)
+def is_palindrome(x):
+    if x < 0 or (x % 10 == 0 and x != 0): return False
+    rev = 0
+    while x > rev:
+        rev = rev*10 + x % 10
+        x //= 10
+    return x == rev or x == rev // 10</code></pre>
+          <div class="explain">Avoids converting to string. Works in O(log10(n)) time where number of digits is log10(n).</div>
+          <div class="tip">Tip: Mention constraints (negative numbers not palindrome) and explain why reversing full number may overflow in some languages — so reverse-half is safer.</div>
+        </div>
+      </div>
+
+      <!-- Q A3 -->
+      <div class="q-card">
+        <div class="q-top">
+          <div class="q-title">3) Valid Parentheses</div>
+          <div class="q-meta">Stack</div>
+        </div>
+        <div class="q-body">
+          <div class="answer"><strong>Solution:</strong> Use a stack; on opening push, on closing check top matches.</div>
+          <pre class="code"><code># Python
+def is_valid(s):
+    pairs = {')':'(', ']':'[', '}':'{'}
+    stack = []
+    for ch in s:
+        if ch in pairs.values():
+            stack.append(ch)
+        elif ch in pairs:
+            if not stack or stack.pop() != pairs[ch]:
+                return False
+    return not stack</code></pre>
+          <div class="explain">Handles mixed/nested parentheses. Complexity O(n) time and O(n) space.</div>
+          <div class="tip">Tip: Ask about allowed characters; include tests for edge cases (empty string, odd length, early closing).</div>
+        </div>
+      </div>
+
+      <!-- Q A4 -->
+      <div class="q-card">
+        <div class="q-top">
+          <div class="q-title">4) Remove duplicates from sorted array (in-place)</div>
+          <div class="q-meta">Two-pointer</div>
+        </div>
+        <div class="q-body">
+          <div class="answer"><strong>Solution:</strong> Maintain slow and fast pointers; write unique elements in place.</div>
+          <pre class="code"><code># Python
+def remove_duplicates(nums):
+    if not nums: return 0
+    j = 0
+    for i in range(1, len(nums)):
+        if nums[i] != nums[j]:
+            j += 1
+            nums[j] = nums[i]
+    return j + 1  # new length</code></pre>
+          <div class="explain">O(n) time, O(1) extra space. Works because array is already sorted.</div>
+          <div class="tip">Tip: Explain why in-place is required and show example transforms step-by-step.</div>
+        </div>
+      </div>
+
+      <!-- Q A5 -->
+      <div class="q-card">
+        <div class="q-top">
+          <div class="q-title">5) Merge Intervals (given list of intervals)</div>
+          <div class="q-meta">Sorting + Merge</div>
+        </div>
+        <div class="q-body">
+          <div class="answer"><strong>Solution:</strong> Sort by start, then iterate merging overlapping intervals.</div>
+          <pre class="code"><code># Python
+def merge(intervals):
+    if not intervals: return []
+    intervals.sort(key=lambda x: x[0])
+    res = [intervals[0]]
+    for s,e in intervals[1:]:
+        last_s, last_e = res[-1]
+        if s <= last_e:
+            res[-1] = (last_s, max(last_e, e))
+        else:
+            res.append((s,e))
+    return res</code></pre>
+          <div class="explain">Complexity O(n log n) due to sort. Mention inclusive/exclusive endpoints if asked.</div>
+          <div class="tip">Tip: Talk about edgecases (single interval, fully nested intervals) and memory vs in-place outputs.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- --------- ROUND B: Technical Round 1 (Coding / DSA) ---------- -->
+  <section class="round-card" data-round="technical-1">
+    <div class="round-header">
+      <div>
+        <div class="round-title">Round B — Technical Round 1 (Coding / DSA)</div>
+        <div class="round-sub">Deeper algorithmic problems; explain approach & optimize</div>
+      </div>
+      <div class="small">~45–60 minutes</div>
+    </div>
+
+    <div class="q-list">
+      <!-- Q B1: Reverse Linked List -->
+      <div class="q-card">
+        <div class="q-top">
+          <div class="q-title">1) Reverse a singly linked list (iterative & recursive)</div>
+          <div class="q-meta">Pointers</div>
+        </div>
+        <div class="q-body">
+          <div class="answer"><strong>Iterative Solution:</strong> Use prev, curr pointers to reverse links in-place.</div>
+          <pre class="code"><code># Python (iterative)
+class Node:
+    def __init__(self,val,next=None):
+        self.val = val; self.next = next
+
+def reverse(head):
+    prev = None
+    curr = head
+    while curr:
+        nxt = curr.next
+        curr.next = prev
+        prev = curr
+        curr = nxt
+    return prev  # new head</code></pre>
+          <div class="explain">Iterative is O(n) time, O(1) space. Recursive solution reverses rest of list and attaches head at end — but uses O(n) stack.</div>
+          <div class="tip">Tip: Draw nodes and narrate pointer updates. Mention stack limits for recursion in production environments.</div>
+        </div>
+      </div>
+
+      <!-- Q B2: Merge k sorted lists -->
+      <div class="q-card">
+        <div class="q-top">
+          <div class="q-title">2) Merge K Sorted Lists</div>
+          <div class="q-meta">Heap / Divide & Conquer</div>
+        </div>
+        <div class="q-body">
+          <div class="answer"><strong>Heap approach:</strong> Use a min-heap seeded with each list's head; pop smallest, append to result, push next from that list.</div>
+          <pre class="code"><code># Python (heapq)
+import heapq
+
+def merge_k_lists(lists):
+    heap = []
+    for i, node in enumerate(lists):
+        if node:
+            heapq.heappush(heap, (node.val, i, node))
+    dummy = Node(0)
+    tail = dummy
+    while heap:
+        val, i, node = heapq.heappop(heap)
+        tail.next = node
+        tail = tail.next
+        if node.next:
+            heapq.heappush(heap, (node.next.val, i, node.next))
+    return dummy.next</code></pre>
+          <div class="explain">Time O(N log k) where N total nodes, k lists. Note the tuple with index to avoid comparison issues between nodes in heap.</div>
+          <div class="tip">Tip: Mention divide-and-conquer merge (pairwise) as alternative with similar complexity.</div>
+        </div>
+      </div>
+
+      <!-- Q B3: Longest Increasing Subsequence (LIS) -->
+      <div class="q-card">
+        <div class="q-top">
+          <div class="q-title">3) Longest Increasing Subsequence (O(n log n) approach)</div>
+          <div class="q-meta">DP + Binary Search</div>
+        </div>
+        <div class="q-body">
+          <div class="answer"><strong>Patience sorting / tails array:</strong> Maintain tails array where tails[len] is smallest tail for increasing subsequence of length len+1. Binary search to place each element.</div>
+          <pre class="code"><code># Python
+import bisect
+
+def length_of_lis(nums):
+    tails = []
+    for x in nums:
+        i = bisect.bisect_left(tails, x)
+        if i == len(tails):
+            tails.append(x)
+        else:
+            tails[i] = x
+    return len(tails)</code></pre>
+          <div class="explain">O(n log n) time. Good to first explain O(n^2) DP for clarity, then optimize to tails approach.</div>
+          <div class="tip">Tip: Explain why tails preserves smallest possible tails for subsequences of each length (invariants).</div>
+        </div>
+      </div>
+
+      <!-- Q B4: Sliding Window — Longest substring without repeating -->
+      <div class="q-card">
+        <div class="q-top">
+          <div class="q-title">4) Longest substring without repeating characters</div>
+          <div class="q-meta">Sliding window</div>
+        </div>
+        <div class="q-body">
+          <div class="answer"><strong>Solution:</strong> Maintain last-seen index map and slide window with two pointers.</div>
+          <pre class="code"><code># Python
+def length_of_longest_substring(s):
+    last = {}
+    left = 0
+    best = 0
+    for right, ch in enumerate(s):
+        if ch in last and last[ch] >= left:
+            left = last[ch] + 1
+        last[ch] = right
+        best = max(best, right - left + 1)
+    return best</code></pre>
+          <div class="explain">O(n) time. Clarify character set assumptions (ASCII vs Unicode) and handling multi-byte if necessary.</div>
+          <div class="tip">Tip: Walk through example 'abba' to show left movement nuance.</div>
+        </div>
+      </div>
+
+      <!-- Q B5: Median from data stream -->
+      <div class="q-card">
+        <div class="q-top">
+          <div class="q-title">5) Find median from a data stream</div>
+          <div class="q-meta">Two Heaps</div>
+        </div>
+        <div class="q-body">
+          <div class="answer"><strong>Solution:</strong> Maintain max-heap for lower half and min-heap for upper half; balance sizes.</div>
+          <pre class="code"><code># Python
+import heapq
+
+class MedianFinder:
+    def __init__(self):
+        self.lo = []  # max-heap (store negatives)
+        self.hi = []  # min-heap
+
+    def addNum(self, num):
+        heapq.heappush(self.lo, -num)
+        if self.lo and self.hi and (-self.lo[0] > self.hi[0]):
+            val = -heapq.heappop(self.lo)
+            heapq.heappush(self.hi, val)
+        if len(self.lo) > len(self.hi) + 1:
+            heapq.heappush(self.hi, -heapq.heappop(self.lo))
+        if len(self.hi) > len(self.lo):
+            heapq.heappush(self.lo, -heapq.heappop(self.hi))
+
+    def findMedian(self):
+        if len(self.lo) > len(self.hi):
+            return -self.lo[0]
+        return (-self.lo[0] + self.hi[0]) / 2</code></pre>
+          <div class="explain">Insert O(log n), findMedian O(1). For huge streams, consider approximate algorithms (t-digest, quantile sketches).</div>
+          <div class="tip">Tip: Demonstrate balancing steps with a small sequence to show invariants.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- --------- ROUND C: Technical Round 2 (System Design & Deep Dive) ---------- -->
+  <section class="round-card" data-round="technical-2">
+    <div class="round-header">
+      <div>
+        <div class="round-title">Round C — Technical Round 2 (System Design / Deep Dive)</div>
+        <div class="round-sub">High-level design, scaling, trade-offs</div>
+      </div>
+      <div class="small">~45–75 minutes</div>
+    </div>
+
+    <div class="q-list">
+      <!-- C1: URL shortener -->
+      <div class="q-card">
+        <div class="q-top">
+          <div class="q-title">1) Design a URL shortening service (scale to millions)</div>
+          <div class="q-meta">System Design</div>
+        </div>
+        <div class="q-body">
+          <div class="answer"><strong>High-level components:</strong> API servers, load balancer, user & url metadata DB (NoSQL), cache (Redis), unique ID generator (base62), redirect service, analytics pipeline.</div>
+          <div class="explain">Clarify requirements (QPS, write-heavy vs read-heavy, TTL, custom aliases). Use consistent hashing or sharding for DB; use replication for HA; use CDNs for global redirect latency; handle collisions with retry; analytics via async pipeline (Kafka → analytics DB).</div>
+          <div class="tip">Tip: Start with simple functional flow, then address bottlenecks, availability, and data retention. Discuss trade-offs: collision-free IDs vs short length; storage vs fast reads.</div>
+        </div>
+      </div>
+
+      <!-- C2: Inventory/order processing -->
+      <div class="q-card">
+        <div class="q-top">
+          <div class="q-title">2) Design an order processing system (inventory & concurrency)</div>
+          <div class="q-meta">Distributed systems</div>
+        </div>
+        <div class="q-body">
+          <div class="answer"><strong>Approach:</strong> API gateway → Order service → Inventory service → Payment service. Use message queue (SQS/Kafka) for asynchronous work and Saga pattern / compensating transactions for distributed consistency.</div>
+          <div class="explain">Key points: optimistic locking/versioning for inventory, reservation at checkout (soft hold), idempotency for retries, handling partial failures (payment success but downstream fail), and monitoring. Use CQRS for read-heavy product catalogs.</div>
+          <div class="tip">Tip: Draw sequence diagram, mention metrics (latency, failure rates), and propose rollback/compensation strategies for failed flows.</div>
+        </div>
+      </div>
+
+      <!-- C3: Recommendation system -->
+      <div class="q-card">
+        <div class="q-top">
+          <div class="q-title">3) Design a recommendation system</div>
+          <div class="q-meta">ML / Architecture</div>
+        </div>
+        <div class="q-body">
+          <div class="answer"><strong>Options:</strong> Collaborative filtering, content-based, hybrid. Batch compute with Spark for large-scale model training; online ranking for personalization; caching top-N for low-latency responses.</div>
+          <div class="explain">Discuss features, offline training, online serving, A/B testing, cold-start problem solutions (popularity or content features), latency trade-offs, and personalization ethics (diversity, fairness).</div>
+          <div class="tip">Tip: Propose evaluation metrics (precision@k, recall, CTR) and monitoring for model drift.</div>
+        </div>
+      </div>
+
+      <!-- C4: Consistency tradeoffs -->
+      <div class="q-card">
+        <div class="q-top">
+          <div class="q-title">4) When to use eventual vs strong consistency?</div>
+          <div class="q-meta">Design Decision</div>
+        </div>
+        <div class="q-body">
+          <div class="answer"><strong>Guideline:</strong> Use strong consistency when correctness matters per operation (payments, inventory) and eventual when availability and latency are prioritized (analytics, recommendations).</div>
+          <div class="explain">Discuss CAP theorem, hybrid approaches (leader for writes, read replicas with read-your-writes), and how to mitigate user-visible inconsistencies (soft locks, versioning).</div>
+          <div class="tip">Tip: Give concrete examples comparing the two and propose mitigation patterns for eventual consistency.</div>
+        </div>
+      </div>
+
+      <!-- C5: Caching / DB indexing -->
+      <div class="q-card">
+        <div class="q-top">
+          <div class="q-title">5) Optimize a slow SQL query — example & index choice</div>
+          <div class="q-meta">DB optimization</div>
+        </div>
+        <div class="q-body">
+          <div class="answer"><strong>Example:</strong> Query filtering by user_id and created_at. Use composite index (user_id, created_at) when filtering and ordering by those columns. Use EXPLAIN to inspect plan.</div>
+          <pre class="code"><code>-- Example: create composite index
+CREATE INDEX idx_user_created ON orders (user_id, created_at DESC);
+
+-- Use explain to check if index is used:
+EXPLAIN SELECT id, total FROM orders WHERE user_id = 123 ORDER BY created_at DESC LIMIT 20;</code></pre>
+          <div class="explain">Consider write cost of indexes and whether partitioning (by date) helps for very large tables. Also consider covering indexes to avoid lookups.</div>
+          <div class="tip">Tip: Always show how your index choice maps to WHERE / ORDER BY clauses and measure with EXPLAIN ANALYZE.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- --------- ROUND D: Managerial / Leadership Principles ---------- -->
+  <section class="round-card" data-round="managerial">
+    <div class="round-header">
+      <div>
+        <div class="round-title">Round D — Managerial / Leadership Principles</div>
+        <div class="round-sub">Behavioral deep-dive; STAR stories mapped to LPs</div>
+      </div>
+      <div class="small">~45 minutes</div>
+    </div>
+
+    <div class="q-list">
+      <!-- D1 -->
+      <div class="q-card">
+        <div class="q-top">
+          <div class="q-title">1) Tell me about a time you demonstrated Customer Obsession</div>
+          <div class="q-meta">Leadership</div>
+        </div>
+        <div class="q-body">
+          <div class="answer"><strong>Structure:</strong> Use STAR. Situation → Task → Action → Result, quantify impact.</div>
+          <div class="explain">Example: You discovered a recurring customer issue via support tickets, initiated telemetry, and shipped a fix improving NPS by X points. Show metrics and follow-up actions taken to prevent recurrence.</div>
+          <div class="tip">Tip: Prepare multiple STAR stories and map each to different leadership principles beforehand.</div>
+        </div>
+      </div>
+
+      <!-- D2 -->
+      <div class="q-card">
+        <div class="q-top">
+          <div class="q-title">2) Describe a time you had to make a trade-off with limited resources</div>
+          <div class="q-meta">Decision-making</div>
+        </div>
+        <div class="q-body">
+          <div class="answer"><strong>Key points:</strong> Show how you evaluated trade-offs, prioritized customer/business impact, and measured outcomes.</div>
+          <div class="explain">Be explicit about alternatives considered, reasons for the final decision, and how you communicated and monitored results.</div>
+          <div class="tip">Tip: Use quantifiable metrics (throughput, cost saved, delivery time) to strengthen your example.</div>
+        </div>
+      </div>
+
+      <!-- D3 -->
+      <div class="q-card">
+        <div class="q-top">
+          <div class="q-title">3) Give an example of 'Dive Deep' — how you investigated a production issue</div>
+          <div class="q-meta">Problem solving</div>
+        </div>
+        <div class="q-body">
+          <div class="answer"><strong>Suggested structure:</strong> Describe telemetry used, hypothesis testing, root-cause, fix, and postmortem actions.</div>
+          <div class="explain">Talk about logs, metrics, and experiments you ran. Show you closed the loop with permanent fixes and monitoring to detect recurrence.</div>
+          <div class="tip">Tip: Emphasize reproducibility (how you ensured the bug wouldn't return) and communication with stakeholders.</div>
+        </div>
+      </div>
+
+      <!-- D4 -->
+      <div class="q-card">
+        <div class="q-top">
+          <div class="q-title">4) Tell me about a time you influenced without authority</div>
+          <div class="q-meta">Leadership / Collaboration</div>
+        </div>
+        <div class="q-body">
+          <div class="answer"><strong>Answer guidance:</strong> Show persuasion via data, empathy, and building consensus across teams; include outcome metrics.</div>
+          <div class="explain">Highlight stakeholders, constraints, and how you managed resistance. Show follow-through after agreement.</div>
+          <div class="tip">Tip: Mention one concrete deliverable that changed due to your influence and measurable result.</div>
+        </div>
+      </div>
+
+      <!-- D5 -->
+      <div class="q-card">
+        <div class="q-top">
+          <div class="q-title">5) How do you prioritize hiring, mentoring and shipping features?</div>
+          <div class="q-meta">People & Delivery</div>
+        </div>
+        <div class="q-body">
+          <div class="answer"><strong>Balanced approach:</strong> Prioritize based on business impact, team capacity, and long-term health (ownership, mentoring). Use clear metrics for success.</div>
+          <div class="explain">Explain trade-offs: hiring slows immediate feature velocity but increases long-term capacity. Show how you balance sprint plans, mentorship time, and technical debt reduction.</div>
+          <div class="tip">Tip: Provide an example timeline where you balanced these components and the outcome.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- --------- ROUND E: HR / Offer & Logistics ---------- -->
+  <section class="round-card" data-round="hr">
+    <div class="round-header">
+      <div>
+        <div class="round-title">Round E — HR / Offer & Logistics</div>
+        <div class="round-sub">Salary band, relocation, start date, and final checks</div>
+      </div>
+      <div class="small">~15–30 minutes</div>
+    </div>
+
+    <div class="q-list">
+      <!-- E1 -->
+      <div class="q-card">
+        <div class="q-top">
+          <div class="q-title">1) What are your salary expectations?</div>
+          <div class="q-meta">Logistics</div>
+        </div>
+        <div class="q-body">
+          <div class="answer">Be honest and give a researched range. You can say you are open to discussion depending on the full compensation package and role level.</div>
+          <div class="explain">Recruiters often have bands — asking them for the band can help align expectations. Include bonuses, equity, and location cost-of-living when thinking of total comp.</div>
+          <div class="tip">Tip: Provide a range rather than a single number, and mention flexibility for the right opportunity.</div>
+        </div>
+      </div>
+
+      <!-- E2 -->
+      <div class="q-card">
+        <div class="q-top">
+          <div class="q-title">2) When can you join / notice period?</div>
+          <div class="q-meta">Logistics</div>
+        </div>
+        <div class="q-body">
+          <div class="answer">State your current notice period and any constraints clearly. If negotiating start date, propose possible windows you can join in.</div>
+          <div class="explain">Recruiters need to plan hiring timelines. Be transparent about any obligations or dependent offers.</div>
+          <div class="tip">Tip: If you need to negotiate, propose a mutually agreeable timeline and explain reasons briefly.</div>
+        </div>
+      </div>
+
+      <!-- E3 -->
+      <div class="q-card">
+        <div class="q-top">
+          <div class="q-title">3) Any visa or relocation constraints?</div>
+          <div class="q-meta">Logistics</div>
+        </div>
+        <div class="q-body">
+          <div class="answer">Be upfront about visa sponsorship needs or relocation constraints to avoid surprises later.</div>
+          <div class="explain">Some roles have restrictions; early transparency helps the recruiter guide options (local role, remote, or relocation support).</div>
+          <div class="tip">Tip: Provide clear timelines (e.g., "I require H-1 transfer, currently on X visa") if relevant.</div>
+        </div>
+      </div>
+
+      <!-- E4 -->
+      <div class="q-card">
+        <div class="q-top">
+          <div class="q-title">4) Are there any conflicts of interest or NDAs?</div>
+          <div class="q-meta">Legal / Compliance</div>
+        </div>
+        <div class="q-body">
+          <div class="answer">Answer honestly. If you have NDAs, explain constraints at a high level without breaking confidentiality.</div>
+          <div class="explain">The company may need to route legal checks or discuss public work restrictions; be open.</div>
+          <div class="tip">Tip: If unsure, say you can share details with recruiter or legal team and provide contact for your current employer if necessary.</div>
+        </div>
+      </div>
+
+      <!-- E5 -->
+      <div class="q-card">
+        <div class="q-top">
+          <div class="q-title">5) Do you have any questions for us?</div>
+          <div class="q-meta">Closing</div>
+        </div>
+        <div class="q-body">
+          <div class="answer">Good questions: team structure, success metrics for the role, ramp plan, interview feedback timeline, and next steps.</div>
+          <div class="explain">Shows interest and helps you evaluate fit. Ask about team culture and immediate priorities for the role.</div>
+          <div class="tip">Tip: Prepare 4–6 questions and prioritize them based on what's most important to you.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div style="height:24px"></div>
+</main>
+
+<footer>
+  Contact: techpath@example.com | © 2025 TechPath
+</footer>
+
+<!-- ---------- Scripts: floating particles, accordion, search, download ---------- -->
+<script>
+  // Floating code particles
+  (function createParticles(){
+    const floating = document.getElementById('floatingCode');
+    const symbols = ['<','div','{','}','CSS','JS','React','</>','=>','let','const','()',';','#','[]','{}','var','fn'];
+    for(let i=0;i<70;i++){
+      const span = document.createElement('span');
+      span.className = 'code-particle';
+      span.textContent = symbols[Math.floor(Math.random()*symbols.length)];
+      span.style.left = Math.random()*100 + 'vw';
+      span.style.top = Math.random()*100 + 'vh';
+      span.style.animationDuration = (8 + Math.random()*12) + 's';
+      span.style.fontSize = (9 + Math.random()*12) + 'px';
+      span.style.opacity = (0.08 + Math.random()*0.6);
+      floating.appendChild(span);
+    }
+  })();
+
+  // Accordion behavior (smooth height animation)
+  document.querySelectorAll('.q-card').forEach(card => {
+    const body = card.querySelector('.q-body');
+    // if body doesn't exist (should exist), skip
+    if(!body) return;
+    card.addEventListener('click', (e) => {
+      // allow clicks on inputs/links inside later; for now, toggle on whole card
+      const isOpen = body.classList.contains('open');
+      if(isOpen){
+        body.style.maxHeight = '0px';
+        body.classList.remove('open');
+      } else {
+        body.classList.add('open');
+        // compute scrollHeight for smooth expansion
+        body.style.maxHeight = body.scrollHeight + 'px';
+      }
+    });
+    // keep maxHeight synced after transitions
+    body.addEventListener('transitionend', () => {
+      if(body.classList.contains('open')){
+        body.style.maxHeight = body.scrollHeight + 'px';
+      }
+    });
+  });
+
+  // Expand first question of each round for quick visibility
+  document.querySelectorAll('.round-card').forEach(rc => {
+    const firstBody = rc.querySelector('.q-card .q-body');
+    if(firstBody){
+      firstBody.classList.add('open');
+      firstBody.style.maxHeight = firstBody.scrollHeight + 'px';
+    }
+  });
+
+  // Live search/filter
+  const searchInput = document.getElementById('searchInput');
+  searchInput.addEventListener('input', () => {
+    const q = searchInput.value.trim().toLowerCase();
+    const cards = Array.from(document.querySelectorAll('.q-card'));
+    if(!q){
+      cards.forEach(c => c.style.display = '');
+      return;
+    }
+    cards.forEach(card => {
+      const title = (card.querySelector('.q-title')?.textContent || '').toLowerCase();
+      const answer = (card.querySelector('.answer')?.textContent || '').toLowerCase();
+      const explain = (card.querySelector('.explain')?.textContent || '').toLowerCase();
+      const tip = (card.querySelector('.tip')?.textContent || '').toLowerCase();
+      const tags = (card.dataset.tags || '').toLowerCase();
+      const hay = title + ' ' + answer + ' ' + explain + ' ' + tip + ' ' + tags;
+      card.style.display = hay.includes(q) ? '' : 'none';
+    });
+  });
+
+  // Download current page as HTML
+  document.getElementById('downloadBtn').addEventListener('click', () => {
+    const doc = '<!doctype html>\\n' + document.documentElement.outerHTML;
+    const blob = new Blob([doc], { type: 'text/html' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'amazon_questions.html';
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(()=> {
+      URL.revokeObjectURL(a.href);
+      a.remove();
+    }, 1500);
+  });
+
+  // Accessibility: Enter key toggles focused q-card
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Enter' && document.activeElement && document.activeElement.classList.contains('q-card')){
+      document.activeElement.click();
+    }
+  });
+
+  // Make q-cards focusable for keyboard users
+  document.querySelectorAll('.q-card').forEach(c => c.setAttribute('tabindex','0'));
+</script>
+
+</body>
+</html>

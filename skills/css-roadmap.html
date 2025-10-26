@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS Full Roadmap - TechPath</title>
+<!-- Link CSS -->
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="floating-code" id="floatingCode"></div>
+
+<header>
+  <h1>TechPath</h1>
+  <nav>
+    <a href="../index.html">Home</a>
+    <a href="../career.html">Career Paths</a>
+    <a href="#">Skill Roadmaps</a>
+  </nav>
+</header>
+
+<section class="banner">
+  <h2>🎨 CSS Full Roadmap</h2>
+  <p>Learn CSS from basics to advanced topics with examples and practical usage.</p>
+</section>
+
+<div class="top-buttons">
+  <a href="../skills.html" class="btn">← Back to Skills</a>
+  <a href="../pdf/CSS_roadmap.pdf" download="CSS_Roadmap.pdf" class="btn">Download PDF</a>
+  <a href="https://www.youtube.com/watch?v=1Rs2ND1ryYc" target="_blank" class="btn">Video Resource</a>
+</div>
+
+<section class="topic-container">
+
+<!-- 1. Introduction to CSS -->
+<div class="topic-card">
+<h3>1. Introduction to CSS</h3>
+<p><strong>Description:</strong> CSS (Cascading Style Sheets) is used to style HTML elements. It controls colors, fonts, layouts, spacing, animations, and responsiveness. CSS separates content (HTML) from presentation, making websites more maintainable.</p>
+<pre>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;style&gt;
+      body { background-color: lightblue; }
+      h1 { color: navy; }
+    &lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Hello CSS&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+</div>
+
+<!-- 2. CSS Syntax & Selectors -->
+<div class="topic-card">
+<h3>2. CSS Syntax & Selectors</h3>
+<p><strong>Description:</strong> CSS uses selectors to target HTML elements and apply styles. A CSS rule has a selector and a declaration block. There are element, class, ID, group, descendant, and attribute selectors.</p>
+<pre>h1 { color: red; }
+.intro { font-size: 18px; }
+#main { background-color: yellow; }
+h1, h2, h3 { margin-bottom: 10px; }
+div p { color: green; }</pre>
+</div>
+
+<!-- 3. Colors & Backgrounds -->
+<div class="topic-card">
+<h3>3. Colors & Backgrounds</h3>
+<p><strong>Description:</strong> CSS allows you to change text color, background color, and background images. Colors can be keywords, hex, RGB, RGBA, HSL. Backgrounds can include images, gradients, and control repeat, size, position.</p>
+<pre>p { color: #333; }
+body { background-color: lightyellow; }
+div { 
+  background-image: url('bg.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+h1 { background: linear-gradient(to right, red, yellow); -webkit-background-clip: text; color: transparent; }</pre>
+</div>
+
+<!-- 4. Fonts & Text -->
+<div class="topic-card">
+<h3>4. Fonts & Text</h3>
+<p><strong>Description:</strong> CSS styles text using font-family, size, weight, style, line-height, letter-spacing, text-transform. Web-safe fonts and Google Fonts can be used. Text alignment and decoration enhance readability and design.</p>
+<pre>p { 
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  font-style: italic;
+  line-height: 1.5;
+  letter-spacing: 1px;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: underline;
+}</pre>
+</div>
+
+<!-- 5. Box Model -->
+<div class="topic-card">
+<h3>5. Box Model</h3>
+<p><strong>Description:</strong> Every HTML element is a rectangular box with content, padding, border, and margin. Understanding box-sizing is essential for layouts. border-box includes padding and border in width/height.</p>
+<pre>div {
+  width: 200px;
+  padding: 20px;
+  border: 5px solid black;
+  margin: 10px;
+  box-sizing: border-box;
+}</pre>
+</div>
+
+<!-- 6. Display & Visibility -->
+<div class="topic-card">
+<h3>6. Display & Visibility</h3>
+<p><strong>Description:</strong> CSS display property controls layout type (block, inline, inline-block, none). Visibility hides elements but keeps space.</p>
+<pre>p { display: block; }
+span { display: inline; }
+div { display: inline-block; }
+.hidden { display: none; }
+.invisible { visibility: hidden; }</pre>
+</div>
+
+<!-- 7. Positioning -->
+<div class="topic-card">
+<h3>7. Positioning</h3>
+<p><strong>Description:</strong> CSS positioning (static, relative, absolute, fixed, sticky) determines how elements are placed in the document. top, left, right, bottom move positioned elements.</p>
+<pre>div { position: relative; top: 10px; left: 20px; }
+header { position: fixed; top: 0; width: 100%; }</pre>
+</div>
+
+<!-- 8. Floating & Clear -->
+<div class="topic-card">
+<h3>8. Floating & Clear</h3>
+<p><strong>Description:</strong> float positions elements left or right. clear prevents elements from wrapping around floated elements. Used in old layout techniques.</p>
+<pre>img { float: left; margin: 10px; }
+div::after { content: ""; clear: both; display: table; }</pre>
+</div>
+
+<!-- 9. Flexbox -->
+<div class="topic-card">
+<h3>9. Flexbox</h3>
+<p><strong>Description:</strong> Flexbox is a modern layout system for 1D layouts. Flex containers align items horizontally or vertically using flex-direction, justify-content, align-items, flex-wrap, and more.</p>
+<pre>.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.item { flex: 1 1 200px; }</pre>
+</div>
+
+<!-- 10. Grid -->
+<div class="topic-card">
+<h3>10. Grid</h3>
+<p><strong>Description:</strong> CSS Grid is for 2D layouts with rows and columns. It offers precise control over placement using grid-template-rows, grid-template-columns, grid-gap, and grid-area.</p>
+<pre>.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+}
+.item { background-color: lightblue; }</pre>
+</div>
+
+<!-- 11. Pseudo-classes & Pseudo-elements -->
+<div class="topic-card">
+<h3>11. Pseudo-classes & Pseudo-elements</h3>
+<p><strong>Description:</strong> Pseudo-classes (:hover, :focus, :nth-child) select states. Pseudo-elements (::before, ::after, ::first-letter) insert content or style parts of elements.</p>
+<pre>a:hover { color: red; }
+li:nth-child(odd) { background: #eee; }
+p::first-letter { font-size: 24px; color: blue; }</pre>
+</div>
+
+<!-- 12. Transitions -->
+<div class="topic-card">
+<h3>12. Transitions</h3>
+<p><strong>Description:</strong> CSS transitions create smooth animations between property changes, specifying duration, timing-function, and delay.</p>
+<pre>div {
+  background-color: blue;
+  transition: background-color 0.5s ease;
+}
+div:hover { background-color: green; }</pre>
+</div>
+
+<!-- 13. Animations -->
+<div class="topic-card">
+<h3>13. Animations</h3>
+<p><strong>Description:</strong> CSS animations use keyframes to create complex motion. Define @keyframes and use animation property for duration, iteration, and timing.</p>
+<pre>@keyframes slide {
+  from { transform: translateX(0); }
+  to { transform: translateX(100px); }
+}
+div { animation: slide 2s infinite alternate; }</pre>
+</div>
+
+<!-- 14. Transforms -->
+<div class="topic-card">
+<h3>14. Transforms</h3>
+<p><strong>Description:</strong> Transform rotates, scales, skews, and translates elements in 2D or 3D space.</p>
+<pre>div { transform: rotate(45deg); scale: 1.2; }</pre>
+</div>
+
+<!-- 15. Filters & Effects -->
+<div class="topic-card">
+<h3>15. Filters & Effects</h3>
+<p><strong>Description:</strong> CSS filters adjust images or elements (blur, grayscale, brightness). Shadows and opacity create visual effects.</p>
+<pre>img { filter: grayscale(50%); }
+div { box-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+p { opacity: 0.8; }</pre>
+</div>
+
+<!-- 16. Units & Measurements -->
+<div class="topic-card">
+<h3>16. Units & Measurements</h3>
+<p><strong>Description:</strong> CSS supports px, em, rem, %, vh, vw, fr, and more for flexible and responsive sizing.</p>
+<pre>div { width: 50%; font-size: 1.2em; margin: 10px 5vw; }</pre>
+</div>
+
+<!-- 17. Media Queries (Responsive) -->
+<div class="topic-card">
+<h3>17. Media Queries (Responsive)</h3>
+<p><strong>Description:</strong> Media queries adapt layout for different screen sizes, devices, and orientations using @media rules.</p>
+<pre>@media (max-width: 768px) {
+  .container { flex-direction: column; }
+  body { font-size: 14px; }
+}</pre>
+</div>
+
+<!-- 18. CSS Variables -->
+<div class="topic-card">
+<h3>18. CSS Variables</h3>
+<p><strong>Description:</strong> CSS variables (custom properties) allow reusability and easier maintenance. Defined with --name and accessed with var(--name).</p>
+<pre>:root {
+  --main-color: #00b4d8;
+}
+p { color: var(--main-color); }</pre>
+</div>
+
+<!-- 19. Gradients -->
+<div class="topic-card">
+<h3>19. Gradients</h3>
+<p><strong>Description:</strong> CSS gradients create smooth color transitions. Linear and radial gradients are commonly used for backgrounds and overlays.</p>
+<pre>div {
+  background: linear-gradient(to right, red, yellow);
+}
+section {
+  background: radial-gradient(circle, blue, lightblue);
+}</pre>
+</div>
+
+<!-- 20. Shorthand Properties -->
+<div class="topic-card">
+<h3>20. Shorthand Properties</h3>
+<p><strong>Description:</strong> Shorthand combines multiple properties into one, like margin, padding, border, font, background, etc.</p>
+<pre>div { margin: 10px 20px 30px 40px; padding: 5px 10px; border: 2px solid black; }</pre>
+</div>
+
+<!-- 21. CSS Functions -->
+<div class="topic-card">
+<h3>21. CSS Functions</h3>
+<p><strong>Description:</strong> CSS provides functions like calc(), min(), max(), clamp(), and url() for dynamic values.</p>
+<pre>div { width: calc(100% - 40px); }
+p { font-size: clamp(14px, 2vw, 20px); }</pre>
+</div>
+
+<!-- 22. Bonus: Accessibility & Best Practices -->
+<div class="topic-card">
+<h3>22. Bonus: Accessibility & Best Practices</h3>
+<p><strong>Description:</strong> Use semantic HTML, proper color contrast, readable fonts, responsive layouts, ARIA attributes, and meaningful focus states for accessibility and SEO.</p>
+<pre>button { outline: 2px solid #00b4d8; }
+img { alt: "Description of image"; }
+a { focus { outline: 2px dashed blue; } }</pre>
+</div>
+
+</section>
+<script>
+document.querySelectorAll('.toggle-code').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const code = btn.nextElementSibling;
+    if (code.style.display === 'none' || code.style.display === "") {
+      code.style.display = 'block';
+      code.style.maxHeight = code.scrollHeight + "px";
+    } else {
+      code.style.display = 'none';
+      code.style.maxHeight = 0;
+    }
+  });
+});
+</script>
+
+<footer>
+  Contact: techpath@example.com | © 2025 TechPath
+</footer>
+
+<!-- Link JS -->
+<script src="app.js"></script>
+
+
+</body>
+</html>

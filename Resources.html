@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resources - TechPath</title>
+
+<style>
+  body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(120deg, #0a192f, #1e293b);
+    color: #f5f5f5;
+    overflow-x: hidden;
+  }
+
+  /* Floating Code */
+  .floating-code {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+  }
+  .code-particle {
+    position: absolute;
+    color: rgba(0, 255, 255, 0.15);
+    font-family: monospace;
+    animation: floatCode 15s linear infinite;
+  }
+  @keyframes floatCode {
+    0% { transform: translateY(100vh); opacity: 1; }
+    100% { transform: translateY(-10vh); opacity: 0; }
+  }
+
+  header {
+    background: rgba(13, 27, 42, 0.9);
+    color: #00b4d8;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+  }
+  header h1 { font-size: 26px; letter-spacing: 1px; }
+  nav a {
+    color: #e2e8f0;
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: 600;
+    position: relative;
+    transition: color 0.3s;
+  }
+  nav a:hover { color: #00b4d8; }
+
+  /* Breadcrumb Display */
+  #currentPath {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 600;
+    margin-top: 35px;
+    margin-bottom: 10px;
+    color: #00b4d8;
+    text-shadow: 0 0 10px #00b4d8, 0 0 20px #00b4d8;
+    animation: glow 2s infinite alternate;
+  }
+  @keyframes glow {
+    from { text-shadow: 0 0 10px #00b4d8, 0 0 20px #00b4d8; }
+    to { text-shadow: 0 0 20px #48cae4, 0 0 30px #48cae4; }
+  }
+  #currentPath span {
+    cursor: pointer;
+    color: #90e0ef;
+    transition: color 0.3s;
+  }
+  #currentPath span:hover {
+    color: #48cae4;
+    text-decoration: underline;
+  }
+
+  /* Buttons */
+  .back-btn, .home-btn {
+    display: inline-block;
+    background: #00b4d8;
+    color: #0a192f;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: bold;
+    margin: 20px 0 0 40px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  }
+  .back-btn:hover, .home-btn:hover {
+    background: #48cae4;
+    transform: scale(1.05);
+  }
+
+  /* Card Layout */
+  .card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 25px;
+    padding: 40px 50px;
+    max-width: 1200px;
+    margin: 40px auto 0; /* moved up */
+    align-items: center;
+  }
+  .card {
+    background: rgba(255,255,255,0.05);
+    border-radius: 15px;
+    padding: 25px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    cursor: pointer;
+  }
+  .card:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 8px 20px rgba(0,255,255,0.3);
+    background: rgba(0,255,255,0.05);
+  }
+  .card h3 { color: #00b4d8; margin-bottom: 10px; font-size: 20px; }
+
+  /* Footer */
+  footer {
+    background: #0d1b2a;
+    color: #90e0ef;
+    text-align: center;
+    padding: 25px;
+    margin-top: 60px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+
+  @media(max-width:768px) {
+    header { flex-direction: column; text-align: center; }
+    nav { margin-top: 10px; }
+    .card-container { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="floating-code" id="floatingCode"></div>
+
+<header>
+  <h1>TechPath</h1>
+  <nav>
+    <a href="../index.html">Home</a>
+    <a href="../career.html">Career Paths</a>
+    <a href="../skills.html">Skill Roadmaps</a>
+    <a href="../company.html">Company Questions</a>
+    <a href="../resources.html">Resources</a>
+    <a href="../about.html">About</a>
+  </nav>
+</header>
+
+<a href="#" class="home-btn" id="homeBtn" style="display:none;">🏠 Back to Home</a>
+<a href="#" class="back-btn" id="backBtn" style="display:none;">← Back</a>
+
+<div id="currentPath"></div>
+
+<section class="card-container" id="cardContainer"></section>
+
+<footer>
+  💬 ALL THE BEST! Keep Learning & Keep Building 💪😎
+</footer>
+
+<script>
+/* Floating animation */
+const floating = document.getElementById('floatingCode');
+const symbols = ['<','div','{','}','CSS','JS','React','</>','=>','let','const','AI'];
+for(let i=0;i<80;i++){
+  const span = document.createElement('span');
+  span.classList.add('code-particle');
+  span.textContent = symbols[Math.floor(Math.random()*symbols.length)];
+  span.style.left = Math.random()*100 + 'vw';
+  span.style.animationDuration = (8 + Math.random()*10)+'s';
+  span.style.fontSize = (12 + Math.random()*10)+'px';
+  floating.appendChild(span);
+}
+
+/* Data */
+const data = {
+  "CSE": {
+    "1st_year": {
+      "maths-1": { "Notes": ["unit1.pdf","unit2.pdf","unit3.pdf","unit4.pdf","unit5.pdf"], "PYQ": ["Maths_PYQ.pdf"], "Assignments": ["Assignment-1.pdf","Assignment-2.pdf","Assignment-3.pdf","Assignment-4.pdf","Assignment-5.pdf"], "mids":["mid1.pdf","mid2.pdf",], "question_bank":["question_bank.pdf"] },
+      "engineering-Graphics": { "Notes": ["UNIT-1.pdf","UNIT-2.pdf","UNIT-3.PDF","UNIT4.PDF","UNIT5.PDF"], "PYQ": ["COA_PYQ.pdf"], "Assignments": ["Assignment1.pdf","Assignment2.pdf","Assignment3.pdf","Assignment4.pdf","Assignment5.pdf"], "mids":["mid1.pdf","mid2.pdf"], "question_bank":["question_bank.pdf"] },
+      "Applied-physics": { "Notes": ["UNIT1.pdf","UNIT2.pdf","UNIT3.pdf","UNIT4.pdf","UNIT5.pdf"], "PYQ": ["DE_PYQ.pdf"], "Assignments": ["Assignment1.pdf","Assignment2.pdf","Assignment3.pdf","Assignment4.pdf","Assignment5.pdf"], "mids":["mid1.pdf","mid2.pdf"] ,"question_bank":["question_bank.pdf"]},
+      "BEE": { "Notes": ["UNIT1.pdf","UNIT2.pdf","UNIT3.pdf","UNIT4.pdf","UNIT5.pdf"], "PYQ": ["Java_PYQ.pdf"], "Assignments": ["Assignment1.pdf","Assignment2.pdf","Assignment3.pdf","Assignment4.pdf","Assignment5.pdf"], "mids":["mid1.pdf","mid2.pdf"] },
+      "Maths-2": { "Notes": ["UNIT1.pdf","UNIT2.pdf","UNIT2.1.pdf","UNIT3.pdf","UNIT4.pdf","UNIT5.pdf"], "PYQ": ["DSA_PYQ.pdf"], "Assignments": ["Assignment3.pdf"], "mids":["mid1.pdf","mid2.pdf","sem.pdf","topics.pdf"],"question_bank":["question_bank.pdf"] },
+      "Chemistry": { "Notes": ["unit1.pdf","unit2.pdf","unit2.1.pdf","unit3.pdf","unit4.pdf","unit5.pdf"], "PYQ": ["Maths_PYQ.pdf"], "Assignments": ["Assignment-1.pdf","Assignment-2.pdf","Assignment-3.pdf","Assignment-4.pdf","Assignment-5.pdf"], "mids":["mid1.pdf","mid2.pdf"] ,"question_bank":["question_bank.pdf"] },
+      "EDC": { "Notes": ["UNIT-1.pdf","UNIT-2.pdf","UNIT2.1","UNIT-3.PDF","UNIT4.PDF","UNIT5.PDF"], "PYQ": ["COA_PYQ.pdf"], "Assignments": ["Assignment1.pdf","Assignment2.pdf","Assignment3.pdf","Assignment4.pdf","Assignment5.pdf"], "mids":["mid1.pdf","mid2.pdf"], "QUESTION_BANK":["EDC_Question_Bank.pdf"] },
+      "C-PROGRAM": { "Notes": ["UNIT1.pdf","UNIT2.pdf","UNIT3.pdf","UNIT4.pdf","UNIT5.pdf"], "PYQ": ["DE_PYQ.pdf"], "Assignments": ["Assignment1.pdf","Assignment2.pdf","Assignment3.pdf","Assignment4.pdf","Assignment5.pdf"], "mids":["mid1.pdf","mid2.pdf"] },
+      "english": { "Notes": ["UNIT1.pdf","UNIT2.pdf","UNIT3.pdf","UNIT4.pdf","UNIT5.pdf"], "PYQ": ["Java_PYQ.pdf"], "Assignments": ["Assignment1.pdf","Assignment2.pdf","Assignment3.pdf","Assignment4.pdf","Assignment5.pdf"], "mids":["mid1.pdf","mid2.pdf"] },
+    },
+    
+    "2nd_year": {
+      "Maths": { "Notes": ["unit1.pdf","unit2.pdf","unit3.pdf","unit4.pdf","unit5.pdf"], "PYQ": ["Maths_PYQ.pdf"], "Assignments": ["Assignment-1.pdf","Assignment-2.pdf","Assignment-3.pdf","Assignment-4.pdf","Assignment-5.pdf"], "mids":["mid1.pdf","mid2.pdf"] },
+      "COA": { "Notes": ["UNIT-1.pdf","UNIT-2.pdf","UNIT-3.PDF","UNIT4.PDF","UNIT5.PDF"], "PYQ": ["COA_PYQ.pdf"], "Assignments": ["Assignment1.pdf","Assignment2.pdf","Assignment3.pdf","Assignment4.pdf","Assignment5.pdf"], "mids":["mid1.pdf","mid1-bits.pdf","mid2.pdf"] },
+      "DE": { "Notes": ["UNIT1.pdf","UNIT2.pdf","UNIT3.pdf","UNIT4.pdf","UNIT5.pdf"], "PYQ": ["DE_PYQ.pdf"], "Assignments": ["Assignment1.pdf","Assignment2.pdf","Assignment3.pdf","Assignment4.pdf","Assignment5.pdf"], "mids":["mid1.pdf","mid2.pdf"] },
+      "Java": { "Notes": ["UNIT1.pdf","UNIT1-1.pdf","UNIT2.pdf","UNIT2-1.pdf","UNIT2-2.pdf","UNIT3.pdf","UNIT4.pdf","UNIT5.pdf"], "PYQ": ["Java_PYQ.pdf"], "Assignments": ["Assignment1.pdf","Assignment2.pdf","Assignment3.pdf","Assignment4.pdf","Assignment5.pdf"], "mids":["mid1.pdf","mid2.pdf"] },
+      "DSA": { "Notes": ["UNIT1.pdf","UNIT1-1.pdf","UNIT2.pdf","UNIT3.pdf","UNIT4.pdf","UNIT5.pdf"], "PYQ": ["DSA_PYQ.pdf"], "Assignments": ["Assignment1.pdf","Assignment2.pdf"], "mids":["mid1.pdf","mid2.pdf"] }
+    },
+    "3rd_year": {},
+    "4th_year": {}
+  },
+  "AIML": { "1st_year": {}, "2nd_year": {}, "3rd_year": {}, "4th_year": {} },
+  "Cyber": { "1st_year": {}, "2nd_year": {}, "3rd_year": {}, "4th_year": {} },
+  "ECE": { "1st_year": {}, "2nd_year": {}, "3rd_year": {}, "4th_year": {} },
+  "Mechanical": { "1st_year": {}, "2nd_year": {}, "3rd_year": {}, "4th_year": {} }
+};
+
+let currentLevel = 'branch';
+let selectedBranch = '';
+let selectedYear = '';
+let selectedSubject = '';
+let selectedType = '';
+
+const container = document.getElementById('cardContainer');
+const backBtn = document.getElementById('backBtn');
+const homeBtn = document.getElementById('homeBtn');
+const pathDisplay = document.getElementById('currentPath');
+
+/* Update breadcrumb text */
+function updatePath() {
+  let path = [];
+  if (selectedBranch) path.push(`<span data-level="branch">${selectedBranch}</span>`);
+  if (selectedYear) path.push(`<span data-level="year">${selectedYear}</span>`);
+  if (selectedSubject) path.push(`<span data-level="subject">${selectedSubject}</span>`);
+  if (selectedType) path.push(`<span data-level="type">${selectedType}</span>`);
+  pathDisplay.innerHTML = path.join(" → ");
+  document.querySelectorAll('#currentPath span').forEach(span => {
+    span.addEventListener('click', () => {
+      const level = span.dataset.level;
+      if(level === 'branch') showCards(data[selectedBranch], 'year');
+      else if(level === 'year') showCards(data[selectedBranch][selectedYear], 'subject');
+      else if(level === 'subject') showCards(data[selectedBranch][selectedYear][selectedSubject], 'type');
+      else if(level === 'type') showCards(data[selectedBranch][selectedYear][selectedSubject][selectedType], 'pdfs');
+    });
+  });
+}
+
+/* Show cards for each level */
+function showCards(levelData, level) {
+  container.innerHTML = '';
+  updatePath();
+
+  if(level === 'pdfs') {
+    levelData.forEach(pdf => {
+      const card = document.createElement('div');
+      card.classList.add('card');
+      card.innerHTML = `<h3>${pdf}</h3>`;
+      card.addEventListener('click', () => {
+        const pdfPath = `resources/${selectedBranch.toLowerCase()}/${selectedYear.toLowerCase()}/${selectedSubject.toLowerCase()}/${selectedType.toLowerCase()}/${pdf}`;
+        window.open(pdfPath, '_blank');
+      });
+      container.appendChild(card);
+    });
+    currentLevel = 'pdfs';
+    backBtn.style.display = 'inline-block';
+    homeBtn.style.display = 'none';
+    return;
+  }
+
+  for (let key in levelData) {
+    const card = document.createElement('div');
+    card.classList.add('card');
+    card.innerHTML = `<h3>${key}</h3>`;
+    card.addEventListener('click', () => {
+      if(level === 'branch') {
+        selectedBranch = key;
+        showCards(data[key], 'year');
+      } else if(level === 'year') {
+        selectedYear = key;
+        showCards(data[selectedBranch][selectedYear], 'subject');
+      } else if(level === 'subject') {
+        selectedSubject = key;
+        showCards(data[selectedBranch][selectedYear][selectedSubject], 'type');
+      } else if(level === 'type') {
+        selectedType = key;
+        showCards(data[selectedBranch][selectedYear][selectedSubject][selectedType], 'pdfs');
+      }
+    });
+    container.appendChild(card);
+  }
+
+  currentLevel = level;
+  backBtn.style.display = (level !== 'branch') ? 'inline-block' : 'none';
+  homeBtn.style.display = (level === 'branch') ? 'inline-block' : 'none';
+  updatePath();
+}
+
+/* Back button */
+backBtn.addEventListener('click', () => {
+  if(currentLevel === 'pdfs') showCards(data[selectedBranch][selectedYear][selectedSubject], 'type');
+  else if(currentLevel === 'type') showCards(data[selectedBranch][selectedYear], 'subject');
+  else if(currentLevel === 'subject') showCards(data[selectedBranch], 'year');
+  else if(currentLevel === 'year') showCards(data, 'branch');
+});
+
+/* Home button */
+homeBtn.addEventListener('click', () => {
+  window.location.href = "../index.html";
+});
+
+/* Initialize */
+showCards(data, 'branch');
+</script>
+
+</body>
+</html>

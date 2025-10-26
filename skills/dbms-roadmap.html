@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>DBMS Full Roadmap - TechPath</title>
+
+<link rel="stylesheet"href="style.css">
+</head>
+<body>
+<div class="floating-code" id="floatingCode"></div>
+
+<header>
+  <h1>TechPath</h1>
+  <nav>
+    <a href="../index.html">Home</a>
+    <a href="../career.html">Career Paths</a>
+    <a href="../skills.html">Skill Roadmaps</a>
+  </nav>
+</header>
+
+<section class="banner">
+  <h2>🍃 DBMS Full Roadmap</h2>
+  <p>Learn DBMS from basics to advanced with clear explanations, diagrams, and code snippets.</p>
+</section>
+
+<div class="top-buttons">
+  <a href="../skills.html" class="btn">← Back to Skills</a>
+  <a href="../pdf/dbms.pdf" download="DBMS_Roadmap.pdf" class="btn">Download PDF</a>
+  <a href="../pdf/DBMS_Notes.pdf" download="DBMS_Notes.pdf" class="btn">Notes</a>
+  <a href="https://www.geeksforgeeks.org/dbms/" target="_blank" class="btn">Reference / Learn More</a>
+</div>
+
+<section class="topic-container">
+
+<!-- 1. Introduction -->
+<div class="topic-card">
+<h3>1. Introduction to DBMS</h3>
+<p><strong>Description:</strong> Database Management Systems (DBMS) are software systems designed to store, manage, and retrieve data efficiently. They provide mechanisms for data integrity, security, concurrency, and backup. Types include relational (RDBMS), NoSQL, hierarchical, and network databases.</p>
+<pre id="code1">
+// Example: Creating a table in SQL
+CREATE TABLE Students (
+    id INT PRIMARY KEY,
+    name VARCHAR(50),
+    age INT
+);
+</pre>
+<button class="copy-btn" onclick="copyCode('code1', this)">Copy Code</button>
+</div>
+
+<!-- 2. ER Model & Design -->
+<div class="topic-card">
+<h3>2. ER Model & Design</h3>
+<p><strong>Description:</strong> Entity-Relationship (ER) modeling is a conceptual design tool to represent data and relationships. ER diagrams consist of entities, attributes, and relationships. Translating ER models to relational schemas is a key step in database design.</p>
+<pre id="code2">
+-- Student table
+CREATE TABLE Student (
+  student_id INT PRIMARY KEY,
+  name VARCHAR(50)
+);
+-- Course table
+CREATE TABLE Course (
+  course_id INT PRIMARY KEY,
+  title VARCHAR(50)
+);
+-- Many-to-Many: Student-Course
+CREATE TABLE Enrollment (
+  student_id INT,
+  course_id INT,
+  PRIMARY KEY(student_id, course_id),
+  FOREIGN KEY(student_id) REFERENCES Student(student_id),
+  FOREIGN KEY(course_id) REFERENCES Course(course_id)
+);
+</pre>
+<button class="copy-btn" onclick="copyCode('code2', this)">Copy Code</button>
+</div>
+
+<!-- 3. Normalization -->
+<div class="topic-card">
+<h3>3. Normalization</h3>
+<p><strong>Description:</strong> Normalization organizes tables to reduce redundancy and improve data integrity. Normal forms: 1NF, 2NF, 3NF, BCNF, 4NF, 5NF. Each form addresses a specific type of anomaly (insertion, deletion, update).</p>
+<pre id="code3">
+// Example: 1NF requires atomic values
+-- Table violates 1NF (multiple courses in single column)
+-- Table satisfies 1NF (separate rows per course)
+</pre>
+<button class="copy-btn" onclick="copyCode('code3', this)">Copy Code</button>
+</div>
+
+<!-- 4. SQL Queries -->
+<div class="topic-card">
+<h3>4. SQL Queries</h3>
+<p><strong>Description:</strong> SQL is the language to interact with relational databases. Basic operations: SELECT, INSERT, UPDATE, DELETE. Advanced: JOINs, GROUP BY, HAVING, subqueries, and transactions.</p>
+<pre id="code4">
+// Select example
+SELECT name, age FROM Students WHERE age > 20;
+
+-- Join example
+SELECT S.name, C.title
+FROM Student S
+JOIN Enrollment E ON S.student_id = E.student_id
+JOIN Course C ON E.course_id = C.course_id;
+</pre>
+<button class="copy-btn" onclick="copyCode('code4', this)">Copy Code</button>
+</div>
+
+<!-- 5. Transactions & ACID -->
+<div class="topic-card">
+<h3>5. Transactions & ACID</h3>
+<p><strong>Description:</strong> Transactions are sequences of operations executed as a single unit. ACID properties ensure data consistency: Atomicity, Consistency, Isolation, Durability.</p>
+<pre id="code5">
+// SQL Transaction example
+BEGIN TRANSACTION;
+UPDATE Accounts SET balance = balance - 100 WHERE id = 1;
+UPDATE Accounts SET balance = balance + 100 WHERE id = 2;
+COMMIT;
+</pre>
+<button class="copy-btn" onclick="copyCode('code5', this)">Copy Code</button>
+</div>
+
+<!-- 6. Indexing & Performance -->
+<div class="topic-card">
+<h3>6. Indexing & Performance</h3>
+<p><strong>Description:</strong> Indexes improve query performance by allowing faster searches at the cost of additional storage and write overhead. Types: single-column, composite, unique, clustered, non-clustered.</p>
+<pre id="code6">
+// Creating index
+CREATE INDEX idx_student_name ON Student(name);
+</pre>
+<button class="copy-btn" onclick="copyCode('code6', this)">Copy Code</button>
+</div>
+
+<!-- 7. Views, Stored Procedures & Triggers -->
+<div class="topic-card">
+<h3>7. Views, Stored Procedures & Triggers</h3>
+<p><strong>Description:</strong> Views provide virtual tables. Stored procedures are reusable SQL blocks. Triggers execute automatically on certain table events.</p>
+<pre id="code7">
+// Example: View
+CREATE VIEW AdultStudents AS
+SELECT * FROM Students WHERE age >= 18;
+
+-- Trigger
+CREATE TRIGGER update_log AFTER UPDATE ON Students
+FOR EACH ROW
+INSERT INTO StudentLog(student_id, change_time) VALUES (NEW.id, NOW());
+</pre>
+<button class="copy-btn" onclick="copyCode('code7', this)">Copy Code</button>
+</div>
+
+<!-- 8. Concurrency Control -->
+<div class="topic-card">
+<h3>8. Concurrency Control</h3>
+<p><strong>Description:</strong> Concurrency control ensures that multiple transactions execute concurrently without violating data consistency. Without it, issues like lost updates, dirty reads, and uncommitted data could occur. Techniques include:</p>
+<ul>
+<li>Pessimistic Locking (locks rows or tables to prevent conflicts)</li>
+<li>Optimistic Concurrency Control (detects conflicts at commit)</li>
+<li>Timestamp ordering</li>
+</ul>
+<p><strong>Question:</strong> How do you prevent two transactions from updating the same bank account balance simultaneously?</p>
+<pre id="code8">
+-- Lock a row for update in SQL
+SELECT * FROM Accounts WHERE id = 1 FOR UPDATE;
+</pre>
+<button class="copy-btn" onclick="copyCode('code8', this)">Copy Code</button>
+</div>
+
+<!-- 9. Deadlocks & Resolution -->
+<div class="topic-card">
+<h3>9. Deadlocks & Resolution</h3>
+<p><strong>Description:</strong> A deadlock occurs when two or more transactions wait indefinitely for resources held by each other. Detection methods: wait-for graph or timeout. Resolution includes rolling back one transaction or preempting resources.</p>
+<p><strong>Question:</strong> How would you handle a deadlock between two users trying to update overlapping records?</p>
+<pre id="code9">
+-- Set deadlock priority and handle in SQL
+SET DEADLOCK_PRIORITY LOW;
+BEGIN TRANSACTION;
+UPDATE Accounts SET balance = balance - 100 WHERE id = 1;
+UPDATE Accounts SET balance = balance + 100 WHERE id = 2;
+COMMIT;
+</pre>
+<button class="copy-btn" onclick="copyCode('code9', this)">Copy Code</button>
+</div>
+
+<!-- 10. Recovery & Backup -->
+<div class="topic-card">
+<h3>10. Recovery & Backup</h3>
+<p><strong>Description:</strong> Recovery ensures database consistency after crashes or failures. Strategies include:</p>
+<ul>
+<li>Logging: UNDO/REDO logs to revert/redo operations</li>
+<li>Checkpoints: saving consistent database state</li>
+<li>Backups: Full, differential, incremental</li>
+</ul>
+<p><strong>Question:</strong> How do you backup and restore a MySQL database?</p>
+<pre id="code10">
+-- Full backup in MySQL
+mysqldump -u root -p dbname > backup.sql
+
+-- Restore the database
+mysql -u root -p dbname < backup.sql
+</pre>
+<button class="copy-btn" onclick="copyCode('code10', this)">Copy Code</button>
+</div>
+<!-- 11. Locking Mechanisms -->
+<div class="topic-card">
+<h3>11. Locking Mechanisms</h3>
+<p><strong>Description:</strong> Locking is a key technique in concurrency control to prevent conflicts. Types of locks:</p>
+<ul>
+<li><strong>Shared Lock (S-lock):</strong> Multiple transactions can read, but cannot write.</li>
+<li><strong>Exclusive Lock (X-lock):</strong> Only one transaction can read/write a resource.</li>
+<li><strong>Intent Locks:</strong> Indicate planned future locks at a higher level (table, page).</li>
+</ul>
+<p><strong>Question:</strong> How do shared and exclusive locks help maintain data consistency?</p>
+<pre id="code11">
+-- Acquire a shared lock
+SELECT * FROM Accounts WHERE id = 1 LOCK IN SHARE MODE;
+
+-- Acquire an exclusive lock
+SELECT * FROM Accounts WHERE id = 1 FOR UPDATE;
+</pre>
+<button class="copy-btn" onclick="copyCode('code11', this)">Copy Code</button>
+</div>
+
+<!-- 12. Two-Phase Locking (2PL) -->
+<div class="topic-card">
+<h3>12. Two-Phase Locking (2PL)</h3>
+<p><strong>Description:</strong> Two-Phase Locking ensures serializability of transactions in DBMS. It has two phases:</p>
+<ul>
+<li><strong>Growing Phase:</strong> Locks are acquired, no locks released.</li>
+<li><strong>Shrinking Phase:</strong> Locks are released, no new locks acquired.</li>
+</ul>
+<p><strong>Question:</strong> How does 2PL prevent conflicts and maintain consistency?</p>
+<pre id="code12">
+-- Example in SQL pseudo-code
+BEGIN TRANSACTION;
+-- Growing phase: acquire locks
+SELECT * FROM Accounts WHERE id = 1 FOR UPDATE;
+SELECT * FROM Accounts WHERE id = 2 FOR UPDATE;
+
+-- Perform updates
+UPDATE Accounts SET balance = balance - 100 WHERE id = 1;
+UPDATE Accounts SET balance = balance + 100 WHERE id = 2;
+
+-- Shrinking phase: release locks at commit
+COMMIT;
+</pre>
+<button class="copy-btn" onclick="copyCode('code12', this)">Copy Code</button>
+</div>
+
+<!-- 13. Isolation Levels -->
+<div class="topic-card">
+<h3>13. Isolation Levels</h3>
+<p><strong>Description:</strong> Isolation levels control how transactions interact with each other. They help prevent phenomena like dirty reads, non-repeatable reads, and phantom reads. Common levels:</p>
+<ul>
+<li>Read Uncommitted</li>
+<li>Read Committed</li>
+<li>Repeatable Read</li>
+<li>Serializable</li>
+</ul>
+<p><strong>Question:</strong> Which isolation level prevents dirty reads but allows non-repeatable reads?</p>
+<pre id="code13">
+-- Set transaction isolation level
+SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+</pre>
+<button class="copy-btn" onclick="copyCode('code13', this)">Copy Code</button>
+</div>
+
+<!-- 14. Replication -->
+<div class="topic-card">
+<h3>14. Replication</h3>
+<p><strong>Description:</strong> Replication duplicates data across multiple servers to improve availability, fault tolerance, and read performance. Types include:</p>
+<ul>
+<li>Master-Slave Replication</li>
+<li>Master-Master Replication</li>
+<li>Synchronous vs Asynchronous Replication</li>
+</ul>
+<p><strong>Question:</strong> How would you configure replication in MySQL to ensure high availability?</p>
+<pre id="code14">
+-- Master configuration
+CHANGE MASTER TO
+  MASTER_HOST='master_host',
+  MASTER_USER='replica_user',
+  MASTER_PASSWORD='password',
+  MASTER_LOG_FILE='mysql-bin.000001',
+  MASTER_LOG_POS=107;
+START SLAVE;
+</pre>
+<button class="copy-btn" onclick="copyCode('code14', this)">Copy Code</button>
+</div>
+
+<!-- 15. Sharding -->
+<div class="topic-card">
+<h3>15. Sharding</h3>
+<p><strong>Description:</strong> Sharding splits large datasets across multiple databases or servers to improve scalability and performance. Each shard contains a subset of the data.</p>
+<p><strong>Question:</strong> How would you design a sharding strategy for a global user database?</p>
+<pre id="code15">
+-- Example: Shard users by region
+-- Shard1: Users from Americas
+-- Shard2: Users from Europe
+-- Shard3: Users from Asia
+</pre>
+<button class="copy-btn" onclick="copyCode('code15', this)">Copy Code</button>
+</div>
+
+<!-- 16. Indexing Strategies -->
+<div class="topic-card">
+<h3>16. Indexing Strategies</h3>
+<p><strong>Description:</strong> Indexing optimizes query performance. Common strategies include:</p>
+<ul>
+<li>Single-column vs Composite Index</li>
+<li>Unique Indexes</li>
+<li>Full-text Index</li>
+<li>Covering Index</li>
+<li>Clustered vs Non-clustered</li>
+</ul>
+<p><strong>Question:</strong> How do covering indexes improve query performance?</p>
+<pre id="code16">
+-- Composite index example
+CREATE INDEX idx_student_name_age ON Student(name, age);
+
+-- Full-text index example
+CREATE FULLTEXT INDEX idx_course_title ON Course(title);
+</pre>
+<button class="copy-btn" onclick="copyCode('code16', this)">Copy Code</button>
+</div>
+<!-- 17. Materialized Views -->
+<div class="topic-card">
+<h3>17. Materialized Views</h3>
+<p><strong>Description:</strong> Materialized Views store query results physically to improve performance for complex queries. Unlike normal views, they do not calculate data on the fly but require refresh mechanisms.</p>
+<p><strong>Question:</strong> How would you use a materialized view to optimize reporting queries?</p>
+<pre id="code17">
+-- Create a materialized view in Oracle
+CREATE MATERIALIZED VIEW StudentCourseSummary
+REFRESH FAST
+AS
+SELECT S.student_id, COUNT(E.course_id) AS total_courses
+FROM Student S
+JOIN Enrollment E ON S.student_id = E.student_id
+GROUP BY S.student_id;
+</pre>
+<button class="copy-btn" onclick="copyCode('code17', this)">Copy Code</button>
+</div>
+
+<!-- 18. Partitioning -->
+<div class="topic-card">
+<h3>18. Partitioning</h3>
+<p><strong>Description:</strong> Partitioning splits large tables into smaller, manageable pieces to improve query performance and maintenance. Types include:</p>
+<ul>
+<li>Range Partitioning</li>
+<li>List Partitioning</li>
+<li>Hash Partitioning</li>
+<li>Composite Partitioning</li>
+</ul>
+<p><strong>Question:</strong> How would you partition a sales table by year to optimize queries?</p>
+<pre id="code18">
+-- Range Partitioning example in Oracle
+CREATE TABLE Sales (
+  sale_id INT,
+  sale_date DATE,
+  amount NUMBER
+)
+PARTITION BY RANGE (sale_date) (
+  PARTITION p_2023 VALUES LESS THAN (TO_DATE('01-JAN-2024','DD-MON-YYYY')),
+  PARTITION p_2024 VALUES LESS THAN (TO_DATE('01-JAN-2025','DD-MON-YYYY'))
+);
+</pre>
+<button class="copy-btn" onclick="copyCode('code18', this)">Copy Code</button>
+</div>
+
+<!-- 19. NoSQL Basics -->
+<div class="topic-card">
+<h3>19. NoSQL Basics</h3>
+<p><strong>Description:</strong> NoSQL databases are non-relational systems designed for scalability and flexible data models. Types include document, key-value, column-family, and graph databases.</p>
+<p><strong>Question:</strong> How would you store user profiles with variable fields using NoSQL?</p>
+<pre id="code19">
+// MongoDB example: storing user profiles as documents
+db.users.insertOne({
+  user_id: 1,
+  name: "Alice",
+  email: "alice@example.com",
+  preferences: { theme: "dark", notifications: true }
+});
+</pre>
+<button class="copy-btn" onclick="copyCode('code19', this)">Copy Code</button>
+</div>
+
+<!-- 20. Big Data Integration -->
+<div class="topic-card">
+<h3>20. Big Data Integration</h3>
+<p><strong>Description:</strong> Modern DBMS often integrate with Big Data systems for analytics. Techniques include ETL pipelines, Hadoop/Spark integration, and streaming data ingestion.</p>
+<p><strong>Question:</strong> How would you integrate MySQL with Apache Spark for analytics?</p>
+<pre id="code20">
+// Spark SQL example in PySpark
+from pyspark.sql import SparkSession
+
+spark = SparkSession.builder.appName("MySQLIntegration").getOrCreate()
+df = spark.read.format("jdbc").options(
+  url="jdbc:mysql://localhost:3306/dbname",
+  driver="com.mysql.cj.jdbc.Driver",
+  dbtable="Sales",
+  user="root",
+  password="password"
+).load()
+
+df.show()
+</pre>
+<button class="copy-btn" onclick="copyCode('code20', this)">Copy Code</button>
+</div>
+
+<!-- 21. MongoDB Advanced Operations -->
+<div class="topic-card">
+<h3>21. MongoDB Advanced Operations</h3>
+<p><strong>Description:</strong> MongoDB supports aggregation, indexing, and replication for advanced use-cases. Aggregation pipelines allow filtering, grouping, and transforming data efficiently.</p>
+<p><strong>Question:</strong> How would you calculate the total orders per customer in MongoDB?</p>
+<pre id="code21">
+// Aggregation pipeline example
+db.orders.aggregate([
+  { $group: { _id: "$customer_id", totalOrders: { $sum: "$amount" } } },
+  { $sort: { totalOrders: -1 } }
+]);
+</pre>
+<button class="copy-btn" onclick="copyCode('code21', this)">Copy Code</button>
+</div>
+
+<!-- 22. Advanced DBMS Topics -->
+<div class="topic-card">
+<h3>22. Advanced DBMS Topics</h3>
+<p><strong>Description:</strong> Advanced topics include distributed databases, data warehousing, OLAP cubes, in-memory databases, and database security techniques.</p>
+<p><strong>Question:</strong> How do you secure sensitive data in a DBMS and ensure distributed consistency?</p>
+<pre id="code22">
+// Example: enabling encryption and distributed consistency
+-- Enable Transparent Data Encryption (TDE) in SQL Server
+CREATE DATABASE ENCRYPTION KEY
+WITH ALGORITHM = AES_256
+ENCRYPTION BY SERVER CERTIFICATE MyServerCert;
+
+-- Distributed transaction example
+BEGIN DISTRIBUTED TRANSACTION;
+UPDATE Orders SET status='Processed' WHERE order_id=101;
+COMMIT TRANSACTION;
+</pre>
+<button class="copy-btn" onclick="copyCode('code22', this)">Copy Code</button>
+</div>
+
+
+</section>
+
+<footer>
+  Contact: kommala50@gmail.com | © 2025 TechPath
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

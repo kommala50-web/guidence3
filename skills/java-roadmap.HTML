@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Java Full Roadmap - TechPath</title>
+<link rel="stylesheet" href="../skills/style.css">
+<script defer src="../skills/script.js"></script>
+</head>
+<body>
+
+<header>
+  <h1>TechPath</h1>
+  <nav>
+    <a href="../index.html">Home</a>
+    <a href="../career.html">Career Paths</a>
+    <a href="../skills.html">Skill Roadmaps</a>
+    <a href="../company.html">Company Questions</a>
+  </nav>
+</header>
+
+<section class="banner">
+  <h2>💻 Java Full Roadmap</h2>
+  <p>Learn Java from basics to advanced concepts with explanations and example code.</p>
+</section>
+
+<div class="top-buttons">
+  <a href="../skills.html" class="btn">← Back to Skills</a>
+  <a href="../pdf/Java_Notes_Part1.pdf" download="Java_Roadmap.pdf" class="btn">Download PDF</a>
+  <a href="../pdf/Java_Notes_Part2.pdf" download="Java_Notes.pdf" class="btn">Notes</a>
+  <a href="https://www.youtube.com/watch?v=23HFxAPyJ9U&list=PLZPZq0r_RZOOj_NOZYq_R2PECIMglLemc" target="_blank" class="btn">Video Resource</a>
+</div>
+
+<section class="topic-container">
+
+<!-- 1. Introduction to Java -->
+<div class="topic-card">
+  <h3>1. Introduction to Java</h3>
+  <p><strong>Description:</strong> Java is an object-oriented, platform-independent programming language. It runs on JVM and is widely used for web, desktop, and mobile applications.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+// HelloWorld.java
+public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, Java!");
+    }
+}
+  </pre>
+</div>
+
+<!-- 2. Java Environment Setup & HelloWorld -->
+<div class="topic-card">
+  <h3>2. Java Environment Setup & HelloWorld</h3>
+  <p><strong>Description:</strong> Install JDK, set up environment variables, and run your first Java program using command line or IDE.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+// Compile: javac HelloWorld.java
+// Run: java HelloWorld
+System.out.println("Java setup successful!");
+  </pre>
+</div>
+
+<!-- 3. Data Types & Variables -->
+<div class="topic-card">
+  <h3>3. Data Types & Variables</h3>
+  <p><strong>Description:</strong> Java has primitive types: int, char, float, double, boolean. Variables store values in memory with type safety.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+int age = 25;
+double salary = 50000.5;
+char grade = 'A';
+boolean isActive = true;
+System.out.println(age + " " + salary + " " + grade + " " + isActive);
+  </pre>
+</div>
+
+<!-- 4. Operators -->
+<div class="topic-card">
+  <h3>4. Operators</h3>
+  <p><strong>Description:</strong> Java operators: arithmetic (+,-,*,/), relational (>,<,==), logical (&&,||), bitwise (&,|,^), assignment (=,+=), ternary (? :).</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+int a = 10, b = 5;
+System.out.println(a + b); // 15
+System.out.println(a > b); // true
+System.out.println(a & b); // 0
+System.out.println((a > b) ? a : b); // 10
+  </pre>
+</div>
+
+<!-- 5. Control Statements -->
+<div class="topic-card">
+  <h3>5. Control Statements</h3>
+  <p><strong>Description:</strong> Use if, if-else, switch for decisions; for, while, do-while loops for iterations; break & continue to control flow.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+for(int i=1;i<=5;i++){
+    if(i==3) continue;
+    System.out.println(i);
+}
+  </pre>
+</div>
+
+<!-- 6. Functions / Methods -->
+<div class="topic-card">
+  <h3>6. Functions / Methods</h3>
+  <p><strong>Description:</strong> Methods are reusable code blocks. They can return values, take parameters, and help modular programming.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+public static int sum(int a, int b){
+    return a + b;
+}
+System.out.println(sum(5,3)); // 8
+  </pre>
+</div>
+
+<!-- 7. Arrays -->
+<div class="topic-card">
+  <h3>7. Arrays</h3>
+  <p><strong>Description:</strong> Arrays store multiple values of the same type in contiguous memory. Used for lists, tables, and matrices.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+int[] nums = {1,2,3,4,5};
+for(int n: nums){
+    System.out.println(n);
+}
+  </pre>
+</div>
+
+<!-- 8. Strings -->
+<div class="topic-card">
+  <h3>8. Strings</h3>
+  <p><strong>Description:</strong> Strings store text data. Common methods: length(), charAt(), substring(), concat(), equals(), indexOf().</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+String str = "Hello";
+System.out.println(str.length()); // 5
+System.out.println(str.concat(" World")); // Hello World
+  </pre>
+</div>
+
+<!-- 9. OOP Concepts -->
+<div class="topic-card">
+  <h3>9. OOP Concepts (Classes & Objects)</h3>
+  <p><strong>Description:</strong> Java is object-oriented. Classes define objects with attributes and behaviors. Create instances and use constructors to initialize.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+class Person{
+    String name;
+    int age;
+    Person(String n, int a){ name=n; age=a; }
+    void info(){ System.out.println(name + " " + age); }
+}
+Person p = new Person("Alice", 25);
+p.info();
+  </pre>
+</div>
+
+<!-- 10. Inheritance -->
+<div class="topic-card">
+  <h3>10. Inheritance</h3>
+  <p><strong>Description:</strong> Classes can inherit from others using extends. Supports single, multilevel, hierarchical inheritance. Use super keyword for parent access.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+class Animal{
+    void eat(){ System.out.println("Eating"); }
+}
+class Dog extends Animal{
+    void bark(){ System.out.println("Barking"); }
+}
+Dog d = new Dog();
+d.eat();
+d.bark();
+  </pre>
+</div>
+
+<!-- 11. Polymorphism -->
+<div class="topic-card">
+  <h3>11. Polymorphism</h3>
+  <p><strong>Description:</strong> Java supports compile-time (method overloading) and runtime polymorphism (method overriding with inheritance).</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+class Calculator{
+    int add(int a,int b){ return a+b; }
+    double add(double a,double b){ return a+b; } // Overloading
+}
+  </pre>
+</div>
+
+<!-- 12. Encapsulation & Abstraction -->
+<div class="topic-card">
+  <h3>12. Encapsulation & Abstraction</h3>
+  <p><strong>Description:</strong> Encapsulation hides data using private fields and getters/setters. Abstraction is achieved with abstract classes and interfaces.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+class Account{
+    private double balance;
+    public void setBalance(double b){ balance=b; }
+    public double getBalance(){ return balance; }
+}
+  </pre>
+</div>
+
+<!-- 13. Interfaces & Abstract Classes -->
+<div class="topic-card">
+  <h3>13. Interfaces & Abstract Classes</h3>
+  <p><strong>Description:</strong> Abstract classes define incomplete classes with abstract methods. Interfaces define contracts. A class implements interfaces using implements keyword.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+interface Drawable{ void draw(); }
+class Circle implements Drawable{
+    public void draw(){ System.out.println("Drawing Circle"); }
+}
+  </pre>
+</div>
+
+  <!-- 14. Packages & Access Modifiers -->
+  <div class="topic-card">
+    <h3>14. Packages & Access Modifiers</h3>
+    <p><strong>Description:</strong> Packages organize classes and interfaces into namespaces. Access modifiers (<code>public</code>, <code>protected</code>, <code>private</code>, default) control visibility and encapsulation.</p>
+    <button class="toggle-code">Show Example</button>
+    <pre class="code-snippet" style="display:none;">
+// Example of Access Modifiers
+package mypackage;
+
+public class Example {
+    private int secret = 42;
+    public int getSecret() { return secret; }
+}
+
+class Test {
+    public static void main(String[] args) {
+        Example ex = new Example();
+        System.out.println("Secret: " + ex.getSecret());
+    }
+}
+    </pre>
+  </div>
+
+  <!-- 15. Inheritance -->
+  <div class="topic-card">
+    <h3>15. Inheritance</h3>
+    <p><strong>Description:</strong> Inheritance allows one class to acquire properties and methods of another. Supports single, multilevel, hierarchical, and hybrid inheritance (via interfaces).</p>
+    <button class="toggle-code">Show Example</button>
+    <pre class="code-snippet" style="display:none;">
+// Inheritance Example
+class Parent {
+    void greet() { System.out.println("Hello from Parent"); }
+}
+
+class Child extends Parent {
+    void greetChild() { System.out.println("Hello from Child"); }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Child c = new Child();
+        c.greet();        // Inherited method
+        c.greetChild();   // Child method
+    }
+}
+    </pre>
+  </div>
+
+  <!-- 16. Polymorphism -->
+  <div class="topic-card">
+    <h3>16. Polymorphism</h3>
+    <p><strong>Description:</strong> Polymorphism allows objects or methods to take multiple forms. Includes compile-time (method overloading) and runtime (method overriding) polymorphism.</p>
+    <button class="toggle-code">Show Example</button>
+    <pre class="code-snippet" style="display:none;">
+// Polymorphism Example
+class Animal {
+    void sound() { System.out.println("Some sound"); }
+}
+
+class Dog extends Animal {
+    @Override
+    void sound() { System.out.println("Bark"); }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Animal a = new Dog();
+        a.sound(); // Runtime polymorphism
+    }
+}
+    </pre>
+  </div>
+
+  <!-- 17. Abstraction & Interfaces -->
+  <div class="topic-card">
+    <h3>17. Abstraction & Interfaces</h3>
+    <p><strong>Description:</strong> Abstraction hides implementation details. Abstract classes can have both abstract and concrete methods. Interfaces define method contracts without implementation.</p>
+    <button class="toggle-code">Show Example</button>
+    <pre class="code-snippet" style="display:none;">
+// Abstraction Example
+abstract class Shape {
+    abstract void draw();
+}
+
+class Circle extends Shape {
+    void draw() { System.out.println("Drawing Circle"); }
+}
+
+interface Drawable {
+    void paint();
+}
+
+class Square implements Drawable {
+    public void paint() { System.out.println("Painting Square"); }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Shape s = new Circle();
+        s.draw();
+
+        Drawable d = new Square();
+        d.paint();
+    }
+}
+    </pre>
+  </div>
+
+  <!-- 18. Encapsulation -->
+  <div class="topic-card">
+    <h3>18. Encapsulation</h3>
+    <p><strong>Description:</strong> Encapsulation restricts direct access to class members. Use private fields with public getter/setter methods for controlled access.</p>
+    <button class="toggle-code">Show Example</button>
+    <pre class="code-snippet" style="display:none;">
+// Encapsulation Example
+class Person {
+    private String name;
+    public void setName(String name) { this.name = name; }
+    public String getName() { return name; }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Person p = new Person();
+        p.setName("Alice");
+        System.out.println("Name: " + p.getName());
+    }
+}
+    </pre>
+  </div>
+
+  <!-- 19. Constructors & Destructors -->
+  <div class="topic-card">
+    <h3>19. Constructors & Destructors</h3>
+    <p><strong>Description:</strong> Constructors initialize objects when created. Java does not have destructors; garbage collector handles memory cleanup. Can have parameterized, default, and copy-like constructors.</p>
+    <button class="toggle-code">Show Example</button>
+    <pre class="code-snippet" style="display:none;">
+// Constructor Example
+class Student {
+    String name;
+    int age;
+    Student(String name, int age){
+        this.name = name; this.age = age;
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Student s = new Student("Bob", 20);
+        System.out.println("Name: " + s.name + ", Age: " + s.age);
+    }
+}
+    </pre>
+  </div>
+
+  <!-- 20. this Keyword -->
+  <div class="topic-card">
+    <h3>20. this Keyword</h3>
+    <p><strong>Description:</strong> <code>this</code> refers to the current object. Used to distinguish instance variables from parameters and to call other constructors.</p>
+    <button class="toggle-code">Show Example</button>
+    <pre class="code-snippet" style="display:none;">
+class Student {
+    String name;
+    int age;
+    Student(String name, int age){
+        this.name = name; this.age = age;
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Student s = new Student("Charlie", 22);
+        System.out.println(s.name + " - " + s.age);
+    }
+}
+    </pre>
+  </div>
+
+  <!-- 21. Static Members -->
+  <div class="topic-card">
+    <h3>21. Static Members</h3>
+    <p><strong>Description:</strong> Static fields and methods belong to the class, not instances. Shared among all objects.</p>
+    <button class="toggle-code">Show Example</button>
+    <pre class="code-snippet" style="display:none;">
+class Counter {
+    static int count = 0;
+    Counter() { count++; }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        new Counter(); new Counter(); new Counter();
+        System.out.println("Count: " + Counter.count);
+    }
+}
+    </pre>
+  </div>
+
+  <!-- 22. Final Keyword -->
+  <div class="topic-card">
+    <h3>22. final Keyword</h3>
+    <p><strong>Description:</strong> <code>final</code> can be used with variables (constant), methods (cannot override), and classes (cannot inherit).</p>
+    <button class="toggle-code">Show Example</button>
+    <pre class="code-snippet" style="display:none;">
+final class Constants {
+    final double PI = 3.14159;
+}
+
+// final method
+class Parent {
+    final void greet() { System.out.println("Hello"); }
+}
+
+class Child extends Parent {
+    // void greet() {} // Error: cannot override final method
+}
+    </pre>
+  </div>
+
+  <!-- 23. Exception Handling -->
+  <div class="topic-card">
+    <h3>23. Exception Handling</h3>
+    <p><strong>Description:</strong> Use try, catch, finally, throw, throws to handle runtime errors gracefully.</p>
+    <button class="toggle-code">Show Example</button>
+    <pre class="code-snippet" style="display:none;">
+public class Test {
+    public static void main(String[] args) {
+        try {
+            int a = 10 / 0;
+        } catch(ArithmeticException e) {
+            System.out.println("Cannot divide by zero!");
+        } finally {
+            System.out.println("Done");
+        }
+    }
+}
+    </pre>
+  </div>
+
+  <!-- 24. Generics -->
+  <div class="topic-card">
+    <h3>24. Generics</h3>
+    <p><strong>Description:</strong> Generics allow type-safe classes, interfaces, and methods. Prevents ClassCastException at runtime.</p>
+    <button class="toggle-code">Show Example</button>
+    <pre class="code-snippet" style="display:none;">
+import java.util.ArrayList;
+
+public class Test {
+    public static void main(String[] args) {
+        ArrayList&lt;String&gt; list = new ArrayList&lt;&gt;();
+        list.add("Hello");
+        list.add("World");
+        for(String s : list) System.out.println(s);
+    }
+}
+    </pre>
+  </div>
+
+  <!-- 25. Collections Framework -->
+  <div class="topic-card">
+    <h3>25. Collections Framework</h3>
+    <p><strong>Description:</strong> Provides data structures like List, Set, Map, Queue. Includes ArrayList, LinkedList, HashSet, TreeMap for efficient storage and manipulation.</p>
+    <button class="toggle-code">Show Example</button>
+    <pre class="code-snippet" style="display:none;">
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List&lt;Integer&gt; list = new ArrayList&lt;&gt;();
+        list.add(10); list.add(20);
+        for(int i : list) System.out.println(i);
+    }
+}
+    </pre>
+  </div>
+
+  <!-- 26. Multithreading -->
+  <div class="topic-card">
+    <h3>26. Multithreading</h3>
+    <p><strong>Description:</strong> Threads allow concurrent execution. Use Thread class or Runnable interface, synchronized for shared resource safety.</p>
+    <button class="toggle-code">Show Example</button>
+    <pre class="code-snippet" style="display:none;">
+class MyThread extends Thread {
+    public void run() { System.out.println("Thread running"); }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        MyThread t1 = new MyThread();
+        t1.start();
+    }
+}
+    </pre>
+  </div>
+
+  <!-- 27. Lambda Expressions & Streams -->
+  <div class="topic-card">
+    <h3>27. Lambda Expressions & Streams</h3>
+    <p><strong>Description:</strong> Lambda expressions provide concise way to represent functions. Streams allow functional-style operations on collections.</p>
+    <button class="toggle-code">Show Example</button>
+    <pre class="code-snippet" style="display:none;">
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List&lt;Integer&gt; list = Arrays.asList(1,2,3,4);
+        list.stream().filter(n -&gt; n%2==0).forEach(System.out::println);
+    }
+}
+    </pre>
+  </div>
+  <!-- 28. Annotations -->
+  <div class="topic-card">
+    <h3>28. Annotations</h3>
+    <p><strong>Description:</strong> Annotations provide metadata about code. Common ones: <code>@Override</code>, <code>@Deprecated</code>, <code>@SuppressWarnings</code>. Useful for code clarity and compiler checks.</p>
+    <button class="toggle-code">Show Example</button>
+    <pre class="code-snippet" style="display:none;">
+class Parent {
+    void greet() { System.out.println("Hello"); }
+}
+
+class Child extends Parent {
+    @Override
+    void greet() { System.out.println("Hi!"); }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Parent p = new Child();
+        p.greet();
+    }
+}
+    </pre>
+  </div>
+
+  <!-- 29. File Handling in Java -->
+  <div class="topic-card">
+    <h3>29. File Handling in Java</h3>
+    <p><strong>Description:</strong> Java provides classes like File, FileReader, FileWriter, BufferedReader, BufferedWriter for reading/writing text and binary files.</p>
+    <button class="toggle-code">Show Example</button>
+    <pre class="code-snippet" style="display:none;">
+import java.io.*;
+
+public class Test {
+    public static void main(String[] args) throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter("example.txt"));
+        writer.write("Hello Java File I/O");
+        writer.close();
+
+        BufferedReader reader = new BufferedReader(new FileReader("example.txt"));
+        String line;
+        while((line = reader.readLine()) != null) {
+            System.out.println(line);
+        }
+        reader.close();
+    }
+}
+    </pre>
+  </div>
+
+  <!-- 30. Serialization -->
+  <div class="topic-card">
+    <h3>30. Serialization</h3>
+    <p><strong>Description:</strong> Serialization converts objects into a byte stream for storage or transmission. Use <code>Serializable</code> interface and <code>ObjectOutputStream</code>/<code>ObjectInputStream</code>.</p>
+    <button class="toggle-code">Show Example</button>
+    <pre class="code-snippet" style="display:none;">
+import java.io.*;
+
+class Student implements Serializable {
+    String name;
+    int age;
+    Student(String name, int age) { this.name = name; this.age = age; }
+}
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        Student s = new Student("Alice", 21);
+        ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("student.ser"));
+        out.writeObject(s);
+        out.close();
+
+        ObjectInputStream in = new ObjectInputStream(new FileInputStream("student.ser"));
+        Student s2 = (Student)in.readObject();
+        in.close();
+        System.out.println(s2.name + " - " + s2.age);
+    }
+}
+    </pre>
+  </div>
+
+  <!-- 31. JDBC (Database Connectivity) -->
+  <div class="topic-card">
+    <h3>31. JDBC (Java Database Connectivity)</h3>
+    <p><strong>Description:</strong> JDBC allows Java programs to connect and interact with databases. Use DriverManager, Connection, Statement, ResultSet.</p>
+    <button class="toggle-code">Show Example</button>
+    <pre class="code-snippet" style="display:none;">
+import java.sql.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/testdb","root","password");
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM students");
+        while(rs.next()) {
+            System.out.println(rs.getInt("id") + " " + rs.getString("name"));
+        }
+        con.close();
+    }
+}
+    </pre>
+  </div>
+
+  <!-- 32. Reflection API -->
+  <div class="topic-card">
+    <h3>32. Reflection API</h3>
+    <p><strong>Description:</strong> Reflection allows inspecting and manipulating classes, methods, and fields at runtime.</p>
+    <button class="toggle-code">Show Example</button>
+    <pre class="code-snippet" style="display:none;">
+import java.lang.reflect.*;
+
+class Student {
+    private String name = "Alice";
+}
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        Class&lt;Student&gt; cls = Student.class;
+        Field field = cls.getDeclaredField("name");
+        field.setAccessible(true);
+        Student s = new Student();
+        System.out.println(field.get(s)); // prints Alice
+    }
+}
+    </pre>
+  </div>
+
+  <!-- 33. Java 8 Features -->
+  <div class="topic-card">
+    <h3>33. Java 8 Features</h3>
+    <p><strong>Description:</strong> Java 8 introduced Lambda expressions, Streams, Optional, Default methods in interfaces, and Date/Time API.</p>
+    <button class="toggle-code">Show Example</button>
+    <pre class="code-snippet" style="display:none;">
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List&lt;String&gt; list = Arrays.asList("a","bb","ccc");
+        list.stream().map(String::length).forEach(System.out::println);
+    }
+}
+    </pre>
+  </div>
+
+  <!-- 34. Design Patterns -->
+  <div class="topic-card">
+    <h3>34. Design Patterns</h3>
+    <p><strong>Description:</strong> Design patterns provide reusable solutions to common software design problems. Examples: Singleton, Factory, Observer, Strategy.</p>
+    <button class="toggle-code">Show Example</button>
+    <pre class="code-snippet" style="display:none;">
+// Singleton Pattern Example
+class Singleton {
+    private static Singleton instance;
+    private Singleton() {}
+    public static Singleton getInstance() {
+        if(instance == null) instance = new Singleton();
+        return instance;
+    }
+}
+public class Test {
+    public static void main(String[] args) {
+        Singleton s1 = Singleton.getInstance();
+        Singleton s2 = Singleton.getInstance();
+        System.out.println(s1 == s2); // true
+    }
+}
+    </pre>
+  </div>
+
+  <!-- 35. Networking -->
+  <div class="topic-card">
+    <h3>35. Networking</h3>
+    <p><strong>Description:</strong> Java supports networking via <code>java.net</code>. Classes like Socket, ServerSocket, URL, and HttpURLConnection are used to build client-server applications.</p>
+    <button class="toggle-code">Show Example</button>
+    <pre class="code-snippet" style="display:none;">
+import java.net.*;
+import java.io.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        URL url = new URL("http://example.com");
+        BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
+        String line;
+        while((line = in.readLine()) != null) System.out.println(line);
+        in.close();
+    }
+}
+    </pre>
+  </div><!-- 36. Generics -->
+<div class="topic-card">
+  <h3>36. Generics</h3>
+  <p><strong>Description:</strong> Generics provide type safety and reusability for classes, interfaces, and methods. Avoids casting and runtime errors.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+// Generic class example
+class Box<T> {
+    private T content;
+    public void set(T content) { this.content = content; }
+    public T get() { return content; }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Box<String> box = new Box<>();
+        box.set("Hello Generics");
+        System.out.println(box.get());
+    }
+}
+  </pre>
+</div>
+
+<!-- 37. Collections Framework -->
+<div class="topic-card">
+  <h3>37. Collections Framework</h3>
+  <p><strong>Description:</strong> Java Collections provide data structures like List, Set, Map, and Queue. Useful for storing, retrieving, and manipulating groups of objects efficiently.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        list.add("Alice"); list.add("Bob"); list.add("Charlie");
+        for(String name: list) System.out.println(name);
+
+        Set<Integer> set = new HashSet<>();
+        set.add(10); set.add(20); set.add(10); // duplicates ignored
+        System.out.println(set);
+    }
+}
+  </pre>
+</div>
+
+<!-- 38. Exception Handling -->
+<div class="topic-card">
+  <h3>38. Exception Handling</h3>
+  <p><strong>Description:</strong> Handle runtime errors using try-catch blocks. Supports custom exceptions, finally block, throw and throws keywords.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+public class Main {
+    public static void main(String[] args) {
+        try {
+            int result = 10 / 0;
+        } catch (ArithmeticException e) {
+            System.out.println("Error: " + e.getMessage());
+        } finally {
+            System.out.println("This always executes");
+        }
+    }
+}
+  </pre>
+</div>
+
+<!-- 39. Multithreading & Concurrency -->
+<div class="topic-card">
+  <h3>39. Multithreading & Concurrency</h3>
+  <p><strong>Description:</strong> Threads allow concurrent execution. Use Thread class or Runnable interface. Synchronization avoids race conditions. ExecutorService simplifies thread management.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+class MyThread extends Thread {
+    public void run() {
+        for(int i=1;i<=5;i++) System.out.println("Thread: "+i);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        MyThread t = new MyThread();
+        t.start();
+    }
+}
+  </pre>
+</div>
+
+<!-- 40. Lambda & Functional Interfaces -->
+<div class="topic-card">
+  <h3>40. Lambda & Functional Interfaces</h3>
+  <p><strong>Description:</strong> Lambdas provide concise syntax for implementing functional interfaces (interfaces with a single abstract method). Useful in Stream API and event handling.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+interface Greeting { void sayHello(); }
+
+public class Main {
+    public static void main(String[] args) {
+        Greeting g = () -> System.out.println("Hello Lambda!");
+        g.sayHello();
+    }
+}
+  </pre>
+</div>
+
+<!-- 41. Stream API Advanced -->
+<div class="topic-card">
+  <h3>41. Stream API Advanced</h3>
+  <p><strong>Description:</strong> Stream API allows functional-style operations on collections: filter, map, reduce, collect. Supports parallel processing for performance.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+import java.util.*;
+import java.util.stream.*;
+
+public class Main {
+    public static void main(String[] args) {
+        List<Integer> nums = Arrays.asList(1,2,3,4,5);
+        int sum = nums.stream().filter(n->n%2==0).mapToInt(n->n*2).sum();
+        System.out.println("Sum of doubled evens: " + sum);
+    }
+}
+  </pre>
+</div>
+
+<!-- 42. Java Modules (Java 9+) -->
+<div class="topic-card">
+  <h3>42. Java Modules (Java 9+)</h3>
+  <p><strong>Description:</strong> Modules help organize large applications, encapsulate packages, and manage dependencies using module-info.java files.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+module my.module {
+    exports com.techpath.utils;
+    requires java.base;
+}
+  </pre>
+</div>
+
+<!-- 43. Java Memory Management & Garbage Collection -->
+<div class="topic-card">
+  <h3>43. Java Memory Management & Garbage Collection</h3>
+  <p><strong>Description:</strong> JVM divides memory into Heap and Stack. Garbage collector automatically frees unused objects. Helps in avoiding memory leaks.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+public class Main {
+    public static void main(String[] args) {
+        String s = new String("Hello");
+        s = null; // Eligible for GC
+        System.gc(); // Suggests JVM to run GC
+    }
+}
+  </pre>
+</div>
+
+<!-- 44. JavaFX / Swing Basics -->
+<div class="topic-card">
+  <h3>44. JavaFX / Swing Basics</h3>
+  <p><strong>Description:</strong> JavaFX and Swing are GUI frameworks for creating desktop applications. Components include Stage, Scene, JFrame, JButton, JLabel, etc.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+import javax.swing.*;
+public class Main {
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Swing Example");
+        JButton btn = new JButton("Click Me");
+        frame.add(btn);
+        frame.setSize(300,200);
+        frame.setVisible(true);
+    }
+}
+  </pre>
+</div>
+
+<!-- 45. Java Date & Time API -->
+<div class="topic-card">
+  <h3>45. Java Date & Time API</h3>
+  <p><strong>Description:</strong> Java 8 introduced java.time package for better date/time handling: LocalDate, LocalTime, LocalDateTime, ZonedDateTime.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+import java.time.*;
+public class Main {
+    public static void main(String[] args) {
+        LocalDate today = LocalDate.now();
+        LocalDateTime now = LocalDateTime.now();
+        System.out.println("Today: " + today);
+        System.out.println("Now: " + now);
+    }
+}
+  </pre>
+</div>
+
+<!-- 46. Mini Projects / Real-world Applications -->
+<div class="topic-card">
+  <h3>46. Mini Projects / Real-world Applications</h3>
+  <p><strong>Description:</strong> Apply Java concepts in projects to consolidate learning: Calculator, Banking System, Student Management, Chat Applications, etc.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+import java.util.Scanner;
+
+public class Calculator {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter 1st number: ");
+        double a = sc.nextDouble();
+        System.out.print("Enter 2nd number: ");
+        double b = sc.nextDouble();
+        System.out.print("Enter operator (+,-,*,/): ");
+        char op = sc.next().charAt(0);
+
+        double result = 0;
+        switch(op){
+            case '+': result = a+b; break;
+            case '-': result = a-b; break;
+            case '*': result = a*b; break;
+            case '/': result = a/b; break;
+            default: System.out.println("Invalid operator");
+        }
+        System.out.println("Result: "+result);
+    }
+}
+  </pre>
+</div>
+</section>
+<script>
+document.querySelectorAll('.toggle-code').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const code = btn.nextElementSibling;
+    if (code.style.display === 'none' || code.style.display === "") {
+      code.style.display = 'block';
+      code.style.maxHeight = code.scrollHeight + "px";
+    } else {
+      code.style.display = 'none';
+      code.style.maxHeight = 0;
+    }
+  });
+});
+</script>
+
+
+<footer>
+  Contact: techpath@example.com | © 2025 TechPath
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
+
+
+

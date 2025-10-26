@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TechPath - Your IT Career Guide</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Reset & Fonts */
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+    body { background: linear-gradient(135deg, #0f172a, #1e293b); color: #e2e8f0; overflow-x: hidden; scroll-behavior: smooth; }
+
+    /* Floating Shapes Background */
+    .floating-shapes { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:-1; }
+    .shape { position: absolute; border-radius: 50%; opacity: 0.2; background: linear-gradient(45deg,#00b4d8,#48cae4); animation: float 20s linear infinite; }
+    @keyframes float {
+      0% { transform: translateY(100vh) rotate(0deg) scale(0.8); }
+      50% { transform: translateY(50vh) rotate(180deg) scale(1); }
+      100% { transform: translateY(-20vh) rotate(360deg) scale(0.8); }
+    }
+
+    /* Header */
+    header {
+      position: sticky; top:0; z-index:10;
+      display:flex; justify-content:space-between; align-items:center;
+      padding:20px 50px; background: rgba(15,23,42,0.9); box-shadow:0 4px 20px rgba(0,0,0,0.3);
+    }
+    header h1 { color:#00b4d8; font-size:28px; font-weight:700; letter-spacing:1px; }
+    nav a {
+      color:#e2e8f0; text-decoration:none; margin-left:25px; font-weight:600; position:relative; transition:0.3s;
+    }
+    nav a::after { content:''; position:absolute; left:0; bottom:-3px; width:0; height:2px; background:#00b4d8; transition:0.3s; }
+    nav a:hover { color:#48cae4; }
+    nav a:hover::after { width:100%; }
+
+    /* Hero Banner */
+    .banner {
+      position: relative;
+      background: linear-gradient(rgba(15,23,42,0.85), rgba(15,23,42,0.85)), url("https://source.unsplash.com/1600x500/?technology,coding,workspace");
+      background-size: cover; background-position: center;
+      text-align:center; padding:120px 20px; border-radius:10px; margin:20px 50px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.4);
+    }
+    .banner h2 { font-size:48px; margin-bottom:15px; color:#00b4d8; animation: fadeInUp 1s ease forwards; }
+    .banner p { font-size:18px; margin-bottom:25px; color:#a0c4ff; animation: fadeInUp 1s 0.3s ease forwards; opacity:0; }
+    .banner button {
+      padding:14px 30px; font-size:18px; border:none; border-radius:12px; cursor:pointer;
+      background: #00b4d8; color:#0f172a; font-weight:700; box-shadow:0 5px 20px rgba(0,180,216,0.5);
+      transition: all 0.3s ease;
+      animation: fadeInUp 1s 0.6s ease forwards; opacity:0;
+    }
+    .banner button:hover { background:#48cae4; transform: scale(1.08); }
+
+    @keyframes fadeInUp {
+      0% { opacity:0; transform: translateY(40px); }
+      100% { opacity:1; transform: translateY(0); }
+    }
+
+    /* Quick Links Cards */
+    .quick-links {
+      display:grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); gap:30px;
+      max-width:1200px; margin:60px auto; padding:0 20px;
+    }
+    .card {
+      background: rgba(0,180,216,0.05); padding:40px 30px; border-radius:20px;
+      text-align:center; cursor:pointer; transition: transform 0.5s ease, box-shadow 0.5s ease;
+      perspective:1000px; transform-style:preserve-3d;
+    }
+    .card:hover {
+      transform: rotateY(15deg) rotateX(10deg) translateY(-10px);
+      box-shadow:0 20px 40px rgba(0,180,216,0.5);
+      background: rgba(0,180,216,0.1);
+    }
+    .card h3 { font-size:22px; color:#00b4d8; margin-bottom:10px; }
+    .card p { font-size:15px; color:#a0c4ff; }
+
+    /* Featured Section */
+    .featured {
+      padding:60px 20px; text-align:center; margin:0 50px; border-radius:12px;
+      background: rgba(0,180,216,0.05); box-shadow:0 10px 30px rgba(0,180,216,0.2);
+    }
+    .featured h2 { font-size:32px; margin-bottom:30px; color:#00b4d8; }
+    .featured-items {
+      display:grid; grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); gap:25px;
+    }
+    .featured-item {
+      background: rgba(0,180,216,0.05); padding:20px; border-radius:15px;
+      font-weight:500; transition: transform 0.5s ease, box-shadow 0.5s ease;
+      color:#e2e8f0; perspective:1000px; transform-style:preserve-3d;
+    }
+    .featured-item:hover {
+      transform: rotateY(15deg) rotateX(10deg) translateY(-5px);
+      box-shadow:0 15px 30px rgba(0,180,216,0.5);
+      background: rgba(0,180,216,0.1);
+    }
+
+    /* Footer */
+    footer {
+      background:#0d1b2a; color:#90e0ef; text-align:center; padding:25px; margin-top:60px;
+    }
+
+    @media(max-width:768px) {
+      header { flex-direction:column; text-align:center; }
+      nav { margin-top:10px; }
+      .banner { margin:20px 20px; padding:80px 20px; }
+      .quick-links, .featured-items { grid-template-columns: 1fr; }
+      .featured { margin:20px; padding:40px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="floating-shapes" id="floatingShapes"></div>
+
+  <header>
+    <h1>TechPath</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="career.html">Career Paths</a>
+      <a href="skills.html">Skill Roadmaps</a>
+      <a href="company.html">Company Questions</a>
+      <a href="resources.html">Resources</a>
+      <a href="about.html">About</a>
+     
+    </nav>
+  </header>
+
+  <!-- Hero Banner -->
+  <section class="banner">
+    <h2>Your Complete Guide to IT Careers</h2>
+    <p>From 1st-year student → Placement-ready</p>
+    <button id="exploreBtn">Explore Career Paths</button>
+  </section>
+
+  <!-- Quick Links -->
+  <section class="quick-links">
+    <div class="card" onclick="location.href='career.html'">
+      <h3>Career Paths</h3>
+      <p>Explore IT roles & skills required.</p>
+    </div>
+    <div class="card" onclick="location.href='skills.html'">
+      <h3>Skill Roadmaps</h3>
+      <p>Learn step-by-step paths for HTML, JS, Python & more.</p>
+    </div>
+    <div class="card" onclick="location.href='company.html'">
+      <h3>Company Questions</h3>
+      <p>See interview questions from top companies.</p>
+    </div>
+    <div class="card" onclick="location.href='resources.html'">
+      <h3>Resources</h3>
+      <p>Download PDFs, tutorials, and video guides.</p>
+    </div>
+  </section>
+
+  <!-- Featured -->
+  <section class="featured">
+    <h2>Top Companies & Skills</h2>
+    <div class="featured-items">
+      <div class="featured-item">TCS</div>
+      <div class="featured-item">Infosys</div>
+      <div class="featured-item">Wipro</div>
+      <div class="featured-item">Google</div>
+      <div class="featured-item">Java</div>
+      <div class="featured-item">Python</div>
+      <div class="featured-item">Web Dev</div>
+      <div class="featured-item">Data Science</div>
+    </div>
+  </section>
+
+  <footer>
+    Contact: kommala50@gmail.com | © 2025 TechPath
+  </footer>
+
+  <script>
+    // Button redirect
+    document.getElementById("exploreBtn").addEventListener("click", ()=>{ window.location.href="career.html"; });
+
+    // Reveal cards & featured items on scroll
+    const cards = document.querySelectorAll(".card, .featured-item");
+    const revealOnScroll = ()=>{
+      const triggerBottom = window.innerHeight*0.9;
+      cards.forEach(c=>{
+        const top=c.getBoundingClientRect().top;
+        if(top<triggerBottom){ c.style.opacity="1"; c.style.transform="translateY(0)"; }
+        else{ c.style.opacity="0"; c.style.transform="translateY(40px)"; }
+      });
+    };
+    window.addEventListener("scroll", revealOnScroll);
+    revealOnScroll();
+
+    // Floating 3D Shapes
+    const shapesContainer = document.getElementById('floatingShapes');
+    for(let i=0;i<25;i++){
+      const shape=document.createElement('div');
+      shape.classList.add('shape');
+      const size=20+Math.random()*40;
+      shape.style.width=size+'px';
+      shape.style.height=size+'px';
+      shape.style.left=Math.random()*100+'vw';
+      shape.style.top=Math.random()*100+'vh';
+      shape.style.animationDuration=(15+Math.random()*15)+'s';
+      shapesContainer.appendChild(shape);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>DSA Full Roadmap - TechPath</title>
+
+<link rel="stylesheet" href="../skills/style.css">
+
+<!-- Link to external JS from your skills folder -->
+<script defer src="../skills/script.js"></script>
+
+</head>
+<body>
+<div class="floating-code" id="floatingCode"></div>
+
+<header>
+  <h1>TechPath</h1>
+  <nav>
+    <a href="../index.html">Home</a>
+    <a href="../career.html">Career Paths</a>
+    <a href="skills.html">Skill Roadmaps</a>
+  </nav>
+</header>
+
+<section class="banner">
+  <h2>💻 DSA Full Roadmap (Beginner → Advanced)</h2>
+  <p>Learn Data Structures & Algorithms with working C++ examples and notes.</p>
+</section>
+
+<!-- Buttons -->
+<div class="top-buttons">
+  <a href="../skills.html" class="btn">← Back to Skills</a>
+  <a href="../pdf/dbms.pdf" id="downloadPDF" class="btn">Download PDF</a>
+  <a href="../pdf/dsa-roadmap.pdf" download="dsa-roadmap.pdf" class="btn">Notes</a>
+  <a href="https://www.youtube.com/playlist?list=PLdo5W4Nhv31bbKJzrsKfMpo_grxuLl8LU" target="_blank" class="btn">Video Resource</a>
+</div>
+
+<section class="topic-container">
+
+<!-- 1. Introduction to DSA & Complexity -->
+<div class="topic-card">
+<h3>1. Introduction to DSA & Complexity</h3>
+<p><strong>Description:</strong> Data Structures and Algorithms (DSA) is the foundation for writing efficient code. Understanding time and space complexity (Big O notation) helps analyze performance. Aim to optimize both memory and execution time.</p>
+<pre>// Example: Analyze time complexity
+for(int i=0;i<n;i++){           // O(n)
+    for(int j=0;j<n;j++){       // O(n)
+        cout<<i+j<<" ";
+    }
+}
+// Overall complexity: O(n^2)
+</pre>
+</div>
+
+<!-- 2. Arrays -->
+<div class="topic-card">
+<h3>2. Arrays</h3>
+<p><strong>Description:</strong> Arrays store elements of the same type in contiguous memory. Accessing by index is O(1). Insertion/deletion in the middle is O(n). Useful for fixed-size collections.</p>
+<pre>#include&lt;iostream&gt;
+using namespace std;
+int main(){
+    int arr[5]={1,2,3,4,5};
+    arr[2]=10;                  // Update element
+    for(int i=0;i&lt;5;i++) cout&lt;&lt;arr[i]&lt;&lt;" ";
+    return 0;
+}
+</pre>
+</div>
+
+<!-- 3. Strings -->
+<div class="topic-card">
+<h3>3. Strings</h3>
+<p><strong>Description:</strong> Strings are arrays of characters. C++ provides string class with useful functions like length(), substr(), find(), etc. Strings are used for text processing and pattern matching.</p>
+<pre>#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+int main(){
+    string s="Hello";
+    s+=" World";               // Concatenate
+    cout&lt;&lt;s.substr(0,5);  // Output: Hello
+    return 0;
+}
+</pre>
+</div>
+
+<!-- 4. Linked List – Singly -->
+<div class="topic-card">
+<h3>4. Linked List – Singly</h3>
+<p><strong>Description:</strong> A singly linked list consists of nodes with data and pointer to the next node. Dynamic memory allocation allows flexible size. Traversal is O(n), insertion/deletion at head is O(1).</p>
+<pre>#include&lt;iostream&gt;
+using namespace std;
+struct Node{
+    int data;
+    Node* next;
+};
+int main(){
+    Node* head=new Node{10,nullptr};
+    head->next=new Node{20,nullptr};
+    Node* temp=head;
+    while(temp){cout&lt;&lt;temp->data&lt;&lt;" "; temp=temp->next;}
+    return 0;
+}
+</pre>
+</div>
+
+<!-- 5. Linked List – Doubly -->
+<div class="topic-card">
+<h3>5. Linked List – Doubly</h3>
+<p><strong>Description:</strong> Doubly linked lists have nodes with prev and next pointers. Allows traversal in both directions. Insertion and deletion at any position is efficient if pointer to node is known.</p>
+<pre>#include&lt;iostream&gt;
+using namespace std;
+struct Node{
+    int data;
+    Node* next;
+    Node* prev;
+};
+int main(){
+    Node* head=new Node{10,nullptr,nullptr};
+    Node* second=new Node{20,nullptr,head};
+    head->next=second;
+    Node* temp=head;
+    while(temp){cout&lt;&lt;temp->data&lt;&lt;" "; temp=temp->next;}
+    return 0;
+}
+</pre>
+</div>
+
+<!-- 6. Linked List – Circular -->
+<div class="topic-card">
+<h3>6. Linked List – Circular</h3>
+<p><strong>Description:</strong> Circular linked lists connect the last node to the first, forming a loop. Useful in applications like round-robin scheduling. Traversal requires careful stopping condition to avoid infinite loops.</p>
+<pre>#include&lt;iostream&gt;
+using namespace std;
+struct Node{
+    int data;
+    Node* next;
+};
+int main(){
+    Node* head=new Node{1,nullptr};
+    Node* second=new Node{2,nullptr};
+    Node* third=new Node{3,nullptr};
+    head->next=second; second->next=third; third->next=head; // circular
+    Node* temp=head;
+    do{cout&lt;&lt;temp->data&lt;&lt;" "; temp=temp->next;}while(temp!=head);
+    return 0;
+}
+</pre>
+</div>
+
+<!-- 7. Stack – Array & Linked List -->
+<div class="topic-card">
+<h3>7. Stack – Array & Linked List</h3>
+<p><strong>Description:</strong> Stack is LIFO (Last In First Out). Supports push, pop, top. Can be implemented using arrays or linked lists. Useful in recursion, expression evaluation, backtracking.</p>
+<pre>#include&lt;iostream&gt;
+#include&lt;stack&gt;
+using namespace std;
+int main(){
+    stack&lt;int&gt;s;
+    s.push(10); s.push(20);
+    cout&lt;&lt;s.top()&lt;&lt;endl; // 20
+    s.pop();
+    cout&lt;&lt;s.top()&lt;&lt;endl; // 10
+    return 0;
+}
+</pre>
+</div>
+
+<!-- 8. Queue – Array & Linked List -->
+<div class="topic-card">
+<h3>8. Queue – Array & Linked List</h3>
+<p><strong>Description:</strong> Queue is FIFO (First In First Out). Supports enqueue, dequeue. Can be implemented using arrays, linked lists, or STL queue. Useful in scheduling, BFS, buffering.</p>
+<pre>#include&lt;iostream&gt;
+#include&lt;queue&gt;
+using namespace std;
+int main(){
+    queue&lt;int&gt;q;
+    q.push(10); q.push(20);
+    cout&lt;&lt;q.front()&lt;&lt;endl; // 10
+    q.pop();
+    cout&lt;&lt;q.front()&lt;&lt;endl; // 20
+    return 0;
+}
+</pre>
+</div>
+
+<!-- 9. Deque & Priority Queue -->
+<div class="topic-card">
+<h3>9. Deque & Priority Queue</h3>
+<p><strong>Description:</strong> Deque allows insertion/removal from both ends. Priority Queue stores elements by priority (max or min). Useful for task scheduling, heaps, and sliding window problems.</p>
+<pre>#include&lt;iostream&gt;
+#include&lt;deque&gt;
+#include&lt;queue&gt;
+using namespace std;
+int main(){
+    deque&lt;int&gt; d; d.push_back(1); d.push_front(0);
+    cout&lt;&lt;d.front()&lt;&lt;","&lt;&lt;d.back()&lt;&lt;endl;
+    priority_queue&lt;int&gt;pq;
+    pq.push(10); pq.push(5); pq.push(20);
+    cout&lt;&lt;pq.top()&lt;&lt;endl; // 20
+    return 0;
+}
+</pre>
+</div>
+
+<!-- 10. Recursion Basics -->
+<div class="topic-card">
+<h3>10. Recursion Basics</h3>
+<p><strong>Description:</strong> Recursion is when a function calls itself. Base cases are essential to stop recursion. Common in tree traversal, divide-and-conquer, backtracking.</p>
+<pre>#include&lt;iostream&gt;
+using namespace std;
+int factorial(int n){
+    if(n==0) return 1;
+    return n*factorial(n-1);
+}
+int main(){
+    cout&lt;&lt;factorial(5); // 120
+    return 0;
+}
+</pre>
+</div>
+
+<!-- 11. Backtracking – Basics -->
+<div class="topic-card">
+<h3>11. Backtracking – Basics</h3>
+<p><strong>Description:</strong> Backtracking is exploring all possible solutions and undoing choices if they lead to invalid paths. Common in N-Queens, sudoku, permutations, and combinations.</p>
+<pre>#include&lt;iostream&gt;
+#include&lt;vector&gt;
+using namespace std;
+void generate(int n, vector&lt;int&gt;&amp;v){
+    if(v.size()==n){for(int x:v)cout&lt;&lt;x; cout&lt;&lt;endl; return;}
+    for(int i=1;i<=n;i++){
+        if(find(v.begin(),v.end(),i)==v.end()){v.push_back(i); generate(n,v); v.pop_back();}
+    }
+}
+int main(){
+    vector&lt;int&gt;v; generate(3,v);
+    return 0;
+}
+</pre>
+</div>
+
+<!-- 12. Searching – Linear & Binary -->
+<div class="topic-card">
+<h3>12. Searching – Linear & Binary</h3>
+<p><strong>Description:</strong> Linear search checks each element sequentially (O(n)). Binary search works on sorted arrays and divides the search space by 2 (O(log n)).</p>
+<pre>#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+int main(){
+    int arr[]={1,3,5,7,9}; int n=5;
+    // Linear search
+    for(int i=0;i&lt;n;i++) if(arr[i]==5) cout&lt;&lt;i&lt;&lt;endl;
+    // Binary search
+    bool found=binary_search(arr,arr+n,7); cout&lt;&lt;found&lt;&lt;endl; //1
+    return 0;
+}
+</pre>
+</div>
+
+<!-- 13. Sorting – Bubble, Selection, Insertion -->
+<div class="topic-card">
+<h3>13. Sorting – Bubble, Selection, Insertion</h3>
+<p><strong>Description:</strong> Basic sorting algorithms to order arrays. Bubble compares adjacent elements, selection finds minimum each pass, insertion builds sorted array incrementally. Complexity O(n^2).</p>
+<pre>#include&lt;iostream&gt;
+using namespace std;
+int main(){
+    int arr[]={5,3,2,4,1}; int n=5;
+    // Bubble sort
+    for(int i=0;i&lt;n-1;i++)
+        for(int j=0;j&lt;n-1-i;j++)
+            if(arr[j]&gt;arr[j+1]) swap(arr[j],arr[j+1]);
+    for(int x:arr) cout&lt;&lt;x&lt;&lt;" ";
+    return 0;
+}
+</pre>
+</div>
+
+<!-- 14. Sorting – Merge, Quick, Heap -->
+<div class="topic-card">
+<h3>14. Sorting – Merge, Quick, Heap</h3>
+<p><strong>Description:</strong> Efficient O(n log n) algorithms. Merge sort divides and merges, Quick sort partitions, Heap sort uses binary heap. Suitable for large datasets.</p>
+<pre>#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+void mergeSort(vector&lt;int&gt;&amp;v){
+    if(v.size()&lt;=1) return;
+    int mid=v.size()/2;
+    vector&lt;int&gt; L(v.begin(),v.begin()+mid), R(v.begin()+mid,v.end());
+    mergeSort(L); mergeSort(R);
+    merge(L.begin(),L.end(),R.begin(),R.end(),v.begin());
+}
+int main(){
+    vector&lt;int&gt;v={5,2,9,1,5,6};
+    mergeSort(v);
+    for(int x:v) cout&lt;&lt;x&lt;&lt;" ";
+    return 0;
+}
+</pre>
+</div>
+
+<!-- 15. Hashing – Basics -->
+<div class="topic-card">
+<h3>15. Hashing – Basics</h3>
+<p><strong>Description:</strong> Hashing maps keys to values for O(1) average access. Implemented using hash tables. Useful in searching, counting, and storing unique elements.</p>
+<pre>#include&lt;iostream&gt;
+#include&lt;unordered_map&gt;
+using namespace std;
+int main(){
+    unordered_map&lt;string,int&gt; mp;
+    mp["apple"]=3; mp["banana"]=5;
+    cout&lt;&lt;mp["apple"]&lt;&lt;endl; //3
+    return 0;
+}
+</pre>
+</div>
+
+
+<!-- 16. Trees – Basics -->
+<div class="topic-card">
+<h3>16. Trees – Basics</h3>
+<p><strong>Description:</strong> A tree is a hierarchical data structure with nodes connected by edges. Each node has a value and children. Useful in representing hierarchical data like file systems or organizational charts.</p>
+<pre>#include&lt;iostream&gt;
+using namespace std;
+struct Node{
+    int data;
+    Node* left;
+    Node* right;
+};
+int main(){
+    Node* root=new Node{10,nullptr,nullptr};
+    root->left=new Node{5,nullptr,nullptr};
+    root->right=new Node{15,nullptr,nullptr};
+    cout&lt;&lt;root->data&lt;&lt;" " &lt;&lt; root->left->data&lt;&lt;" " &lt;&lt; root->right->data;
+    return 0;
+}
+</pre>
+</div>
+
+<!-- 17. Binary Search Tree (BST) -->
+<div class="topic-card">
+<h3>17. Binary Search Tree (BST)</h3>
+<p><strong>Description:</strong> BST is a tree where left child &lt; parent &lt; right child. Enables efficient search, insertion, deletion in O(log n) average time.</p>
+<pre>#include&lt;iostream&gt;
+using namespace std;
+struct Node{
+    int data;
+    Node* left;
+    Node* right;
+};
+Node* insert(Node* root,int val){
+    if(!root) return new Node{val,nullptr,nullptr};
+    if(val&lt;root->data) root->left=insert(root->left,val);
+    else root->right=insert(root->right,val);
+    return root;
+}
+void inorder(Node* root){
+    if(!root) return;
+    inorder(root->left);
+    cout&lt;&lt;root->data&lt;&lt;" ";
+    inorder(root->right);
+}
+int main(){
+    Node* root=nullptr;
+    root=insert(root,10);
+    root=insert(root,5);
+    root=insert(root,15);
+    inorder(root); // Output: 5 10 15
+    return 0;
+}
+</pre>
+</div>
+
+<!-- 18. Tree Traversals – Inorder, Preorder, Postorder -->
+<div class="topic-card">
+<h3>18. Tree Traversals – Inorder, Preorder, Postorder</h3>
+<p><strong>Description:</strong> Traversals visit all nodes in a tree. Inorder (LNR), Preorder (NLR), Postorder (LRN). Used in printing, evaluating expressions, copying trees.</p>
+<pre>#include&lt;iostream&gt;
+using namespace std;
+struct Node{
+    int data;
+    Node* left;
+    Node* right;
+};
+void inorder(Node* root){
+    if(!root) return;
+    inorder(root->left);
+    cout&lt;&lt;root->data&lt;&lt;" ";
+    inorder(root->right);
+}
+void preorder(Node* root){
+    if(!root) return;
+    cout&lt;&lt;root->data&lt;&lt;" ";
+    preorder(root->left);
+    preorder(root->right);
+}
+void postorder(Node* root){
+    if(!root) return;
+    postorder(root->left);
+    postorder(root->right);
+    cout&lt;&lt;root->data&lt;&lt;" ";
+}
+int main(){
+    Node* root=new Node{10,nullptr,nullptr};
+    root->left=new Node{5,nullptr,nullptr};
+    root->right=new Node{15,nullptr,nullptr};
+    inorder(root); cout&lt;&lt;endl;
+    preorder(root); cout&lt;&lt;endl;
+    postorder(root); cout&lt;&lt;endl;
+    return 0;
+}
+</pre>
+</div>
+
+<!-- 19. Heaps – Min Heap & Max Heap -->
+<div class="topic-card">
+<h3>19. Heaps – Min Heap & Max Heap</h3>
+<p><strong>Description:</strong> Heap is a complete binary tree with min-heap or max-heap property. Min-heap: parent ≤ children. Max-heap: parent ≥ children. Used in priority queues, scheduling, heap sort.</p>
+<pre>#include&lt;iostream&gt;
+#include&lt;queue&gt;
+using namespace std;
+int main(){
+    priority_queue&lt;int&gt; maxHeap;
+    maxHeap.push(10); maxHeap.push(5); maxHeap.push(20);
+    cout&lt;&lt;maxHeap.top()&lt;&lt;endl; // 20
+    priority_queue&lt;int,vector&lt;int&gt;,greater&lt;int&gt;&gt; minHeap;
+    minHeap.push(10); minHeap.push(5); minHeap.push(20);
+    cout&lt;&lt;minHeap.top()&lt;&lt;endl; // 5
+    return 0;
+}
+</pre>
+</div>
+
+<!-- 20. Graphs – Basics -->
+<div class="topic-card">
+<h3>20. Graphs – Basics</h3>
+<p><strong>Description:</strong> Graphs are sets of nodes (vertices) connected by edges. Can be directed/undirected, weighted/unweighted. Used in networks, maps, social connections.</p>
+<pre>#include&lt;iostream&gt;
+#include&lt;vector&gt;
+using namespace std;
+int main(){
+    int V=3;
+    vector&lt;int&gt; adj[3];
+    adj[0].push_back(1);
+    adj[1].push_back(2);
+    adj[2].push_back(0);
+    for(int i=0;i&lt;V;i++){
+        cout&lt;&lt;i&lt;&lt;": ";
+        for(int j: adj[i]) cout&lt;&lt;j&lt;&lt;" ";
+        cout&lt;&lt;endl;
+    }
+    return 0;
+}
+</pre>
+</div>
+
+<!-- 21. Graph Traversals – BFS & DFS -->
+<div class="topic-card">
+<h3>21. Graph Traversals – BFS & DFS</h3>
+<p><strong>Description:</strong> BFS explores graph level by level using a queue. DFS explores depth first using recursion or stack. Used in shortest path, connectivity, cycle detection.</p>
+<pre>#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;queue&gt;
+using namespace std;
+void BFS(vector&lt;int&gt; adj[], int start){
+    vector&lt;bool&gt; visited(3,false);
+    queue&lt;int&gt;q;
+    visited[start]=true;
+    q.push(start);
+    while(!q.empty()){
+        int v=q.front(); q.pop();
+        cout&lt;&lt;v&lt;&lt;" ";
+        for(int u:adj[v]) if(!visited[u]){visited[u]=true; q.push(u);}
+    }
+}
+void DFS(vector&lt;int&gt; adj[], int v, vector&lt;bool&gt;&amp; visited){
+    visited[v]=true;
+    cout&lt;&lt;v&lt;&lt;" ";
+    for(int u:adj[v]) if(!visited[u]) DFS(adj,u,visited);
+}
+int main(){
+    vector&lt;int&gt; adj[3];
+    adj[0].push_back(1); adj[1].push_back(2); adj[2].push_back(0);
+    BFS(adj,0); cout&lt;&lt;endl;
+    vector&lt;bool&gt; visited(3,false);
+    DFS(adj,0,visited); cout&lt;&lt;endl;
+    return 0;
+}
+</pre>
+</div>
+<!-- 22. Dynamic Programming – Basics -->
+<div class="topic-card">
+<h3>22. Dynamic Programming – Basics</h3>
+<p><strong>Description:</strong> DP solves problems by storing results of subproblems to avoid recomputation. Common in optimization problems, e.g., Fibonacci, knapsack, matrix chain multiplication.</p>
+<pre>#include&lt;iostream&gt;
+#include&lt;vector&gt;
+using namespace std;
+int fib(int n){
+    vector&lt;int&gt; dp(n+1,0);
+    dp[1]=1;
+    for(int i=2;i&lt;=n;i++) dp[i]=dp[i-1]+dp[i-2];
+    return dp[n];
+}
+int main(){
+    cout&lt;&lt;fib(10); // 55
+    return 0;
+}
+</pre>
+</div>
+
+<!-- 23. Dynamic Programming – Knapsack Problem -->
+<div class="topic-card">
+<h3>23. Dynamic Programming – Knapsack Problem</h3>
+<p><strong>Description:</strong> Dynamic Programming (DP) is an optimization technique used to solve problems by breaking them into smaller overlapping subproblems and storing the results to avoid redundant calculations. The 0/1 Knapsack problem is a classic example: given a set of items with weights and values, determine the maximum value that can be carried in a knapsack of limited weight. DP helps to systematically explore all possibilities while avoiding exponential time complexity by using a table to store intermediate solutions. This approach is widely used in optimization problems, resource allocation, and decision-making scenarios.</p>
+<pre>#include&lt;iostream&gt;
+#include&lt;vector&gt;
+using namespace std;
+int knapsack(vector&lt;int&gt; wt, vector&lt;int&gt; val, int W){
+    int n=wt.size();
+    vector&lt;vector&lt;int&gt;&gt; dp(n+1, vector&lt;int&gt;(W+1,0));
+    for(int i=1;i&lt;=n;i++){
+        for(int w=1;w&lt;=W;w++){
+            if(wt[i-1]&lt;=w)
+                dp[i][w]=max(val[i-1]+dp[i-1][w-wt[i-1]], dp[i-1][w]);
+            else
+                dp[i][w]=dp[i-1][w];
+        }
+    }
+    return dp[n][W];
+}
+int main(){
+    vector&lt;int&gt; wt={1,3,4,5};
+    vector&lt;int&gt; val={1,4,5,7};
+    int W=7;
+    cout&lt;&lt;knapsack(wt,val,W); // 9
+    return 0;
+}
+</pre>
+</div>
+
+<!-- 24. Greedy Algorithms – Basics -->
+<div class="topic-card">
+<h3>24. Greedy Algorithms – Basics</h3>
+<p><strong>Description:</strong> Greedy algorithms work by making the locally optimal choice at each step, hoping it leads to a globally optimal solution. They are effective for problems where choosing the best immediate option ensures overall optimality. Examples include activity selection (choosing maximum non-overlapping activities), minimum coin change (when denominations allow), and Huffman coding (optimal prefix codes). Greedy algorithms are usually easier to implement than dynamic programming but are only suitable for problems that exhibit the “greedy-choice property” and optimal substructure.</p>
+<pre>#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+#include&lt;vector&gt;
+using namespace std;
+struct Activity{ int start,end; };
+bool cmp(Activity a, Activity b){ return a.end&lt;b.end; }
+int main(){
+    vector&lt;Activity&gt; acts={{1,3},{2,5},{4,7}};
+    sort(acts.begin(),acts.end(),cmp);
+    int last=0,count=0;
+    for(auto a:acts){
+        if(a.start&gt;=last){ count++; last=a.end; }
+    }
+    cout&lt;&lt;count; // 2
+    return 0;
+}
+</pre>
+</div>
+
+<!-- 25. Divide & Conquer – Basics -->
+<div class="topic-card">
+<h3>25. Divide & Conquer – Basics</h3>
+<p><strong>Description:</strong> Divide & Conquer is an algorithmic paradigm where a problem is divided into smaller subproblems, each solved independently, and then the results are combined to get the final solution. It reduces complex problems into manageable parts. Classic examples include Merge Sort (divide array, sort each half, merge), Quick Sort (partition, recursively sort partitions), Binary Search (divide search space by half), and matrix multiplication (divide matrices into submatrices). Divide & Conquer improves efficiency and is widely used in sorting, searching, and computational geometry.</p>
+<pre>#include&lt;iostream&gt;
+using namespace std;
+int sum(int arr[], int l, int r){
+    if(l&gt;r) return 0;
+    if(l==r) return arr[l];
+    int m=(l+r)/2;
+    return sum(arr,l,m)+sum(arr,m+1,r);
+}
+int main(){
+    int arr[]={1,2,3,4,5};
+    cout&lt;&lt;sum(arr,0,4); // 15
+    return 0;
+}
+</pre>
+</div>
+
+<!-- 26. Bit Manipulation – Basics -->
+<div class="topic-card">
+<h3>26. Bit Manipulation – Basics</h3>
+<p><strong>Description:</strong> Bit manipulation involves operations on individual bits of numbers using operators like AND, OR, XOR, NOT, left shift, and right shift. It is used to optimize space and time, check even/odd numbers, toggle or set bits, generate subsets, and perform fast computations. Problems like finding a single unique number in an array where others occur twice, counting set bits, or checking power-of-2 numbers are efficiently solved using bit manipulation. It is a must-know technique for competitive programming and low-level optimization.</p>
+<pre>#include&lt;iostream&gt;
+using namespace std;
+int main(){
+    int x=5; // 101
+    cout&lt;&lt;(x&lt;&lt;1)&lt;&lt;endl; // 10
+    cout&lt;&lt;(x&gt;&gt;1)&lt;&lt;endl; // 2
+    cout&lt;&lt;(x&1)&lt;&lt;endl;    // 1 (check last bit)
+    return 0;
+}
+</pre>
+</div>
+
+<!-- 27. Sliding Window Technique -->
+<div class="topic-card">
+<h3>27. Sliding Window Technique</h3>
+<p><strong>Description:</strong> The Sliding Window technique is an optimization method used to solve problems on contiguous sequences like arrays or strings. Instead of recomputing results for each subarray or substring, maintain a window of size k or variable size and update values as the window moves. It reduces time complexity from O(n*k) to O(n). Common applications include finding the maximum/minimum sum of k consecutive elements, longest substring with unique characters, or subarrays with a given sum.</p>
+<pre>#include&lt;iostream&gt;
+#include&lt;vector&gt;
+using namespace std;
+int maxSumSubarray(vector&lt;int&gt; arr, int k){
+    int sum=0;
+    for(int i=0;i&lt;k;i++) sum+=arr[i];
+    int maxSum=sum;
+    for(int i=k;i&lt;arr.size();i++){
+        sum+=arr[i]-arr[i-k];
+        maxSum=max(maxSum,sum);
+    }
+    return maxSum;
+}
+int main(){
+    vector&lt;int&gt; arr={1,2,3,4,5};
+    cout&lt;&lt;maxSumSubarray(arr,3); // 12
+    return 0;
+}
+</pre>
+</div>
+
+<!-- 28. Two Pointers Technique -->
+<div class="topic-card">
+<h3>28. Two Pointers Technique</h3>
+<p><strong>Description:</strong> The Two Pointers technique uses two indices to iterate through arrays or strings to solve problems efficiently. One pointer often starts at the beginning and the other at the end. It is used in problems like finding pairs with a target sum, removing duplicates from a sorted array, or partitioning arrays. This approach reduces nested loops and helps achieve O(n) or O(n log n) time complexity depending on the problem.</p>
+<pre>#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+int main(){
+    vector&lt;int&gt; arr={1,2,3,4,5};
+    int target=6;
+    int i=0,j=arr.size()-1;
+    while(i&lt;j){
+        if(arr[i]+arr[j]==target){ cout&lt;&lt;i&lt;&lt;","&lt;&lt;j&lt;&lt;endl; break;}
+        else if(arr[i]+arr[j]&lt;target) i++;
+        else j--;
+    }
+    return 0;
+}
+</pre>
+</div>
+
+<!-- 29. Matrix – Basics & Operations -->
+<div class="topic-card">
+<h3>29. Matrix – Basics & Operations</h3>
+<p><strong>Description:</strong> Matrices are 2D arrays used to represent grids, graphs, or mathematical structures. Operations include addition, multiplication, transpose, rotation, and finding determinants. Matrices are foundational in computer graphics, dynamic programming, pathfinding in graphs, and scientific computing. Understanding row-column manipulation and indexing is critical for matrix-based algorithms and optimization problems.</p>
+<pre>#include&lt;iostream&gt;
+using namespace std;
+int main(){
+    int mat[2][2]={{1,2},{3,4}};
+    // Transpose
+    for(int i=0;i&lt;2;i++){
+        for(int j=0;j&lt;2;j++) cout&lt;&lt;mat[j][i]&lt;&lt;" ";
+        cout&lt;&lt;endl;
+    }
+    return 0;
+}
+</pre>
+</div>
+
+<!-- 30. Advanced Sorting – Counting, Radix, Bucket -->
+<div class="topic-card">
+<h3>30. Advanced Sorting – Counting, Radix, Bucket</h3>
+<p><strong>Description:</strong> Advanced sorting algorithms improve efficiency when dealing with specific types of data. Counting sort counts occurrences of each element, Radix sort processes elements digit by digit, and Bucket sort distributes elements into buckets before sorting each bucket individually. These non-comparison based algorithms can sort large datasets in linear or near-linear time, particularly when the range of values is known. They are widely used in numeric sorting, string sorting, and competitive programming.</p>
+<pre>#include&lt;iostream&gt;
+#include&lt;vector&gt;
+using namespace std;
+void countingSort(vector&lt;int&gt;&amp; arr){
+    int maxVal=*max_element(arr.begin(),arr.end());
+    vector&lt;int&gt; count(maxVal+1,0);
+    for(int x:arr) count[x]++;
+    int idx=0;
+    for(int i=0;i&lt;=maxVal;i++)
+        while(count[i]--){ arr[idx++]=i; }
+}
+int main(){
+    vector&lt;int&gt; arr={4,2,2,8,3,3,1};
+    countingSort(arr);
+    for(int x:arr) cout&lt;&lt;x&lt;&lt;" ";
+    return 0;
+}
+</pre>
+</div>
+<!-- 30. Binary Search Tree (BST) – Basics -->
+<div class="topic-card">
+<h3>30. Binary Search Tree (BST) – Basics</h3>
+<p><strong>Description:</strong> A Binary Search Tree is a binary tree where left child &lt; parent &lt; right child. It allows efficient searching, insertion, and deletion in O(log n) average time. BSTs are widely used in databases, sorted collections, and dictionary implementations.</p>
+<p><strong>Example Question:</strong> Insert elements into a BST and print the in-order traversal.</p>
+<pre>#include&lt;iostream&gt;
+using namespace std;
+struct Node{
+    int data;
+    Node* left;
+    Node* right;
+    Node(int val): data(val), left(nullptr), right(nullptr) {}
+};
+Node* insert(Node* root,int val){
+    if(!root) return new Node(val);
+    if(val&lt;root-&gt;data) root-&gt;left=insert(root-&gt;left,val);
+    else root-&gt;right=insert(root-&gt;right,val);
+    return root;
+}
+void inorder(Node* root){
+    if(!root) return;
+    inorder(root-&gt;left);
+    cout&lt;&lt;root-&gt;data&lt;&lt;" ";
+    inorder(root-&gt;right);
+}
+int main(){
+    Node* root=nullptr;
+    root=insert(root,10);
+    root=insert(root,5);
+    root=insert(root,15);
+    inorder(root); // Output: 5 10 15
+    return 0;
+}
+</pre>
+</div>
+
+<!-- 31. AVL Tree – Basics -->
+<div class="topic-card">
+<h3>31. AVL Tree – Basics</h3>
+<p><strong>Description:</strong> AVL Tree is a self-balancing BST where heights of left and right subtrees differ by at most 1. Rotations maintain balance during insertion and deletion, ensuring O(log n) search, insert, and delete.</p>
+<p><strong>Example Question:</strong> Insert elements into an AVL tree and print in-order traversal after each insertion.</p>
+<pre>#include&lt;iostream&gt;
+using namespace std;
+// AVL node and insertion code omitted for brevity (concept demonstration)
+int main(){
+    cout&lt;&lt;"AVL Tree concept: Insert & check balancing";
+    return 0;
+}
+</pre>
+</div>
+
+<!-- 32. Heap Sort -->
+<div class="topic-card">
+<h3>32. Heap Sort</h3>
+<p><strong>Description:</strong> Heap Sort is a comparison-based sorting technique using a heap data structure. Build a max-heap, extract the maximum repeatedly, and place it at the end of the array. Time complexity O(n log n), space O(1).</p>
+<p><strong>Example Question:</strong> Sort the array {4,10,3,5,1} using heap sort.</p>
+<pre>#include&lt;iostream&gt;
+#include&lt;vector&gt;
+using namespace std;
+void heapify(vector&lt;int&gt;&amp; arr,int n,int i){
+    int largest=i,l=i*2+1,r=i*2+2;
+    if(l&lt;n && arr[l]&gt;arr[largest]) largest=l;
+    if(r&lt;n && arr[r]&gt;arr[largest]) largest=r;
+    if(largest!=i){ swap(arr[i],arr[largest]); heapify(arr,n,largest);}
+}
+void heapSort(vector&lt;int&gt;&amp; arr){
+    int n=arr.size();
+    for(int i=n/2-1;i&gt;=0;i--) heapify(arr,n,i);
+    for(int i=n-1;i&gt;0;i--){ swap(arr[0],arr[i]); heapify(arr,i,0);}
+}
+int main(){
+    vector&lt;int&gt; arr={4,10,3,5,1};
+    heapSort(arr);
+    for(int x:arr) cout&lt;&lt;x&lt;&lt;" "; // Output: 1 3 4 5 10
+    return 0;
+}
+</pre>
+</div>
+
+<!-- 33. Quick Select -->
+<div class="topic-card">
+<h3>33. Quick Select</h3>
+<p><strong>Description:</strong> Quick Select is used to find the k-th smallest/largest element in an unsorted array. It uses partition logic from Quick Sort and has average O(n) complexity.</p>
+<p><strong>Example Question:</strong> Find the 3rd smallest element in {7,10,4,3,20,15}.</p>
+<pre>#include&lt;iostream&gt;
+#include&lt;vector&gt;
+using namespace std;
+int partition(vector&lt;int&gt;&amp; arr,int l,int r){
+    int pivot=arr[r],i=l;
+    for(int j=l;j&lt;r;j++){ if(arr[j]&lt;pivot){ swap(arr[i],arr[j]); i++;}}
+    swap(arr[i],arr[r]); return i;
+}
+int quickSelect(vector&lt;int&gt;&amp; arr,int l,int r,int k){
+    if(l==r) return arr[l];
+    int pi=partition(arr,l,r);
+    if(k==pi) return arr[pi];
+    else if(k&lt;pi) return quickSelect(arr,l,pi-1,k);
+    else return quickSelect(arr,pi+1,r,k);
+}
+int main(){
+    vector&lt;int&gt; arr={7,10,4,3,20,15};
+    cout&lt;&lt;quickSelect(arr,0,arr.size()-1,2); // 3rd smallest = 7
+    return 0;
+}
+</pre>
+</div>
+
+<!-- 34. KMP Algorithm -->
+<div class="topic-card">
+<h3>34. KMP Algorithm</h3>
+<p><strong>Description:</strong> Knuth-Morris-Pratt algorithm efficiently finds a pattern in a string in O(n+m) time. It preprocesses the pattern to create an LPS (Longest Prefix Suffix) array to avoid unnecessary comparisons.</p>
+<p><strong>Example Question:</strong> Check if "ABABCABAB" contains the pattern "ABAB".</p>
+<pre>#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;string&gt;
+using namespace std;
+void computeLPS(string pat, vector&lt;int&gt;&amp; lps){
+    int len=0,i=1; lps[0]=0;
+    while(i&lt;pat.size()){
+        if(pat[i]==pat[len]){ len++; lps[i]=len; i++;}
+        else { if(len!=0) len=lps[len-1]; else {lps[i]=0;i++;}}
+    }
+}
+bool KMP(string txt,string pat){
+    vector&lt;int&gt; lps(pat.size());
+    computeLPS(pat,lps);
+    int i=0,j=0;
+    while(i&lt;txt.size()){
+        if(txt[i]==pat[j]){ i++; j++; }
+        if(j==pat.size()) return true;
+        else if(i&lt;txt.size() && txt[i]!=pat[j]){
+            if(j!=0) j=lps[j-1]; else i++;
+        }
+    }
+    return false;
+}
+int main(){
+    string txt="ABABCABAB", pat="ABAB";
+    cout&lt;&lt;KMP(txt,pat); // 1 (true)
+    return 0;
+}
+</pre>
+</div>
+
+<!-- 35. Rabin-Karp Algorithm -->
+<div class="topic-card">
+<h3>35. Rabin-Karp Algorithm</h3>
+<p><strong>Description:</strong> Rabin-Karp uses hashing to find a pattern in a string. By comparing hash values of pattern and substrings, it reduces comparisons. Average time O(n+m), worst-case O(n*m) due to collisions. Useful for plagiarism detection.</p>
+<p><strong>Example Question:</strong> Detect pattern "abc" in string "abdabcbabc".</p>
+<pre>#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+bool rabinKarp(string txt,string pat,int q=101){
+    int n=txt.size(), m=pat.size(), d=256;
+    int h=1, p=0, t=0;
+    for(int i=0;i&lt;m-1;i++) h=(h*d)%q;
+    for(int i=0;i&lt;m;i++){ p=(d*p+pat[i])%q; t=(d*t+txt[i])%q; }
+    for(int i=0;i&lt;n-m+1;i++){
+        if(p==t){ bool match=true; for(int j=0;j&lt;m;j++) if(txt[i+j]!=pat[j]) match=false; if(match) return true; }
+        if(i&lt;n-m) t=(d*(t-txt[i]*h)+txt[i+m])%q; if(t&lt;0) t+=q;
+    }
+    return false;
+}
+int main(){
+    string txt="abdabcbabc", pat="abc";
+    cout&lt;&lt;rabinKarp(txt,pat); // 1 (true)
+    return 0;
+}
+</pre>
+</div>
+
+<!-- 36. Sliding Window – Basics -->
+<div class="topic-card">
+<h3>36. Sliding Window – Basics</h3>
+<p><strong>Description:</strong> Sliding window is a technique to handle subarrays or substrings efficiently, reducing nested loops. Commonly used for max/min sum, substring problems, and frequency count.</p>
+<p><strong>Example Question:</strong> Find max sum of subarray of size 3 in {2,1,5,1,3,2}.</p>
+<pre>#include&lt;iostream&gt;
+#include&lt;vector&gt;
+using namespace std;
+int main(){
+    vector&lt;int&gt; arr={2,1,5,1,3,2}; int k=3, maxSum=0, windowSum=0;
+    for(int i=0;i&lt;k;i++) windowSum+=arr[i];
+    maxSum=windowSum;
+    for(int i=k;i&lt;arr.size();i++){
+        windowSum+=arr[i]-arr[i-k];
+        if(windowSum&gt;maxSum) maxSum=windowSum;
+    }
+    cout&lt;&lt;maxSum; // 9
+    return 0;
+}
+</pre>
+</div>
+
+<!-- 37. Two Pointers Technique -->
+<div class="topic-card">
+<h3>37. Two Pointers Technique</h3>
+<p><strong>Description:</strong> Two pointers is used for problems with arrays or strings where we check pairs or move from both ends. Helps reduce time complexity from O(n^2) to O(n) in many cases.</p>
+<p><strong>Example Question:</strong> Find a pair with sum 10 in {1,2,3,4,5,6}.</p>
+<pre>#include&lt;iostream&gt;
+#include&lt;vector&gt;
+using namespace std;
+int main(){
+    vector&lt;int&gt; arr={1,2,3,4,5,6};
+    int target=10,i=0,j=arr.size()-1;
+    while(i&lt;j){
+        int sum=arr[i]+arr[j];
+        if(sum==target){ cout&lt;&lt;i&lt;&lt;" "&lt;&lt;j; break; }
+        else if(sum&lt;target) i++;
+        else j--;
+    }
+    return 0;
+}
+</pre>
+</div>
+
+<!-- 38. Greedy Algorithm – Basics -->
+<div class="topic-card">
+<h3>38. Greedy Algorithm – Basics</h3>
+<p><strong>Description:</strong> Greedy algorithms choose the best option at each step without worrying about future consequences. Works for optimization problems like activity selection, coin change (if denominations allow).</p>
+<p><strong>Example Question:</strong> Maximize number of activities that don’t overlap given start & end times.</p>
+<pre>#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+struct Activity{ int start,end; };
+bool comp(Activity a, Activity b){ return a.end&lt;b.end; }
+int main(){
+    vector&lt;Activity&gt; act={{1,3},{2,5},{4,6}};
+    sort(act.begin(),act.end(),comp);
+    int count=1,lastEnd=act[0].end;
+    for(int i=1;i&lt;act.size();i++){
+        if(act[i].start&gt;=lastEnd){ count++; lastEnd=act[i].end; }
+    }
+    cout&lt;&lt;count; // 2
+    return 0;
+}
+</pre>
+</div>
+
+<!-- 39. Dijkstra’s Algorithm -->
+<div class="topic-card">
+<h3>39. Dijkstra’s Algorithm</h3>
+<p><strong>Description:</strong> Finds shortest path from a source vertex to all other vertices in a weighted graph with non-negative edges. Uses a priority queue to select the minimum distance vertex each step.</p>
+<p><strong>Example Question:</strong> Find shortest distance from vertex 0 to all other vertices in a weighted graph.</p>
+<pre>#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;queue&gt;
+using namespace std;
+int main(){
+    int V=3;
+    vector&lt;vector&lt;pair&lt;int,int&gt;&gt;&gt; adj(V);
+    adj[0].push_back({1,4}); adj[0].push_back({2,2});
+    adj[1].push_back({2,5}); adj[2].push_back({1,1});
+    vector&lt;int&gt; dist(V,1e9); dist[0]=0;
+    priority_queue&lt;pair&lt;int,int&gt;,vector&lt;pair&lt;int,int&gt;>,greater&lt;&gt;&gt; pq;
+    pq.push({0,0});
+    while(!pq.empty()){
+        auto [d,u]=pq.top(); pq.pop();
+        if(d&gt;dist[u]) continue;
+        for(auto [v,w]:adj[u]){
+            if(dist[u]+w&lt;dist[v]){ dist[v]=dist[u]+w; pq.push({dist[v],v}); }
+        }
+    }
+    for(int d:dist) cout&lt;&lt;d&lt;&lt;" "; // 0 3 2
+    return 0;
+}
+</pre>
+</div>
+
+<!-- 40. Bellman-Ford Algorithm -->
+<div class="topic-card">
+<h3>40. Bellman-Ford Algorithm</h3>
+<p><strong>Description:</strong> Computes shortest paths from a single source in a weighted graph, including negative weights. Detects negative cycles. Complexity O(V*E). Useful when Dijkstra cannot handle negative weights.</p>
+<p><strong>Example Question:</strong> Find shortest distance from vertex 0 in a graph with possible negative edges.</p>
+<pre>#include&lt;iostream&gt;
+#include&lt;vector&gt;
+using namespace std;
+struct Edge{ int u,v,w; };
+int main(){
+    int V=3;
+    vector&lt;Edge&gt; edges={{0,1,4},{0,2,2},{2,1,-2}};
+    vector&lt;int&gt; dist(V,1e9); dist[0]=0;
+    for(int i=0;i&lt;V-1;i++){
+        for(auto e:edges){
+            if(dist[e.u]+e.w&lt;dist[e.v]) dist[e.v]=dist[e.u]+e.w;
+        }
+    }
+    for(int d:dist) cout&lt;&lt;d&lt;&lt;" "; // 0 0 2
+    return 0;
+}
+</pre>
+</div>
+<!-- 41. Greedy Algorithms -->
+<div class="topic-card">
+<h3>41. Greedy Algorithms</h3>
+<p><strong>Description:</strong> Greedy algorithms make the locally optimal choice at each step with the hope of finding a global optimum. They are simple and efficient but may not always give the best solution. Common problems include Activity Selection, Coin Change, and Fractional Knapsack. They are widely used in optimization problems where local choices lead to a global solution.</p>
+<p><strong>Example Question:</strong> Find the maximum number of non-overlapping activities from a set of start and end times.</p>
+<pre>
+// C++ code to find maximum number of non-overlapping activities
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+struct Activity { int start, end; };
+
+bool cmp(Activity a, Activity b) { return a.end &lt; b.end; }
+
+int main() {
+    Activity arr[] = { {1,3}, {2,5}, {4,7}, {6,8} };
+    int n = 4, count = 1, lastEnd = arr[0].end;
+    sort(arr, arr+n, cmp);
+    for(int i=1; i&lt;n; i++) {
+        if(arr[i].start &gt;= lastEnd) {
+            count++;
+            lastEnd = arr[i].end;
+        }
+    }
+    cout &lt;&lt; "Max activities: " &lt;&lt; count &lt;&lt; endl;
+    return 0;
+}
+</pre>
+</div>
+
+<!-- 42. Divide and Conquer -->
+<div class="topic-card">
+<h3>42. Divide and Conquer</h3>
+<p><strong>Description:</strong> Divide and Conquer is a problem-solving paradigm where a problem is divided into smaller independent subproblems, solved individually, and then combined to produce the final solution. It reduces complexity and is used in algorithms like Merge Sort, Quick Sort, Binary Search, and Maximum Subarray Sum. It is efficient for problems that can be broken down recursively.</p>
+<p><strong>Example Question:</strong> Sort an array using Merge Sort.</p>
+<pre>
+// C++ code for Merge Sort
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+void merge(vector&lt;int&gt;&amp; arr, int l, int m, int r) {
+    vector&lt;int&gt; L(arr.begin()+l, arr.begin()+m+1);
+    vector&lt;int&gt; R(arr.begin()+m+1, arr.begin()+r+1);
+    int i=0,j=0,k=l;
+    while(i&lt;L.size() &amp;&amp; j&lt;R.size()) {
+        if(L[i]&lt;=R[j]) arr[k++] = L[i++];
+        else arr[k++] = R[j++];
+    }
+    while(i&lt;L.size()) arr[k++] = L[i++];
+    while(j&lt;R.size()) arr[k++] = R[j++];
+}
+
+void mergeSort(vector&lt;int&gt;&amp; arr, int l, int r) {
+    if(l &lt; r) {
+        int m = l + (r-l)/2;
+        mergeSort(arr, l, m);
+        mergeSort(arr, m+1, r);
+        merge(arr, l, m, r);
+    }
+}
+
+int main() {
+    vector&lt;int&gt; arr = {5,2,9,1,5,6};
+    mergeSort(arr, 0, arr.size()-1);
+    for(int x : arr) cout &lt;&lt; x &lt;&lt; " ";
+    return 0;
+}
+</pre>
+</div>
+
+</section>
+
+<footer>
+  Contact: kommala50@gmail.com | © 2025 TechPath
+</footer>
+<script src="script.js"></script>
+
+</body>
+</html>

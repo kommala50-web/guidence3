@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Python Full Roadmap - TechPath</title>
+<link rel="stylesheet" href="../skills/style.css">
+
+<!-- Link to external JS from your skills folder -->
+<script defer src="../skills/script.js"></script>
+
+</head>
+<body>
+<div class="floating-code" id="floatingCode"></div>
+
+<header>
+  <h1>TechPath</h1>
+  <nav>
+    <a href="../index.html">Home</a>
+    <a href="../career.html">Career Paths</a>
+    <a href="../skills.html">Skill Roadmaps</a>
+      <a href="../company.html">company questions</a>
+  </nav>
+</header>
+
+<section class="banner">
+  <h2>🐍 Python Full Roadmap</h2>
+  <p>From basics to advanced — detailed explanations and runnable examples to learn Python end-to-end.</p>
+</section>
+
+<div class="top-buttons">
+  <a href="../skills.html" class="btn">← Back to Skills</a>
+  <a href="../pdf/python.pdf" download="Python_Roadmap.pdf" class="btn">Download PDF</a>
+  <a href="../pdf/Python_Notes.pdf" download="Python_Notes.pdf" class="btn">Notes</a>
+  <a href="https://www.youtube.com/watch?v=_uQrJ0TkZlc" target="_blank" class="btn">Video Resource</a>
+</div>
+
+<section class="topic-container">
+
+<!-- 1. Introduction to Python -->
+<div class="topic-card">
+<h3>1. Introduction to Python</h3>
+<p><strong>Description:</strong> Python is a high-level, interpreted programming language known for readability and a large ecosystem. Widely used for web development, data science, automation, scripting, and more.</p>
+<pre>print("Hello, Python!")  # run with: python file.py</pre>
+</div>
+
+<!-- 2. Installing Python & Tools -->
+<div class="topic-card">
+<h3>2. Installing Python & Tools</h3>
+<p><strong>Description:</strong> Install from python.org or use package managers. Use a code editor (VS Code), virtual environments (venv), and pip for packages.</p>
+<pre># create virtual env
+python -m venv venv
+# activate (Windows)
+venv\Scripts\activate
+# install packages
+pip install requests numpy pandas</pre>
+</div>
+
+<!-- 3. Syntax & Variables -->
+<div class="topic-card">
+<h3>3. Syntax & Variables</h3>
+<p><strong>Description:</strong> Python uses indentation to define blocks. Variables are dynamically typed. Naming conventions: snake_case for variables and functions.</p>
+<pre>name = "Ramesh"
+age = 20
+is_active = True
+print(f"{name} is {age} years old")</pre>
+</div>
+
+<!-- 4. Data Types -->
+<div class="topic-card">
+<h3>4. Data Types</h3>
+<p><strong>Description:</strong> Core types: <code>int</code>, <code>float</code>, <code>str</code>, <code>bool</code>, <code>list</code>, <code>tuple</code>, <code>set</code>, <code>dict</code>, and <code>None</code>. Use <code>type()</code> to inspect.</p>
+<pre>x = 10         # int
+y = 3.14        # float
+s = "text"      # str
+lst = [1,2,3]   # list
+tpl = (1,2)     # tuple
+st = {1,2}      # set
+d = {"a":1}     # dict
+print(type(x), type(s))</pre>
+</div>
+
+<!-- 4. Input & Output -->
+<div class="topic-card">
+<h3>4.1. Input & Output</h3>
+<p><strong>Description:</strong> Take user input using <code>input()</code> and display output with <code>print()</code>. Convert input to numbers with <code>int()</code> or <code>float()</code>.</p>
+<pre>name = input("Enter your name: ")
+age = int(input("Enter your age: "))
+print(f"Hello {name}, you are {age} years old.")</pre>
+</div>
+
+
+<!-- 5. Operators -->
+<div class="topic-card">
+<h3>5. Operators</h3>
+<p><strong>Description:</strong> Arithmetic (+, -, *, /, //, %), comparison (==, !=, &gt;, &lt;), logical (and, or, not), assignment (+=, -=) and membership (<code>in</code>).</p>
+<pre>a = 7
+b = 3
+print(a + b, a // b, a % b)
+print(3 in [1,2,3])  # True</pre>
+</div>
+
+<!-- 6. Control Flow (if / elif / else) -->
+<div class="topic-card">
+<h3>6. Control Flow</h3>
+<p><strong>Description:</strong> Use <code>if</code>, <code>elif</code>, and <code>else</code> to control flow. Python uses indentation; no braces.</p>
+<pre>x = 10
+if x &gt; 10:
+    print("Greater")
+elif x == 10:
+    print("Equal")
+else:
+    print("Smaller")</pre>
+</div>
+
+<!-- 6. Type Conversion -->
+<div class="topic-card">
+<h3>6.1. Type Conversion</h3>
+<p><strong>Description:</strong> Convert between types explicitly using built-in functions. Useful when taking input or performing numeric operations.</p>
+<pre>x = "100"
+print(int(x) + 50)   # 150
+print(float("3.14"))
+print(str(25) + " apples")</pre>
+</div>
+
+
+<!-- 7. Loops (for / while) -->
+<div class="topic-card">
+<h3>7. Loops</h3>
+<p><strong>Description:</strong> Iterate with <code>for</code> (over iterables) and <code>while</code>. Use <code>break</code> and <code>continue</code> to control loop execution.</p>
+<pre>for i in range(5):
+    print(i)
+
+i = 0
+while i &lt; 5:
+    print(i)
+    i += 1</pre>
+</div>
+
+<!-- 7. Nested Conditions -->
+<div class="topic-card">
+<h3>7.1. Nested Conditions</h3>
+<p><strong>Description:</strong> You can nest <code>if</code> statements to test multiple layers of conditions.</p>
+<pre>x = 10
+if x &gt; 0:
+    if x % 2 == 0:
+        print("Positive even")
+    else:
+        print("Positive odd")
+else:
+    print("Non-positive")</pre>
+</div>
+
+<!-- 8. Loop Control Statements -->
+<div class="topic-card">
+<h3>7.2. Loop Control Statements</h3>
+<p><strong>Description:</strong> Use <code>break</code> to exit a loop early, <code>continue</code> to skip to next iteration, and <code>else</code> with loops for no-break completion.</p>
+<pre>for i in range(5):
+    if i == 3:
+        break
+    print(i)
+else:
+    print("Completed without break")</pre>
+</div>
+
+
+<!-- 8. Functions -->
+<div class="topic-card">
+<h3>8. Functions</h3>
+<p><strong>Description:</strong> Define reusable logic with <code>def</code>. Support default args, keyword args, *args, **kwargs, and docstrings.</p>
+<pre>def greet(name="User"):
+    """Return greeting string."""
+    return f"Hello, {name}"
+
+print(greet("Ramesh"))
+print(greet())</pre>
+</div>
+
+<!-- 9. Scope & Lifetime -->
+<div class="topic-card">
+<h3>9. Scope & Lifetime</h3>
+<p><strong>Description:</strong> Python scopes: local, enclosing, global, and built-in (LEGB). Use <code>global</code> or <code>nonlocal</code> carefully.</p>
+<pre>x = "global"
+def outer():
+    x = "enclosing"
+    def inner():
+        nonlocal x
+        x = "modified"
+    inner()
+    print(x)  # modified
+outer()
+print(x)  # global</pre>
+</div>
+
+<!-- 10. Modules & Packages -->
+<div class="topic-card">
+<h3>10. Modules & Packages</h3>
+<p><strong>Description:</strong> Break code into modules (.py files) and packages (folders with _init_.py). Import using <code>import</code> or <code>from ... import</code>.</p>
+<pre># utils.py
+def add(a,b): return a+b
+
+# main.py
+from utils import add
+print(add(2,3))</pre>
+</div>
+
+<!-- 11. Virtual Environments & pip -->
+<div class="topic-card">
+<h3>11. Virtual Environments & pip</h3>
+<p><strong>Description:</strong> Use venv/virtualenv to isolate dependencies. Install packages with pip and freeze requirements to requirements.txt.</p>
+<pre>python -m venv venv
+# Windows: venv\Scripts\activate
+# mac/linux: source venv/bin/activate
+pip install requests
+pip freeze &gt; requirements.txt</pre>
+</div>
+
+<!-- 12. Data Structures: Lists, Tuples, Sets, Dicts -->
+<div class="topic-card">
+<h3>12. Data Structures</h3>
+<p><strong>Description:</strong> Lists are mutable ordered collections, tuples are immutable, sets are unordered unique items, dicts are key-value mappings (ordered insertion since Python 3.7).</p>
+<pre>lst = [1,2,3]
+tpl = (1,2,3)
+s = {1,2,3}
+d = {"a":1, "b":2}
+lst[0] = 10
+print(tpl[0], 1 in s, d["a"])</pre>
+</div>
+
+<!-- 13. List Comprehensions & Generator Expressions -->
+<div class="topic-card">
+<h3>13. List Comprehensions</h3>
+<p><strong>Description:</strong> Compact way to build lists. Generator expressions create lazy iterators (useful for memory efficiency).</p>
+<pre>squares = [x*x for x in range(10)]
+evens = (x for x in range(100) if x%2==0)  # generator
+print(squares[:5], next(evens))</pre>
+</div>
+
+<!-- 14. Strings & Formatting -->
+<div class="topic-card">
+<h3>14. Strings & Formatting</h3>
+<p><strong>Description:</strong> Strings are immutable. Use f-strings (Python 3.6+) for readable interpolation, plus common methods like split, join, strip, replace.</p>
+<pre>name = "Ramesh"
+age = 20
+print(f"{name} is {age} years old")
+s = " a , b , c "
+print([x.strip() for x in s.split(",")])</pre>
+</div>
+
+<!-- 15. File I/O -->
+<div class="topic-card">
+<h3>15. File I/O</h3>
+<p><strong>Description:</strong> Read/write files using <code>open</code> and context managers (<code>with</code>) to safely manage resources.</p>
+<pre>with open("notes.txt", "w", encoding="utf-8") as f:
+    f.write("Hello Python\n")
+
+with open("notes.txt", "r", encoding="utf-8") as f:
+    print(f.read())</pre>
+</div>
+
+<!-- 16. Exceptions & Error Handling -->
+<div class="topic-card">
+<h3>16. Exceptions & Error Handling</h3>
+<p><strong>Description:</strong> Handle runtime issues with <code>try/except/finally</code>. Create custom exceptions by subclassing <code>Exception</code>.</p>
+<pre>try:
+    x = int("abc")
+except ValueError as e:
+    print("Conversion error:", e)
+finally:
+    print("Cleanup actions")</pre>
+</div>
+
+<!-- 16.1. Basic Debugging & print() Tricks -->
+<div class="topic-card">
+<h3>16.1. Debugging & print() Tricks</h3>
+<p><strong>Description:</strong> Use <code>print()</code> with custom separators or debugging tools like <code>type()</code>, <code>dir()</code>, and <code>help()</code> to inspect code behavior.</p>
+<pre>x, y = 10, 20
+print(x, y, sep=" | ")
+print(type(x))
+print(dir(str))
+# help(print)  # shows documentation</pre>
+</div>
+
+
+<!-- 17. Classes & Objects (OOP) -->
+<div class="topic-card">
+<h3>17. Classes & Objects (OOP)</h3>
+<p><strong>Description:</strong> OOP in Python models real-world entities. Classes define structure (attributes) and behavior (methods). Use <code>_init</code> for construction, <code>self</code> to access instance data, and <code>repr</code>/<code>str_</code> for readable output.</p>
+<pre>class Person:
+    def _init_(self, name, age):
+        self.name = name   # instance attribute
+        self.age = age
+
+    def greet(self):
+        return f"Hi, I'm {self.name} and I'm {self.age}"
+
+    def _repr_(self):
+        return f"Person({self.name!r}, {self.age})"
+
+p = Person("Ramesh", 20)
+print(p.greet())
+print(p)  # Person('Ramesh', 20)</pre>
+</div>
+
+<!-- 18. Inheritance & Polymorphism -->
+<div class="topic-card">
+<h3>18. Inheritance & Polymorphism</h3>
+<p><strong>Description:</strong> Extend classes with inheritance (<code>class Sub(Parent):</code>). Use <code>super()</code> to call parent constructors/methods. Polymorphism: same method name, different implementations.</p>
+<pre>class Animal:
+    def speak(self): return "makes sound"
+
+class Dog(Animal):
+    def speak(self): return "barks"
+
+a = Animal()
+d = Dog()
+for obj in (a, d):
+    print(obj.speak())  # demonstrates polymorphism</pre>
+</div>
+
+<!-- 19. Decorators -->
+<div class="topic-card">
+<h3>19. Decorators</h3>
+<p><strong>Description:</strong> Decorators wrap functions or methods to modify behavior (logging, caching, authorization). Can be functions or classes returning callable.</p>
+<pre>def timer(fn):
+    import time
+    def wrapper(*args, **kwargs):
+        start = time.time()
+        result = fn(*args, **kwargs)
+        print("Elapsed:", time.time()-start)
+        return result
+    return wrapper
+
+@timer
+def work(n):
+    sum(i*i for i in range(n))
+
+work(100000)</pre>
+</div>
+
+<!-- 20. Generators & Iterators -->
+<div class="topic-card">
+<h3>20. Generators & Iterators</h3>
+<p><strong>Description:</strong> Generators produce values lazily using <code>yield</code>. Iterators implement <code>_iter</code> and <code>next_</code>. Great for streaming data and memory efficiency.</p>
+<pre>def count_up(n):
+    i = 0
+    while i &lt; n:
+        yield i
+        i += 1
+
+for v in count_up(3):
+    print(v)</pre>
+</div>
+
+<!-- 21. Context Managers -->
+<div class="topic-card">
+<h3>21. Context Managers</h3>
+<p><strong>Description:</strong> Use <code>with</code> to manage resources. Implement context managers via <code>_enter</code>/<code>exit_</code> or <code>contextlib.contextmanager</code>.</p>
+<pre>from contextlib import contextmanager
+
+@contextmanager
+def open_read(path):
+    f = open(path, 'r')
+    try:
+        yield f
+    finally:
+        f.close()
+
+with open_read('notes.txt') as f:
+    print(f.readline())</pre>
+</div>
+
+<!-- 22. Lambda, map, filter, reduce -->
+<div class="topic-card">
+<h3>22. Lambda & Functional Tools</h3>
+<p><strong>Description:</strong> Small anonymous functions with <code>lambda</code>. Combine with <code>map</code>, <code>filter</code>, and <code>functools.reduce</code> for functional-style processing.</p>
+<pre>from functools import reduce
+nums = [1,2,3,4]
+print(list(map(lambda x: x*2, nums)))
+print(list(filter(lambda x: x%2==0, nums)))
+print(reduce(lambda a,b: a+b, nums))</pre>
+</div>
+
+<!-- 23. Regular Expressions -->
+<div class="topic-card">
+<h3>23. Regular Expressions</h3>
+<p><strong>Description:</strong> Use the <code>re</code> module for pattern matching and text validation.</p>
+<pre>import re
+pattern = re.compile(r'^[a-z0-9]+@[a-z0-9]+\.[a-z]{2,}$', re.I)
+print(bool(pattern.match('user@example.com')))</pre>
+</div>
+<!-- 23.1. OS & File Paths -->
+<div class="topic-card">
+<h3>23.1. OS & File Paths</h3>
+<p><strong>Description:</strong> Use <code>os</code> and <code>pathlib</code> modules to interact with files, directories, and environment variables.</p>
+<pre>import os
+from pathlib import Path
+
+print(os.getcwd())          # current directory
+Path("data").mkdir(exist_ok=True)
+print(list(Path(".").glob("*.py")))</pre>
+</div>
+
+
+<!-- 24. Working with JSON & CSV -->
+<div class="topic-card">
+<h3>24. JSON & CSV</h3>
+<p><strong>Description:</strong> Use <code>json</code> to serialize/deserialize and <code>csv</code> to read/write spreadsheets. Always handle encoding and exceptions.</p>
+<pre>import json, csv
+
+data = {'name':'Ramesh'}
+s = json.dumps(data)
+print(json.loads(s)['name'])
+
+with open('data.csv','w',newline='') as f:
+    writer = csv.writer(f)
+    writer.writerow(['name','age'])
+    writer.writerow(['Ramesh',20])</pre>
+</div>
+
+<!-- 25. Date & Time -->
+<div class="topic-card">
+<h3>25. Date & Time</h3>
+<p><strong>Description:</strong> Use <code>datetime</code> for dates, times, timezones. For advanced handling use <code>pytz</code> or <code>zoneinfo</code> in modern Python.</p>
+<pre>from datetime import datetime, timedelta
+now = datetime.now()
+print(now.isoformat())
+print(now + timedelta(days=1))</pre>
+</div>
+
+<!-- 26. Networking & Requests -->
+<div class="topic-card">
+<h3>26. Networking (requests)</h3>
+<p><strong>Description:</strong> Use the <code>requests</code> library to make HTTP calls. Handle timeouts and errors properly.</p>
+<pre>import requests
+try:
+    r = requests.get('https://jsonplaceholder.typicode.com/todos/1', timeout=5)
+    print(r.json())
+except requests.RequestException as e:
+    print("Network error:", e)</pre>
+</div>
+
+<!-- 27. Asyncio & Concurrency -->
+<div class="topic-card">
+<h3>27. Asyncio & Concurrency</h3>
+<p><strong>Description:</strong> Write asynchronous code with <code>async/await</code> using <code>asyncio</code>. For CPU-bound tasks use multi-processing; for I/O-bound use asyncio or threads.</p>
+<pre>import asyncio
+
+async def say(msg, delay):
+    await asyncio.sleep(delay)
+    print(msg)
+
+async def main():
+    await asyncio.gather(say("Hi",1), say("Hello",0.5))
+
+asyncio.run(main())</pre>
+</div>
+
+<!-- 28. Testing: unittest & pytest -->
+<div class="topic-card">
+<h3>28. Testing & Debugging</h3>
+<p><strong>Description:</strong> Write unit tests with <code>unittest</code> or <code>pytest</code>. Use <code>logging</code> and <code>pdb</code> or VS Code debugger for debugging.</p>
+<pre>def add(a,b): return a+b
+
+# test_add.py (pytest)
+def test_add():
+    assert add(2,3) == 5
+
+# run: pytest
+</pre>
+</div>
+
+<!-- 29. Packaging & Distribution -->
+<div class="topic-card">
+<h3>29. Packaging & Distribution</h3>
+<p><strong>Description:</strong> Package libraries with <code>setuptools</code> or modern <code>pyproject.toml</code> (PEP 517/518). Publish to PyPI using <code>twine</code>.</p>
+<pre># pyproject.toml example (brief)
+[build-system]
+requires = ["setuptools","wheel"]
+build-backend = "setuptools.build_meta"</pre>
+</div>
+
+<!-- 30. Data Science Basics: NumPy -->
+<div class="topic-card">
+<h3>30. NumPy (Intro)</h3>
+<p><strong>Description:</strong> NumPy provides fast, vectorized operations and N-dimensional arrays — foundation for scientific computing and data science.</p>
+<pre>import numpy as np
+a = np.array([1,2,3])
+print(a * 2, a.mean())</pre>
+</div>
+
+<!-- 31. Data Science: Pandas -->
+<div class="topic-card">
+<h3>31. Pandas (Intro)</h3>
+<p><strong>Description:</strong> Pandas adds DataFrame structures for tabular data, with powerful indexing, grouping, and I/O from CSV/Excel.</p>
+<pre>import pandas as pd
+df = pd.DataFrame([{"name":"Ramesh","age":20},{"name":"Sita","age":22}])
+print(df.describe())
+df.to_csv("out.csv", index=False)</pre>
+</div>
+<!-- 31.1. Command Line Arguments -->
+<div class="topic-card">
+<h3>31.1. Command Line Arguments</h3>
+<p><strong>Description:</strong> Use <code>sys.argv</code> or <code>argparse</code> to read command-line inputs for scripts and CLI tools.</p>
+<pre>import sys
+if len(sys.argv) &gt; 1:
+    print("Arguments:", sys.argv[1:])
+
+# python script.py hello world
+# Output: Arguments: ['hello', 'world']</pre>
+</div>
+
+
+<!-- 32. Web Development Intro: Flask -->
+<div class="topic-card">
+<h3>32. Web Development (Flask Intro)</h3>
+<p><strong>Description:</strong> Flask is a lightweight web framework. Create routes, render templates, and handle requests easily. For larger apps use blueprints and WSGI servers.</p>
+<pre>from flask import Flask, jsonify, request
+app = Flask(_name_)
+
+@app.route("/")
+def home():
+    return "Hello Flask"
+
+@app.route("/api", methods=["POST"])
+def api():
+    data = request.json
+    return jsonify({"received": data})
+
+if _name_ == "_main_":
+    app.run(debug=True)</pre>
+</div>
+
+<!-- 33. Best Practices & Next Steps -->
+<div class="topic-card">
+<h3>33. Best Practices & Next Steps</h3>
+<p><strong>Description:</strong> Follow PEP8 style guides, write tests, use virtualenvs, document code, learn package management, and build small projects (CLI tools, web apps, data pipelines).</p>
+<pre># Checklist
+# 1. Use virtualenv
+# 2. Lint with flake8/black
+# 3. Add tests & CI
+# 4. Package & publish</pre>
+</div>
+<!-- 34. Practice & References -->
+<div class="topic-card">
+<h3>34. Practice & References</h3>
+<p><strong>Description:</strong> Strengthen skills by solving real problems and reading official docs.</p>
+<ul>
+  <li>Practice: <a href="https://leetcode.com" target="_blank">LeetCode</a>, <a href="https://hackerrank.com/domains/python" target="_blank">HackerRank</a></li>
+  <li>Docs: <a href="https://docs.python.org/3/" target="_blank">Python Official Documentation</a></li>
+</ul>
+</div>
+
+
+</section>
+
+<footer>
+  Contact: techpath@example.com | © 2025 TechPath
+</footer>
+
+<script src="app.js"></script>
+
+
+</body>
+</html>

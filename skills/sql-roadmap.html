@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>SQL Full Roadmap - TechPath</title>
+<link rel="stylesheet" href="../skills/style.css">
+
+<!-- Link to external JS from your skills folder -->
+<script defer src="../skills/script.js"></script>
+</head>
+<body>
+<div class="floating-code" id="floatingCode"></div>
+
+<header>
+  <h1>TechPath</h1>
+  <nav>
+    <a href="../index.html">Home</a>
+    <a href="../career.html">Career Paths</a>
+    <a href="skills.html">Skill Roadmaps</a>
+  </nav>
+</header>
+
+<section class="banner">
+  <h2>💾 SQL Full Roadmap</h2>
+  <p>Learn SQL from basics to advanced with detailed examples, queries, and database concepts.</p>
+</section>
+
+<div class="top-buttons">
+  <a href="../skills.html" class="btn">← Back to Skills</a>
+  <a href="../pdf/sql.pdf" download="SQL_Roadmap.pdf" class="btn">Download PDF</a>
+  <a href="../pdf/SQL_Notes.pdf" download="SQL_Notes.pdf" class="btn">Notes</a>
+  <a href="https://www.youtube.com/watch?v=HXV3zeQKqGY" target="_blank" class="btn">Video Resource</a>
+</div>
+
+<section class="topic-container">
+
+<!-- 1. Introduction to SQL -->
+<div class="topic-card">
+<h3>1. Introduction to SQL</h3>
+<p><strong>Description:</strong> SQL (Structured Query Language) is used to interact with relational databases. It allows you to query, insert, update, and delete data efficiently. SQL is standardized but may have dialect differences (MySQL, PostgreSQL, MSSQL).</p>
+<pre>-- Simple SELECT query
+SELECT * FROM Customers;</pre>
+</div>
+
+<!-- 2. Database Concepts -->
+<div class="topic-card">
+<h3>2. Database Concepts</h3>
+<p><strong>Description:</strong> Understand databases, tables, rows, columns, primary keys, foreign keys, indexes, and relationships between tables (1:1, 1:N, N:M).</p>
+<pre>-- Example Table
+CREATE TABLE Customers(
+    CustomerID INT PRIMARY KEY,
+    Name VARCHAR(50),
+    Email VARCHAR(50)
+);</pre>
+</div>
+
+<!-- 3. Data Types -->
+<div class="topic-card">
+<h3>3. Data Types</h3>
+<p><strong>Description:</strong> Learn SQL data types: INT, FLOAT, DECIMAL, VARCHAR, CHAR, TEXT, DATE, DATETIME, BOOLEAN, etc. Each type has size and constraints.</p>
+<pre>CREATE TABLE Products(
+    ProductID INT,
+    Name VARCHAR(100),
+    Price DECIMAL(10,2),
+    InStock BOOLEAN
+);</pre>
+</div>
+
+<!-- 4. Basic Queries -->
+<div class="topic-card">
+<h3>4. Basic Queries</h3>
+<p><strong>Description:</strong> Use SELECT to retrieve data, specify columns, use aliases, and ORDER BY for sorting.</p>
+<pre>SELECT Name, Price AS Cost
+FROM Products
+ORDER BY Price DESC;</pre>
+</div>
+
+<!-- 5. Filtering Records -->
+<div class="topic-card">
+<h3>5. Filtering Records</h3>
+<p><strong>Description:</strong> Use WHERE clause with conditions and logical operators (AND, OR, NOT) to filter results.</p>
+<pre>SELECT * FROM Customers
+WHERE Country='USA' AND Age&gt;25;</pre>
+</div>
+
+<!-- 6. Pattern Matching -->
+<div class="topic-card">
+<h3>6. Pattern Matching</h3>
+<p><strong>Description:</strong> LIKE operator allows pattern matching with % (any sequence) and _ (single character).</p>
+<pre>SELECT * FROM Customers
+WHERE Name LIKE 'A%'; -- Names starting with A</pre>
+</div>
+
+<!-- 7. Aggregate Functions -->
+<div class="topic-card">
+<h3>7. Aggregate Functions</h3>
+<p><strong>Description:</strong> COUNT, SUM, AVG, MIN, MAX are used to summarize data. Often combined with GROUP BY.</p>
+<pre>SELECT COUNT(*) AS TotalOrders, AVG(Total) AS AvgAmount
+FROM Orders
+GROUP BY CustomerID;</pre>
+</div>
+
+<!-- 8. GROUP BY & HAVING -->
+<div class="topic-card">
+<h3>8. GROUP BY & HAVING</h3>
+<p><strong>Description:</strong> GROUP BY aggregates data by column. HAVING filters aggregated results.</p>
+<pre>SELECT CustomerID, SUM(Total) AS TotalSpent
+FROM Orders
+GROUP BY CustomerID
+HAVING SUM(Total)&gt;1000;</pre>
+</div>
+
+<!-- 9. JOINs -->
+<div class="topic-card">
+<h3>9. JOINs</h3>
+<p><strong>Description:</strong> Combine tables using INNER JOIN, LEFT JOIN, RIGHT JOIN, FULL OUTER JOIN.</p>
+<pre>SELECT Orders.OrderID, Customers.Name
+FROM Orders
+INNER JOIN Customers
+ON Orders.CustomerID = Customers.CustomerID;</pre>
+</div>
+
+<!-- 10. Subqueries -->
+<div class="topic-card">
+<h3>10. Subqueries</h3>
+<p><strong>Description:</strong> A query inside another query. Can be used in SELECT, FROM, WHERE clauses.</p>
+<pre>SELECT Name
+FROM Customers
+WHERE CustomerID IN (SELECT CustomerID FROM Orders WHERE Total&gt;500);</pre>
+</div>
+
+<!-- 11. UNION, INTERSECT, EXCEPT -->
+<div class="topic-card">
+<h3>11. Set Operations</h3>
+<p><strong>Description:</strong> Combine results from multiple queries with UNION (distinct), UNION ALL, INTERSECT, EXCEPT.</p>
+<pre>SELECT Name FROM Customers_USA
+UNION
+SELECT Name FROM Customers_Canada;</pre>
+</div>
+
+<!-- 12. INSERT, UPDATE, DELETE -->
+<div class="topic-card">
+<h3>12. Modifying Data</h3>
+<p><strong>Description:</strong> Use INSERT to add rows, UPDATE to modify, DELETE to remove. Always backup important data.</p>
+<pre>INSERT INTO Customers(Name, Email) VALUES('Sita','sita@example.com');
+UPDATE Customers SET Email='new@example.com' WHERE Name='Sita';
+DELETE FROM Customers WHERE Name='Sita';</pre>
+</div>
+
+<!-- 13. Transactions & ACID -->
+<div class="topic-card">
+<h3>13. Transactions & ACID</h3>
+<p><strong>Description:</strong> Ensure data integrity with transactions. Use COMMIT to save and ROLLBACK to undo. ACID = Atomicity, Consistency, Isolation, Durability.</p>
+<pre>BEGIN TRANSACTION;
+UPDATE Accounts SET Balance=Balance-100 WHERE ID=1;
+UPDATE Accounts SET Balance=Balance+100 WHERE ID=2;
+COMMIT;</pre>
+</div>
+
+<!-- 14. Indexes -->
+<div class="topic-card">
+<h3>14. Indexes</h3>
+<p><strong>Description:</strong> Indexes speed up queries. Types: Single-column, composite, unique, full-text. Trade-off: slower inserts/updates.</p>
+<pre>CREATE INDEX idx_customer_name
+ON Customers(Name);</pre>
+</div>
+
+<!-- 15. Views -->
+<div class="topic-card">
+<h3>15. Views</h3>
+<p><strong>Description:</strong> Virtual tables based on queries. Simplify complex queries and restrict access.</p>
+<pre>CREATE VIEW TopCustomers AS
+SELECT CustomerID, SUM(Total) AS TotalSpent
+FROM Orders
+GROUP BY CustomerID
+HAVING SUM(Total)&gt;1000;</pre>
+</div>
+
+<!-- 16. Stored Procedures -->
+<div class="topic-card">
+<h3>16. Stored Procedures</h3>
+<p><strong>Description:</strong> Predefined SQL code blocks stored in the database. Helps reuse logic and improve performance.</p>
+<pre>CREATE PROCEDURE GetTopCustomers()
+BEGIN
+  SELECT CustomerID, SUM(Total) AS TotalSpent
+  FROM Orders
+  GROUP BY CustomerID
+  ORDER BY TotalSpent DESC;
+END;</pre>
+</div>
+
+<!-- 17. Functions -->
+<div class="topic-card">
+<h3>17. Functions</h3>
+<p><strong>Description:</strong> User-defined functions return values and can be scalar or table-valued. Use them for reusable logic.</p>
+<pre>CREATE FUNCTION GetDiscount(Total DECIMAL)
+RETURNS DECIMAL
+BEGIN
+  RETURN Total*0.1;
+END;</pre>
+</div>
+
+<!-- 18. Triggers -->
+<div class="topic-card">
+<h3>18. Triggers</h3>
+<p><strong>Description:</strong> Automated actions triggered by events (INSERT, UPDATE, DELETE). Useful for auditing or enforcing rules.</p>
+<pre>CREATE TRIGGER AuditInsert
+AFTER INSERT ON Orders
+FOR EACH ROW
+BEGIN
+  INSERT INTO OrdersAudit(OrderID, CreatedAt)
+  VALUES(NEW.OrderID, NOW());
+END;</pre>
+</div>
+
+<!-- 19. Constraints -->
+<div class="topic-card">
+<h3>19. Constraints</h3>
+<p><strong>Description:</strong> Ensure data validity: PRIMARY KEY, FOREIGN KEY, UNIQUE, CHECK, NOT NULL, DEFAULT.</p>
+<pre>CREATE TABLE Employees(
+    ID INT PRIMARY KEY,
+    Name VARCHAR(50) NOT NULL,
+    Salary DECIMAL CHECK(Salary&gt;0)
+);</pre>
+</div>
+
+<!-- 20. Normalization -->
+<div class="topic-card">
+<h3>20. Normalization</h3>
+<p><strong>Description:</strong> Organize tables to reduce redundancy. Normal forms 1NF, 2NF, 3NF, BCNF. Helps maintain data integrity.</p>
+<pre>-- Example: split CustomerInfo table into Customers & Addresses</pre>
+</div>
+
+<!-- 21. Denormalization -->
+<div class="topic-card">
+<h3>21. Denormalization</h3>
+<p><strong>Description:</strong> For performance, combine tables to reduce joins. Trade-off: redundant data and update anomalies.</p>
+<pre>-- Example: store total orders in Customers table</pre>
+</div>
+
+<!-- 22. Advanced Queries -->
+<div class="topic-card">
+<h3>22. Advanced Queries</h3>
+<p><strong>Description:</strong> Use CTEs (WITH), window functions (ROW_NUMBER, RANK), CASE statements for complex analytics.</p>
+<pre>WITH RecentOrders AS (
+  SELECT *, ROW_NUMBER() OVER(PARTITION BY CustomerID ORDER BY OrderDate DESC) AS rn
+  FROM Orders
+)
+SELECT * FROM RecentOrders WHERE rn=1;</pre>
+</div>
+
+<!-- 23. Window Functions -->
+<div class="topic-card">
+<h3>23. Window Functions</h3>
+<p><strong>Description:</strong> Perform calculations across a set of rows related to current row (SUM(), AVG(), RANK(), ROW_NUMBER()).</p>
+<pre>SELECT Name, Salary, RANK() OVER(ORDER BY Salary DESC) AS Rank
+FROM Employees;</pre>
+</div>
+
+<!-- 24. Cursors -->
+<div class="topic-card">
+<h3>24. Cursors</h3>
+<p><strong>Description:</strong> Used to iterate row-by-row over query results in stored procedures.</p>
+<pre>DECLARE emp_cursor CURSOR FOR
+SELECT Name FROM Employees;
+OPEN emp_cursor;
+-- FETCH and process each row
+CLOSE emp_cursor;</pre>
+</div>
+
+<!-- 25. Transactions Isolation Levels -->
+<div class="topic-card">
+<h3>25. Transaction Isolation Levels</h3>
+<p><strong>Description:</strong> Control how concurrent transactions interact. Levels: READ UNCOMMITTED, READ COMMITTED, REPEATABLE READ, SERIALIZABLE.</p>
+<pre>SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;</pre>
+</div>
+
+<!-- 26. Performance Tuning -->
+<div class="topic-card">
+<h3>26. Performance Tuning</h3>
+<p><strong>Description:</strong> Use indexes, query optimization, EXPLAIN plan, partitioning, and caching to improve performance.</p>
+<pre>EXPLAIN SELECT * FROM Orders WHERE Total&gt;100;</pre>
+</div>
+
+<!-- 27. Backup & Restore -->
+<div class="topic-card">
+<h3>27. Backup & Restore</h3>
+<p><strong>Description:</strong> Regularly backup databases. Methods: SQL dump, binary backups, point-in-time recovery.</p>
+<pre>-- MySQL backup
+mysqldump -u user -p dbname &gt; backup.sql
+-- restore
+mysql -u user -p dbname &lt; backup.sql</pre>
+</div>
+
+<!-- 28. Security & Permissions -->
+<div class="topic-card">
+<h3>28. Security & Permissions</h3>
+<p><strong>Description:</strong> Use GRANT, REVOKE, roles, and least privilege principles to secure databases.</p>
+<pre>GRANT SELECT, INSERT ON Employees TO 'readonly_user'@'localhost';
+REVOKE INSERT ON Employees FROM 'readonly_user'@'localhost';</pre>
+</div>
+
+<!-- 29. Stored Procedures Advanced -->
+<div class="topic-card">
+<h3>29. Stored Procedures Advanced</h3>
+<p><strong>Description:</strong> Use input/output parameters, error handling, loops, and dynamic SQL in procedures.</p>
+<pre>CREATE PROCEDURE UpdateSalary(IN empID INT, IN raise DECIMAL)
+BEGIN
+  UPDATE Employees SET Salary=Salary+raise WHERE ID=empID;
+END;</pre>
+</div>
+
+<!-- 30. SQL Functions Advanced -->
+<div class="topic-card">
+<h3>30. SQL Functions Advanced</h3>
+<p><strong>Description:</strong> Built-in functions: string, date/time, numeric, conversion. Combine with CASE and COALESCE.</p>
+<pre>SELECT Name, COALESCE(ManagerID,0) FROM Employees;</pre>
+</div>
+
+<!-- 31. OLAP & Analytical Queries -->
+<div class="topic-card">
+<h3>31. OLAP & Analytical Queries</h3>
+<p><strong>Description:</strong> Use GROUPING SETS, CUBE, ROLLUP for multi-dimensional analytics in SQL.</p>
+<pre>SELECT Region, Product, SUM(Sales)
+FROM Sales
+GROUP BY CUBE(Region, Product);</pre>
+</div>
+
+<!-- 32. JSON & XML Data -->
+<div class="topic-card">
+<h3>32. JSON & XML</h3>
+<p><strong>Description:</strong> Modern databases support JSON/XML columns. Use JSON functions to query nested structures.</p>
+<pre>SELECT data->'$.name' AS Name
+FROM CustomersJSON;</pre>
+</div>
+
+<!-- 33. NoSQL Intro -->
+<div class="topic-card">
+<h3>33. NoSQL Intro</h3>
+<p><strong>Description:</strong> Learn differences between SQL and NoSQL (document, key-value, column, graph) databases.</p>
+<pre>-- Example: MongoDB query
+db.users.find({age: {$gt:20}});</pre>
+</div>
+
+<!-- 34. SQL Best Practices -->
+<div class="topic-card">
+<h3>34. SQL Best Practices</h3>
+<p><strong>Description:</strong> Use consistent naming, comments, indexes wisely, normalize properly, avoid SELECT *, and test queries.</p>
+<pre>-- Add comment
+-- This query fetches active customers
+SELECT Name FROM Customers WHERE Active=1;</pre>
+</div>
+
+<!-- 35. Transactions Advanced -->
+<div class="topic-card">
+<h3>35. Transactions Advanced</h3>
+<p><strong>Description:</strong> Savepoints, nested transactions, error handling, rollback strategies.</p>
+<pre>SAVEPOINT sp1;
+UPDATE Accounts SET Balance=Balance-50 WHERE ID=1;
+ROLLBACK TO sp1;</pre>
+</div>
+
+<!-- 36. Partitioning -->
+<div class="topic-card">
+<h3>36. Partitioning</h3>
+<p><strong>Description:</strong> Split large tables horizontally or vertically for performance and manageability.</p>
+<pre>CREATE TABLE Orders_2025 PARTITION BY RANGE(OrderDate);</pre>
+</div>
+
+<!-- 37. Replication & High Availability -->
+<div class="topic-card">
+<h3>37. Replication & HA</h3>
+<p><strong>Description:</strong> Master-slave replication, clustering, failover strategies to ensure uptime.</p>
+<pre>-- MySQL replication setup example</pre>
+</div>
+
+<!-- 38. CTE & Recursive Queries -->
+<div class="topic-card">
+<h3>38. CTE & Recursive Queries</h3>
+<p><strong>Description:</strong> Recursive CTEs allow hierarchical queries like org charts or bill of materials.</p>
+<pre>WITH RECURSIVE Subordinates AS (
+  SELECT ID, ManagerID FROM Employees WHERE ManagerID IS NULL
+  UNION ALL
+  SELECT e.ID, e.ManagerID
+  FROM Employees e
+  INNER JOIN Subordinates s ON e.ManagerID=s.ID
+)
+SELECT * FROM Subordinates;</pre>
+</div>
+
+<!-- 39. SQL Optimization Techniques -->
+<div class="topic-card">
+<h3>39. SQL Optimization</h3>
+<p><strong>Description:</strong> Analyze query plans, avoid unnecessary joins, index columns used in WHERE, and denormalize if needed.</p>
+<pre>EXPLAIN SELECT * FROM Orders WHERE CustomerID=1;</pre>
+</div>
+
+<!-- 40. Real-World Projects -->
+<div class="topic-card">
+<h3>40. Real-World Projects</h3>
+<p><strong>Description:</strong> Build project examples like e-commerce DB, banking system, analytics dashboards, reporting, ETL pipelines.</p>
+<pre>-- Example: Design Customers, Orders, Products, Payments tables</pre>
+</div>
+
+</section>
+
+<footer>
+  Contact: kommala50@gmail.com | © 2025 TechPath
+</footer>
+
+
+<script src="app.js"></script>
+</body>
+</html>
