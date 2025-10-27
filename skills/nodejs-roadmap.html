@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Node.js Full Roadmap - TechPath</title>
+<link rel="stylesheet" href="../skills/style.css">
+<script defer src="../skills/script.js"></script>
+</head>
+<body>
+
+<header>
+  <h1>TechPath</h1>
+  <nav>
+    <a href="../index.html">Home</a>
+    <a href="../career.html">Career Paths</a>
+    <a href="../skills.html">Skill Roadmaps</a>
+    <a href="../company.html">Company Questions</a>
+  </nav>
+</header>
+
+<section class="banner">
+  <h2>🟢 Node.js Full Roadmap</h2>
+  <p>Learn Node.js from basics to advanced backend & full-stack topics with explanations and example code.</p>
+</section>
+
+<div class="top-buttons">
+  <a href="../skills.html" class="btn">← Back to Skills</a>
+  <a href="../pdf/Node_Notes_Part1.pdf" download="Node_Roadmap.pdf" class="btn">Download PDF</a>
+  <a href="../pdf/Node_Notes_Part2.pdf" download="Node_Notes.pdf" class="btn">Notes</a>
+  <a href="https://www.youtube.com/playlist?list=PLillGF-RfqbbRA-CIUxlxkUpbq0IFkX60" target="_blank" class="btn">Video Resource</a>
+</div>
+
+<section class="topic-container">
+
+<!-- 1. Introduction to Node.js -->
+<div class="topic-card">
+  <h3>1. Introduction to Node.js</h3>
+  <p><strong>Description:</strong> Node.js is a JavaScript runtime built on Chrome's V8 engine for building server-side and network applications. It's event-driven and non-blocking.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+// hello.js
+console.log("Hello from Node.js");
+
+// Run: node hello.js
+  </pre>
+</div>
+
+<!-- 2. Environment Setup & HelloWorld -->
+<div class="topic-card">
+  <h3>2. Environment Setup & HelloWorld</h3>
+  <p><strong>Description:</strong> Install Node (official site or nvm), verify node & npm versions, initialize projects with package.json.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+# Install node via nvm (example)
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+nvm install --lts
+node -v
+npm -v
+
+# Initialize project
+npm init -y
+  </pre>
+</div>
+
+<!-- 3. JavaScript for Node (Basics) -->
+<div class="topic-card">
+  <h3>3. JavaScript Basics for Node</h3>
+  <p><strong>Description:</strong> Familiarity with JS fundamentals (let/const, functions, arrow functions, objects, arrays) is required for Node development.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+// arrow functions & destructuring
+const add = (a,b) => a+b;
+const user = {name:'Alice', age:25};
+const {name, age} = user;
+console.log(add(2,3), name, age);
+  </pre>
+</div>
+
+<!-- 4. Modules (CommonJS & ES Modules) -->
+<div class="topic-card">
+  <h3>4. Modules (CommonJS & ES Modules)</h3>
+  <p><strong>Description:</strong> Understand module systems: CommonJS (require/exports) and ES Modules (import/export). Node supports both (with flags or .mjs).</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+// math.js (CommonJS)
+exports.add = (a,b) => a + b;
+
+// app.js
+const math = require('./math');
+console.log(math.add(2,3));
+
+// ES Module example (package.json "type": "module")
+// import { add } from './math.mjs';
+  </pre>
+</div>
+
+<!-- 5. npm & Package Management -->
+<div class="topic-card">
+  <h3>5. npm & Package Management</h3>
+  <p><strong>Description:</strong> Using npm/yarn/pnpm, semantic versioning, devDependencies vs dependencies, package.json scripts, lockfiles.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+# Install package and save to dependencies
+npm install express
+
+# Dev dependency
+npm install -D nodemon
+
+# package.json script
+"scripts": {
+  "start": "node index.js",
+  "dev": "nodemon index.js"
+}
+  </pre>
+</div>
+
+<!-- 6. Callbacks & Async Patterns -->
+<div class="topic-card">
+  <h3>6. Callbacks & Async Patterns</h3>
+  <p><strong>Description:</strong> Node initially used callbacks for async code — understand callback style and callback hell and patterns to avoid it.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+const fs = require('fs');
+fs.readFile('file.txt', 'utf8', (err, data) => {
+  if(err) return console.error(err);
+  console.log(data);
+});
+  </pre>
+</div>
+
+<!-- 7. Promises & async/await -->
+<div class="topic-card">
+  <h3>7. Promises & async/await</h3>
+  <p><strong>Description:</strong> Modern async patterns: Promises, chaining, and async/await for readable asynchronous code and error handling.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+const fs = require('fs').promises;
+
+async function read() {
+  try {
+    const data = await fs.readFile('file.txt', 'utf8');
+    console.log(data);
+  } catch(e) {
+    console.error(e);
+  }
+}
+read();
+  </pre>
+</div>
+
+<!-- 8. Event Loop & Concurrency -->
+<div class="topic-card">
+  <h3>8. Event Loop & Concurrency</h3>
+  <p><strong>Description:</strong> Learn how Node's single-threaded event loop, microtask vs macrotask queues, and non-blocking I/O work.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+console.log('start');
+setTimeout(()=>console.log('timeout'),0);
+Promise.resolve().then(()=>console.log('promise'));
+console.log('end');
+// Order: start, end, promise, timeout
+  </pre>
+</div>
+
+<!-- 9. Buffers & Binary Data -->
+<div class="topic-card">
+  <h3>9. Buffers & Binary Data</h3>
+  <p><strong>Description:</strong> Node Buffer handles raw binary data (files, sockets). Useful for streams, file I/O, and network protocols.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+const buf = Buffer.from('Hello');
+console.log(buf.toString()); // Hello
+const b2 = Buffer.alloc(5);
+b2.write('abc');
+console.log(b2);
+  </pre>
+</div>
+
+<!-- 10. Streams (Readable/Writable/Transform) -->
+<div class="topic-card">
+  <h3>10. Streams</h3>
+  <p><strong>Description:</strong> Streams allow efficient handling of large data (files, network) in chunks: readable, writable, duplex, transform streams.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+const fs = require('fs');
+const read = fs.createReadStream('large.txt', {encoding:'utf8'});
+read.on('data', chunk => console.log('chunk', chunk.length));
+read.on('end', ()=>console.log('done'));
+  </pre>
+</div>
+
+<!-- 11. File System (fs) -->
+<div class="topic-card">
+  <h3>11. File System (fs)</h3>
+  <p><strong>Description:</strong> Read/write files synchronously and asynchronously. Prefer async/promises for non-blocking behavior.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+const fs = require('fs').promises;
+async function writeRead() {
+  await fs.writeFile('out.txt', 'Hello Node');
+  const txt = await fs.readFile('out.txt','utf8');
+  console.log(txt);
+}
+writeRead();
+  </pre>
+</div>
+
+<!-- 12. HTTP Module -->
+<div class="topic-card">
+  <h3>12. HTTP Module</h3>
+  <p><strong>Description:</strong> Build servers using Node's built-in http module. Understand request/response lifecycle and headers.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+const http = require('http');
+const server = http.createServer((req,res)=>{
+  res.writeHead(200, {'Content-Type':'text/plain'});
+  res.end('Hello HTTP');
+});
+server.listen(3000, ()=>console.log('Listening on 3000'));
+  </pre>
+</div>
+
+<!-- 13. Express.js Basics -->
+<div class="topic-card">
+  <h3>13. Express.js Basics</h3>
+  <p><strong>Description:</strong> Express is a minimal web framework for routing, middleware, and building REST APIs quickly.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+const express = require('express');
+const app = express();
+app.get('/', (req,res) => res.send('Hello Express'));
+app.listen(3000, ()=>console.log('Express on 3000'));
+  </pre>
+</div>
+
+<!-- 14. Routing & Params -->
+<div class="topic-card">
+  <h3>14. Routing & Params</h3>
+  <p><strong>Description:</strong> Define routes, route parameters, query strings, and nested routers for modular code.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+// route example
+app.get('/users/:id', (req,res) => {
+  const id = req.params.id;
+  res.send(`User: ${id}`);
+});
+  </pre>
+</div>
+
+<!-- 15. Middleware -->
+<div class="topic-card">
+  <h3>15. Middleware</h3>
+  <p><strong>Description:</strong> Middleware functions run in request pipeline (logging, auth, parsing). Order matters.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+const logger = (req,res,next) => {
+  console.log(req.method, req.url); next();
+};
+app.use(logger);
+  </pre>
+</div>
+
+<!-- 16. REST API Design -->
+<div class="topic-card">
+  <h3>16. REST API Design</h3>
+  <p><strong>Description:</strong> Design RESTful endpoints (resources, verbs), status codes, and versioning best practices.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+// sample REST endpoint
+app.post('/api/tasks', (req,res) => {
+  // create task, respond 201
+  res.status(201).json({id:1, title:'task'});
+});
+  </pre>
+</div>
+
+<!-- 17. Templating & SSR -->
+<div class="topic-card">
+  <h3>17. Templating & SSR</h3>
+  <p><strong>Description:</strong> Use template engines (EJS, Pug, Handlebars) for server-side rendering of HTML views.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+// EJS example
+app.set('view engine','ejs');
+app.get('/home', (req,res) => res.render('home',{user:'Alice'}));
+  </pre>
+</div>
+
+<!-- 18. Databases: MongoDB -->
+<div class="topic-card">
+  <h3>18. Databases: MongoDB</h3>
+  <p><strong>Description:</strong> NoSQL document DB commonly used with Node. Use the official driver or Mongoose for schemas and models.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/mydb')
+  .then(()=>console.log('Connected to MongoDB'));
+const User = mongoose.model('User',{name:String,age:Number});
+  </pre>
+</div>
+
+<!-- 19. Databases: SQL (Postgres/MySQL) -->
+<div class="topic-card">
+  <h3>19. Databases: SQL (Postgres/MySQL)</h3>
+  <p><strong>Description:</strong> Use node-postgres, mysql2, or ORMs (Sequelize, TypeORM) for relational databases, joins, transactions and migrations.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+// node-postgres example
+const { Client } = require('pg');
+const client = new Client({ connectionString: process.env.DATABASE_URL });
+await client.connect();
+const res = await client.query('SELECT NOW()');
+console.log(res.rows[0]);
+  </pre>
+</div>
+
+<!-- 20. ORM/ODM: Mongoose & Sequelize -->
+<div class="topic-card">
+  <h3>20. ORM/ODM (Mongoose, Sequelize)</h3>
+  <p><strong>Description:</strong> Use an ORM/ODM for mapping DB rows/documents to objects and for migrations and validations.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+// Mongoose model
+const userSchema = new mongoose.Schema({ name:String });
+const User = mongoose.model('User', userSchema);
+await User.create({name:'Bob'});
+  </pre>
+</div>
+
+<!-- 21. Authentication (JWT & Sessions) -->
+<div class="topic-card">
+  <h3>21. Authentication & Authorization</h3>
+  <p><strong>Description:</strong> Implement authentication with sessions (express-session) or stateless JWT. Protect routes via middleware.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+const jwt = require('jsonwebtoken');
+const token = jwt.sign({id:123}, 'secret', {expiresIn:'1h'});
+// verify middleware
+function auth(req,res,next){
+  const token = req.headers.authorization?.split(' ')[1];
+  if(!token) return res.sendStatus(401);
+  jwt.verify(token,'secret',(err,user)=>{ if(err) return res.sendStatus(403); req.user=user; next(); });
+}
+  </pre>
+</div>
+
+<!-- 22. Sessions & Cookies -->
+<div class="topic-card">
+  <h3>22. Sessions & Cookies</h3>
+  <p><strong>Description:</strong> Maintain server-side sessions (memory, store) and use cookies for client-side persistence; secure with HttpOnly, SameSite flags.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+const session = require('express-session');
+app.use(session({ secret:'s3cr3t', resave:false, saveUninitialized:true }));
+app.get('/count', (req,res) => { req.session.count = (req.session.count||0)+1; res.send(String(req.session.count)); });
+  </pre>
+</div>
+
+<!-- 23. Error Handling & Validation -->
+<div class="topic-card">
+  <h3>23. Error Handling & Validation</h3>
+  <p><strong>Description:</strong> Centralize error handling middleware, validate requests (Joi, celebrate) and return consistent error responses.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+// error handler
+app.use((err,req,res,next) => {
+  console.error(err);
+  res.status(500).json({error: err.message});
+});
+  </pre>
+</div>
+
+<!-- 24. Debugging & Logging -->
+<div class="topic-card">
+  <h3>24. Debugging & Logging</h3>
+  <p><strong>Description:</strong> Use console, Node Inspector, IDE debuggers. For production use logging libraries like Winston or Pino with levels and transports.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+const pino = require('pino')();
+pino.info('Server started');
+pino.error(new Error('Oops'));
+  </pre>
+</div>
+
+<!-- 25. Testing (Unit & Integration) -->
+<div class="topic-card">
+  <h3>25. Testing (Mocha, Jest, Supertest)</h3>
+  <p><strong>Description:</strong> Write unit tests (Jest, Mocha), integration tests (Supertest for APIs), and use coverage tools (nyc / istanbul).</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+// Jest example
+test('adds 1 + 2', () => {
+  const sum = (a,b) => a+b;
+  expect(sum(1,2)).toBe(3);
+});
+  </pre>
+</div>
+
+<!-- 26. Performance & Profiling -->
+<div class="topic-card">
+  <h3>26. Performance & Profiling</h3>
+  <p><strong>Description:</strong> Profile CPU/memory, identify bottlenecks, optimize hot paths, use Node's --inspect and performance hooks.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+// simple CPU benchmark
+const start = process.hrtime.bigint();
+for(let i=0;i<1e6;i++) Math.sqrt(i);
+const end = process.hrtime.bigint();
+console.log('Elapsed (ns):', end - start);
+  </pre>
+</div>
+
+<!-- 27. Worker Threads & Child Processes -->
+<div class="topic-card">
+  <h3>27. Worker Threads & Child Processes</h3>
+  <p><strong>Description:</strong> Offload CPU-bound tasks to worker threads or child processes to avoid blocking the event loop.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+// child_process example
+const { fork } = require('child_process');
+const child = fork('worker.js');
+child.on('message', msg => console.log('from child', msg));
+child.send({task:'start'});
+  </pre>
+</div>
+
+<!-- 28. Clustering & Load Balancing -->
+<div class="topic-card">
+  <h3>28. Clustering & Load Balancing</h3>
+  <p><strong>Description:</strong> Use cluster module or process managers (PM2) to run multiple Node instances, leveraging multi-core servers.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+// basic cluster
+const cluster = require('cluster');
+const os = require('os');
+if(cluster.isMaster){
+  for(let i=0;i<os.cpus().length;i++) cluster.fork();
+} else {
+  require('./server.js'); // each worker runs server
+}
+  </pre>
+</div>
+
+<!-- 29. Security Best Practices -->
+<div class="topic-card">
+  <h3>29. Security Best Practices</h3>
+  <p><strong>Description:</strong> Sanitize input, use Helmet for headers, validate input, avoid eval, secure cookies, rate-limit, and manage secrets safely.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
+app.use(helmet());
+app.use(rateLimit({ windowMs: 15*60*1000, max: 100 }));
+  </pre>
+</div>
+
+<!-- 30. CORS & Cross-Origin -->
+<div class="topic-card">
+  <h3>30. CORS & Cross-Origin</h3>
+  <p><strong>Description:</strong> Configure CORS for APIs with the cors package, controlling allowed origins, methods, headers, and credentials.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+const cors = require('cors');
+app.use(cors({ origin: 'https://example.com', credentials: true }));
+  </pre>
+</div>
+
+<!-- 31. WebSockets (Socket.io) -->
+<div class="topic-card">
+  <h3>31. WebSockets & Real-time (Socket.io)</h3>
+  <p><strong>Description:</strong> Build real-time features (chat, notifications) using WebSockets or libraries like Socket.io.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+const http = require('http').createServer();
+const io = require('socket.io')(http);
+io.on('connection', socket => {
+  socket.on('msg', data => io.emit('msg', data));
+});
+http.listen(3000);
+  </pre>
+</div>
+
+<!-- 32. File Uploads & Streaming -->
+<div class="topic-card">
+  <h3>32. File Uploads & Streaming</h3>
+  <p><strong>Description:</strong> Handle uploads with multer or busboy and stream large files to clients to save memory.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' });
+app.post('/upload', upload.single('file'), (req,res) => res.send('uploaded'));
+  </pre>
+</div>
+
+<!-- 33. Email & Notifications -->
+<div class="topic-card">
+  <h3>33. Email & Notifications</h3>
+  <p><strong>Description:</strong> Send emails using nodemailer or external services (SendGrid), and integrate push or SMS notifications.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+const nodemailer = require('nodemailer');
+async function send() {
+  const transporter = nodemailer.createTransport({host:'smtp.example.com', port:587});
+  await transporter.sendMail({ from:'a@b.com', to:'you@you.com', subject:'Hi', text:'Hello' });
+}
+send();
+  </pre>
+</div>
+
+<!-- 34. Scheduling & Cron Jobs -->
+<div class="topic-card">
+  <h3>34. Scheduling & Cron Jobs</h3>
+  <p><strong>Description:</strong> Run periodic tasks using node-cron, agenda, or external schedulers (cron on Linux, cloud schedulers).</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+const cron = require('node-cron');
+cron.schedule('0 0 * * *', () => { console.log('Runs daily at midnight'); });
+  </pre>
+</div>
+
+<!-- 35. GraphQL -->
+<div class="topic-card">
+  <h3>35. GraphQL</h3>
+  <p><strong>Description:</strong> Build flexible APIs with GraphQL using Apollo Server or express-graphql for clients who need custom queries.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+const { ApolloServer, gql } = require('apollo-server-express');
+const typeDefs = gql`type Query{ hello: String }`;
+const resolvers = { Query: { hello: ()=>'Hello' } };
+const server = new ApolloServer({typeDefs, resolvers});
+  </pre>
+</div>
+
+<!-- 36. gRPC & Microservices -->
+<div class="topic-card">
+  <h3>36. gRPC & Microservices</h3>
+  <p><strong>Description:</strong> Architect services as microservices, communicate via REST, gRPC, or message brokers (RabbitMQ, Kafka).</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+// concept: microservice call via HTTP/gRPC or publish to message queue (no short snippet)
+  </pre>
+</div>
+
+<!-- 37. Serverless (AWS Lambda, Vercel) -->
+<div class="topic-card">
+  <h3>37. Serverless Functions</h3>
+  <p><strong>Description:</strong> Deploy functions to serverless platforms (AWS Lambda, Vercel, Netlify) for scale and cost efficiency.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+// AWS Lambda handler (Node)
+exports.handler = async (event) => {
+  return { statusCode: 200, body: 'Hello from Lambda' };
+};
+  </pre>
+</div>
+
+<!-- 38. TypeScript with Node -->
+<div class="topic-card">
+  <h3>38. TypeScript with Node</h3>
+  <p><strong>Description:</strong> Use TypeScript for type safety, compile to JS, configure tsconfig, and use ts-node for development.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+// Install: npm install -D typescript ts-node @types/node
+// ts example
+function add(a: number, b: number): number { return a + b; }
+console.log(add(2,3));
+  </pre>
+</div>
+
+<!-- 39. Build Tools & Transpilers -->
+<div class="topic-card">
+  <h3>39. Build Tools & Bundlers</h3>
+  <p><strong>Description:</strong> Use Babel, Webpack, esbuild or rollup for transpiling or bundling server code if needed (rare server-side).</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+// Example: transpile with Babel (config required)
+// Usually server code runs on Node directly; bundling is more common for frontend.
+  </pre>
+</div>
+
+<div class="topic-card" data-title="Error Handling">
+  <h3>40. Node.js Error Handling</h3>
+  <p>Learn how to handle runtime and asynchronous errors using try...catch, event listeners, and middleware.</p>
+  <button class="toggle-code">Show Example</button>
+  <div class="code-snippet" style="display:none;">
+<pre><code>try {
+  throw new Error("Something went wrong!");
+} catch (err) {
+  console.error(err.message);
+}</code></pre>
+  </div>
+  <label><input type="checkbox" class="mark-done"> Mark as Done</label>
+</div>
+
+<div class="topic-card" data-title="Debugging">
+  <h3>41. Debugging Node.js Applications</h3>
+  <p>Use Node’s built-in debugger or Chrome DevTools to step through your code.</p>
+  <button class="toggle-code">Show Example</button>
+  <div class="code-snippet" style="display:none;">
+<pre><code>node --inspect app.js
+# Then open chrome://inspect in Chrome</code></pre>
+  </div>
+  <label><input type="checkbox" class="mark-done"> Mark as Done</label>
+</div>
+
+<div class="topic-card" data-title="EventEmitter">
+  <h3>42. EventEmitter Class</h3>
+  <p>The events module allows Node.js to handle asynchronous events efficiently.</p>
+  <button class="toggle-code">Show Example</button>
+  <div class="code-snippet" style="display:none;">
+<pre><code>const EventEmitter = require('events');
+const emitter = new EventEmitter();
+
+emitter.on('greet', () => console.log('Hello Event!'));
+emitter.emit('greet');</code></pre>
+  </div>
+  <label><input type="checkbox" class="mark-done"> Mark as Done</label>
+</div>
+
+<div class="topic-card" data-title="Streams">
+  <h3>43. Streams in Node.js</h3>
+  <p>Streams are used to handle large data efficiently (like reading large files).</p>
+  <button class="toggle-code">Show Example</button>
+  <div class="code-snippet" style="display:none;">
+<pre><code>const fs = require('fs');
+const readStream = fs.createReadStream('file.txt');
+readStream.on('data', chunk => console.log(chunk.toString()));</code></pre>
+  </div>
+  <label><input type="checkbox" class="mark-done"> Mark as Done</label>
+</div>
+
+<div class="topic-card" data-title="Buffers">
+  <h3>44. Buffers in Node.js</h3>
+  <p>Buffers help process binary data like images, videos, or raw network packets.</p>
+  <button class="toggle-code">Show Example</button>
+  <div class="code-snippet" style="display:none;">
+<pre><code>const buf = Buffer.from('Hello Node');
+console.log(buf.toString());</code></pre>
+  </div>
+  <label><input type="checkbox" class="mark-done"> Mark as Done</label>
+</div>
+
+<div class="topic-card" data-title="Child Process">
+  <h3>45. Child Processes</h3>
+  <p>The child_process module allows executing system commands or scripts from Node.</p>
+  <button class="toggle-code">Show Example</button>
+  <div class="code-snippet" style="display:none;">
+<pre><code>const { exec } = require('child_process');
+exec('dir', (err, stdout) => console.log(stdout));</code></pre>
+  </div>
+  <label><input type="checkbox" class="mark-done"> Mark as Done</label>
+</div>
+
+<div class="topic-card" data-title="Cluster">
+  <h3>46. Cluster Module</h3>
+  <p>Run multiple instances of Node.js to utilize multi-core CPUs.</p>
+  <button class="toggle-code">Show Example</button>
+  <div class="code-snippet" style="display:none;">
+<pre><code>const cluster = require('cluster');
+if (cluster.isPrimary) {
+  cluster.fork();
+} else {
+  console.log('Worker started');
+}</code></pre>
+  </div>
+  <label><input type="checkbox" class="mark-done"> Mark as Done</label>
+</div>
+
+<div class="topic-card" data-title="Nodemon">
+  <h3>47. Using Nodemon</h3>
+  <p>Automatically restarts your app when files change — useful for development.</p>
+  <button class="toggle-code">Show Example</button>
+  <div class="code-snippet" style="display:none;">
+<pre><code>npm install -g nodemon
+nodemon app.js</code></pre>
+  </div>
+  <label><input type="checkbox" class="mark-done"> Mark as Done</label>
+</div>
+
+<div class="topic-card" data-title="Environment Variables">
+  <h3>48. Using Environment Variables</h3>
+  <p>Use .env files to store secrets like API keys securely.</p>
+  <button class="toggle-code">Show Example</button>
+  <div class="code-snippet" style="display:none;">
+<pre><code>npm install dotenv
+require('dotenv').config();
+console.log(process.env.MONGO_URI);</code></pre>
+  </div>
+  <label><input type="checkbox" class="mark-done"> Mark as Done</label>
+</div>
+
+<div class="topic-card" data-title="Middleware">
+  <h3>49. Express.js Middleware</h3>
+  <p>Middleware functions can handle requests before reaching routes.</p>
+  <button class="toggle-code">Show Example</button>
+  <div class="code-snippet" style="display:none;">
+<pre><code>const express = require('express');
+const app = express();
+
+app.use((req,res,next)=>{
+  console.log(req.method, req.url);
+  next();
+});</code></pre>
+  </div>
+  <label><input type="checkbox" class="mark-done"> Mark as Done</label>
+</div>
+
+<div class="topic-card" data-title="REST API">
+  <h3>50. RESTful API Design</h3>
+  <p>Follow REST principles to organize backend APIs properly.</p>
+  <button class="toggle-code">Show Example</button>
+  <div class="code-snippet" style="display:none;">
+<pre><code>app.get('/api/users', (req,res)=> res.json({ users: [] }));
+app.post('/api/users', (req,res)=> res.send('User added'));</code></pre>
+  </div>
+  <label><input type="checkbox" class="mark-done"> Mark as Done</label>
+</div>
+
+<div class="topic-card" data-title="CRUD Operations">
+  <h3>51. CRUD Operations with MongoDB</h3>
+  <p>Learn Create, Read, Update, Delete operations using Mongoose.</p>
+  <button class="toggle-code">Show Example</button>
+  <div class="code-snippet" style="display:none;">
+<pre><code>const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/test');
+
+const User = mongoose.model('User', { name: String });
+User.create({ name: 'Vijay' });</code></pre>
+  </div>
+  <label><input type="checkbox" class="mark-done"> Mark as Done</label>
+</div>
+
+<div class="topic-card" data-title="JWT Authentication">
+  <h3>52. Authentication using JWT</h3>
+  <p>Use JSON Web Tokens to secure user sessions and APIs.</p>
+  <button class="toggle-code">Show Example</button>
+  <div class="code-snippet" style="display:none;">
+<pre><code>const jwt = require('jsonwebtoken');
+const token = jwt.sign({ id: 1 }, 'secretkey');
+jwt.verify(token, 'secretkey');</code></pre>
+  </div>
+  <label><input type="checkbox" class="mark-done"> Mark as Done</label>
+</div>
+
+<div class="topic-card" data-title="Password Hashing">
+  <h3>53. Password Hashing with bcrypt</h3>
+  <p>Encrypt passwords before saving them in the database.</p>
+  <button class="toggle-code">Show Example</button>
+  <div class="code-snippet" style="display:none;">
+<pre><code>const bcrypt = require('bcrypt');
+const hash = bcrypt.hashSync('mypassword', 10);
+console.log(hash);</code></pre>
+  </div>
+  <label><input type="checkbox" class="mark-done"> Mark as Done</label>
+</div>
+
+<div class="topic-card" data-title="File Uploads">
+  <h3>54. File Uploads with Multer</h3>
+  <p>Multer handles file uploads in Express applications.</p>
+  <button class="toggle-code">Show Example</button>
+  <div class="code-snippet" style="display:none;">
+<pre><code>npm install multer
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' });
+app.post('/upload', upload.single('file'), (req,res)=> res.send('Uploaded!'));</code></pre>
+  </div>
+  <label><input type="checkbox" class="mark-done"> Mark as Done</label>
+</div>
+
+<div class="topic-card" data-title="CORS">
+  <h3>55. Using CORS</h3>
+  <p>Allow cross-origin API requests between frontend and backend servers.</p>
+  <button class="toggle-code">Show Example</button>
+  <div class="code-snippet" style="display:none;">
+<pre><code>const cors = require('cors');
+app.use(cors());</code></pre>
+  </div>
+  <label><input type="checkbox" class="mark-done"> Mark as Done</label>
+</div>
+
+<div class="topic-card" data-title="WebSockets">
+  <h3>56. WebSockets with Socket.io</h3>
+  <p>Enable real-time communication between client and server.</p>
+  <button class="toggle-code">Show Example</button>
+  <div class="code-snippet" style="display:none;">
+<pre><code>const io = require('socket.io')(3000);
+io.on('connection', socket => socket.emit('message', 'Hello Client!'));</code></pre>
+  </div>
+  <label><input type="checkbox" class="mark-done"> Mark as Done</label>
+</div>
+
+<div class="topic-card" data-title="Nodemailer">
+  <h3>57. Sending Emails</h3>
+  <p>Use nodemailer to send emails directly from your Node.js app.</p>
+  <button class="toggle-code">Show Example</button>
+  <div class="code-snippet" style="display:none;">
+<pre><code>const nodemailer = require('nodemailer');
+const transporter = nodemailer.createTransport({ service:'gmail', auth:{ user:'you@gmail.com', pass:'password' }});
+transporter.sendMail({ to:'test@gmail.com', subject:'Hello', text:'From Node.js' });</code></pre>
+  </div>
+  <label><input type="checkbox" class="mark-done"> Mark as Done</label>
+</div>
+
+<div class="topic-card" data-title="Compression">
+  <h3>58. File Compression</h3>
+  <p>Compress and decompress files using the zlib module.</p>
+  <button class="toggle-code">Show Example</button>
+  <div class="code-snippet" style="display:none;">
+<pre><code>const zlib = require('zlib');
+const fs = require('fs');
+fs.createReadStream('input.txt')
+  .pipe(zlib.createGzip())
+  .pipe(fs.createWriteStream('input.txt.gz'));</code></pre>
+  </div>
+  <label><input type="checkbox" class="mark-done"> Mark as Done</label>
+</div>
+
+<div class="topic-card" data-title="Testing">
+  <h3>59. Unit Testing with Jest</h3>
+  <p>Write automated tests for your Node.js applications using Jest.</p>
+  <button class="toggle-code">Show Example</button>
+  <div class="code-snippet" style="display:none;">
+<pre><code>npm install jest
+test('adds numbers', ()=>{
+  expect(1+2).toBe(3);
+});</code></pre>
+  </div>
+  <label><input type="checkbox" class="mark-done"> Mark as Done</label>
+</div>
+
+<div class="topic-card" data-title="Swagger">
+  <h3>60. API Documentation with Swagger</h3>
+  <p>Use Swagger to automatically generate API documentation for Express apps.</p>
+  <button class="toggle-code">Show Example</button>
+  <div class="code-snippet" style="display:none;">
+<pre><code>npm install swagger-ui-express swagger-jsdoc
+const swaggerUi = require('swagger-ui-express');
+app.use('/docs', swaggerUi.serve, swaggerUi.setup({}));</code></pre>
+  </div>
+  <label><input type="checkbox" class="mark-done"> Mark as Done</label>
+</div>
+<div class="topic-card" data-title="Logging">
+  <h3>61. Logging with Winston</h3>
+  <p>Use Winston to log information, warnings, and errors for better debugging and monitoring.</p>
+  <button class="toggle-code">Show Example</button>
+  <div class="code-snippet" style="display:none;">
+<pre><code>const winston = require('winston');
+const logger = winston.createLogger({
+  transports: [ new winston.transports.Console() ]
+});
+logger.info('Server started successfully');</code></pre>
+  </div>
+  <label><input type="checkbox" class="mark-done"> Mark as Done</label>
+</div>
+
+<div class="topic-card" data-title="Morgan Logging">
+  <h3>62. HTTP Logging with Morgan</h3>
+  <p>Morgan logs incoming HTTP requests for Express applications.</p>
+  <button class="toggle-code">Show Example</button>
+  <div class="code-snippet" style="display:none;">
+<pre><code>const morgan = require('morgan');
+app.use(morgan('dev'));</code></pre>
+  </div>
+  <label><input type="checkbox" class="mark-done"> Mark as Done</label>
+</div>
+
+<div class="topic-card" data-title="Rate Limiting">
+  <h3>63. Rate Limiting APIs</h3>
+  <p>Prevent brute-force attacks and abuse using express-rate-limit middleware.</p>
+  <button class="toggle-code">Show Example</button>
+  <div class="code-snippet" style="display:none;">
+<pre><code>const rateLimit = require('express-rate-limit');
+const limiter = rateLimit({ windowMs: 15*60*1000, max: 100 });
+app.use(limiter);</code></pre>
+  </div>
+  <label><input type="checkbox" class="mark-done"> Mark as Done</label>
+</div>
+
+<div class="topic-card" data-title="Helmet Security">
+  <h3>64. Security with Helmet</h3>
+  <p>Helmet adds HTTP headers to secure your Express applications.</p>
+  <button class="toggle-code">Show Example</button>
+  <div class="code-snippet" style="display:none;">
+<pre><code>const helmet = require('helmet');
+app.use(helmet());</code></pre>
+  </div>
+  <label><input type="checkbox" class="mark-done"> Mark as Done</label>
+</div>
+
+<div class="topic-card" data-title="Session Management">
+  <h3>65. Session Management</h3>
+  <p>Manage user sessions using express-session or JWTs depending on your use case.</p>
+  <button class="toggle-code">Show Example</button>
+  <div class="code-snippet" style="display:none;">
+<pre><code>const session = require('express-session');
+app.use(session({ secret: 'secretKey', resave: false, saveUninitialized: true }));</code></pre>
+  </div>
+  <label><input type="checkbox" class="mark-done"> Mark as Done</label>
+</div>
+
+<div class="topic-card" data-title="Caching">
+  <h3>66. Caching with Redis</h3>
+  <p>Use Redis to cache frequently requested data and reduce database load.</p>
+  <button class="toggle-code">Show Example</button>
+  <div class="code-snippet" style="display:none;">
+<pre><code>const redis = require('redis');
+const client = redis.createClient();
+client.set('user:1', 'Vijay');</code></pre>
+  </div>
+  <label><input type="checkbox" class="mark-done"> Mark as Done</label>
+</div>
+
+<div class="topic-card" data-title="Message Queues">
+  <h3>67. Using Message Queues</h3>
+  <p>Message queues like RabbitMQ or Bull help manage background jobs asynchronously.</p>
+  <button class="toggle-code">Show Example</button>
+  <div class="code-snippet" style="display:none;">
+<pre><code>const Queue = require('bull');
+const jobQueue = new Queue('emailQueue');
+jobQueue.add({ email: 'user@gmail.com' });</code></pre>
+  </div>
+  <label><input type="checkbox" class="mark-done"> Mark as Done</label>
+</div>
+
+<div class="topic-card" data-title="Microservices">
+  <h3>68. Microservices Architecture</h3>
+  <p>Split your backend into smaller services communicating via APIs or message queues.</p>
+  <button class="toggle-code">Show Example</button>
+  <div class="code-snippet" style="display:none;">
+<pre><code>// Service A
+app.get('/users', (req,res)=> res.json(['User1','User2']));
+
+// Service B calls Service A
+fetch('http://service-a/users').then(r=>r.json()).then(console.log);</code></pre>
+  </div>
+  <label><input type="checkbox" class="mark-done"> Mark as Done</label>
+</div>
+
+<div class="topic-card" data-title="GraphQL">
+  <h3>69. GraphQL APIs</h3>
+  <p>GraphQL allows flexible queries and reduces over-fetching compared to REST APIs.</p>
+  <button class="toggle-code">Show Example</button>
+  <div class="code-snippet" style="display:none;">
+<pre><code>npm install express-graphql graphql
+const { graphqlHTTP } = require('express-graphql');
+const { buildSchema } = require('graphql');
+
+const schema = buildSchema('type Query { hello: String }');
+const root = { hello: () => 'Hello GraphQL!' };
+app.use('/graphql', graphqlHTTP({ schema, rootValue: root, graphiql: true }));</code></pre>
+  </div>
+  <label><input type="checkbox" class="mark-done"> Mark as Done</label>
+</div>
+
+<div class="topic-card" data-title="Serverless">
+  <h3>70. Serverless Functions</h3>
+  <p>Deploy Node.js functions on AWS Lambda, Vercel, or Netlify Functions without managing servers.</p>
+  <button class="toggle-code">Show Example</button>
+  <div class="code-snippet" style="display:none;">
+<pre><code>exports.handler = async (event) => {
+  return { statusCode: 200, body: "Hello from Lambda!" };
+};</code></pre>
+  </div>
+  <label><input type="checkbox" class="mark-done"> Mark as Done</label>
+</div>
+
+<div class="topic-card" data-title="Load Balancing">
+  <h3>71. Load Balancing</h3>
+  <p>Distribute incoming traffic across multiple servers using Nginx or PM2 clusters.</p>
+  <button class="toggle-code">Show Example</button>
+  <div class="code-snippet" style="display:none;">
+<pre><code>pm2 start app.js -i max   # Starts app in cluster mode
+pm2 list</code></pre>
+  </div>
+  <label><input type="checkbox" class="mark-done"> Mark as Done</label>
+</div>
+
+<div class="topic-card" data-title="Monitoring">
+  <h3>72. Application Monitoring</h3>
+  <p>Monitor performance and uptime using tools like PM2, Datadog, or New Relic.</p>
+  <button class="toggle-code">Show Example</button>
+  <div class="code-snippet" style="display:none;">
+<pre><code>pm2 monit   # Real-time logs and CPU/memory usage</code></pre>
+  </div>
+  <label><input type="checkbox" class="mark-done"> Mark as Done</label>
+</div>
+
+<div class="topic-card" data-title="Docker">
+  <h3>73. Dockerizing Node.js Apps</h3>
+  <p>Use Docker to containerize Node.js apps for consistent deployment.</p>
+  <button class="toggle-code">Show Example</button>
+  <div class="code-snippet" style="display:none;">
+<pre><code># Dockerfile
+FROM node:18
+WORKDIR /app
+COPY . .
+RUN npm install
+CMD ["node", "app.js"]</code></pre>
+  </div>
+  <label><input type="checkbox" class="mark-done"> Mark as Done</label>
+</div>
+
+<div class="topic-card" data-title="Kubernetes">
+  <h3>74. Deploying on Kubernetes</h3>
+  <p>Kubernetes automates deployment, scaling, and management of containerized applications.</p>
+  <button class="toggle-code">Show Example</button>
+  <div class="code-snippet" style="display:none;">
+<pre><code>kubectl create deployment nodeapp --image=nodeapp:latest
+kubectl expose deployment nodeapp --type=LoadBalancer --port=3000</code></pre>
+  </div>
+  <label><input type="checkbox" class="mark-done"> Mark as Done</label>
+</div>
+
+<div class="topic-card" data-title="CI/CD">
+  <h3>75. Continuous Integration / Deployment</h3>
+  <p>Automate testing and deployment using GitHub Actions, Jenkins, or GitLab CI.</p>
+  <button class="toggle-code">Show Example</button>
+  <div class="code-snippet" style="display:none;">
+<pre><code># .github/workflows/deploy.yml
+name: CI/CD
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: npm install
+      - run: npm test</code></pre>
+  </div>
+  <label><input type="checkbox" class="mark-done"> Mark as Done</label>
+</div>
+
+<div class="topic-card" data-title="AWS Deployment">
+  <h3>76. Deploying Node.js on AWS</h3>
+  <p>Host Node.js apps using AWS EC2 or Elastic Beanstalk for scalable cloud deployment.</p>
+  <button class="toggle-code">Show Example</button>
+  <div class="code-snippet" style="display:none;">
+<pre><code># Launch EC2 → Install Node.js → Run your app
+sudo yum install nodejs -y
+node app.js</code></pre>
+  </div>
+  <label><input type="checkbox" class="mark-done"> Mark as Done</label>
+</div>
+
+<div class="topic-card" data-title="Google Cloud">
+  <h3>77. Google Cloud Deployment</h3>
+  <p>Deploy your Node.js apps using Google App Engine or Cloud Run.</p>
+  <button class="toggle-code">Show Example</button>
+  <div class="code-snippet" style="display:none;">
+<pre><code>gcloud app deploy
+gcloud run deploy my-node-app --source .</code></pre>
+  </div>
+  <label><input type="checkbox" class="mark-done"> Mark as Done</label>
+</div>
+
+<div class="topic-card" data-title="Heroku Deployment">
+  <h3>78. Deploying Node.js on Heroku</h3>
+  <p>Heroku allows simple Node.js app deployment with Git integration.</p>
+  <button class="toggle-code">Show Example</button>
+  <div class="code-snippet" style="display:none;">
+<pre><code>heroku login
+heroku create
+git push heroku main</code></pre>
+  </div>
+  <label><input type="checkbox" class="mark-done"> Mark as Done</label>
+</div>
+
+<div class="topic-card" data-title="Netlify & Vercel">
+  <h3>79. Netlify and Vercel Deployment</h3>
+  <p>Deploy static and serverless Node.js apps easily with Netlify or Vercel.</p>
+  <button class="toggle-code">Show Example</button>
+  <div class="code-snippet" style="display:none;">
+<pre><code># For Vercel
+npm install -g vercel
+vercel deploy</code></pre>
+  </div>
+  <label><input type="checkbox" class="mark-done"> Mark as Done</label>
+</div>
+
+<div class="topic-card" data-title="Performance Optimization">
+  <h3>80. Performance Optimization</h3>
+  <p>Improve performance using caching, clustering, and efficient async patterns.</p>
+  <button class="toggle-code">Show Example</button>
+  <div class="code-snippet" style="display:none;">
+<pre><code>app.set('trust proxy', 1);
+app.use(compression());</code></pre>
+  </div>
+  <label><input type="checkbox" class="mark-done"> Mark as Done</label>
+</div>
+</section>
+<script>
+document.querySelectorAll('.toggle-code').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const code = btn.nextElementSibling;
+    if (code.style.display === 'none' || code.style.display === "") {
+      code.style.display = 'block';
+      code.style.maxHeight = code.scrollHeight + "px";
+    } else {
+      code.style.display = 'none';
+      code.style.maxHeight = 0;
+    }
+  });
+});
+</script>
+
+
+<footer>
+  Contact: techpath@example.com | © 2025 TechPath
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
+
+
