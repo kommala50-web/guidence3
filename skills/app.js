@@ -10,3 +10,13 @@ for(let i=0;i<120;i++){
   span.style.fontSize = (12 + Math.random()*10) + 'px';
   floating.appendChild(span);
 }
+
+
+document.querySelectorAll('.toggle-code').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const code = btn.nextElementSibling;
+    const isVisible = code.classList.contains('hidden');
+    code.classList.toggle('hidden', !isVisible);
+    btn.textContent = isVisible ? 'Hide Example' : 'Show Example';
+  });
+});

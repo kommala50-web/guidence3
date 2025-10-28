@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Machine Learning Full Roadmap - TechPath</title>
+<link rel="stylesheet" href="../skills/style.css">
+<script defer src="../skills/script.js"></script>
+</head>
+<body>
+
+<header>
+  <h1>TechPath</h1>
+  <nav>
+    <a href="../index.html">Home</a>
+    <a href="../career.html">Career Paths</a>
+    <a href="../skills.html">Skill Roadmaps</a>
+    <a href="../company.html">Company Questions</a>
+  </nav>
+</header>
+
+<section class="banner">
+  <h2>🤖 Machine Learning Full Roadmap</h2>
+  <p>Learn Machine Learning from foundations to projects — brief examples plus one full real-world project.</p>
+</section>
+
+<div class="top-buttons">
+  <a href="../skills.html" class="btn">← Back to Skills</a>
+  <a href="../pdf/Machine_Learning_Roadmap.pdf" download="Machine_Learning_Roadmap.pdf" class="btn">Notes</a>
+  <a href="https://www.youtube.com/playlist?list=PLZPZq0r_RZOOj_NOZYq_R2PECIMglLemc" target="_blank" class="btn">Video Resource</a>
+</div>
+
+<section class="topic-container">
+
+<!-- ========== SECTION 1: FOUNDATIONS ========== -->
+
+<!-- 1. Python for ML -->
+<div class="topic-card">
+  <h3>1. Python for Machine Learning</h3>
+  <p><strong>Description:</strong> Python is the de-facto language for ML — learn data types, functions, list/dict comprehensions, and basic file I/O.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+# Python: basic data prep
+data = [1, 2, 3, 4, 5]
+squared = [x**2 for x in data]
+print(squared)  # [1, 4, 9, 16, 25]
+  </pre>
+</div>
+
+<!-- 2. Math for ML -->
+<div class="topic-card">
+  <h3>2. Math for Machine Learning</h3>
+  <p><strong>Description:</strong> Core math: linear algebra (vectors/matrices), probability & statistics, and calculus (gradients) underpin ML algorithms.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+import numpy as np
+# vector dot product and norm
+a = np.array([1,2,3])
+b = np.array([4,5,6])
+print("dot:", np.dot(a,b))
+print("norm a:", np.linalg.norm(a))
+  </pre>
+</div>
+
+<!-- 3. NumPy -->
+<div class="topic-card">
+  <h3>3. NumPy (Numerical Computing)</h3>
+  <p><strong>Description:</strong> Fast array ops and linear algebra; used for numeric back-end in nearly all ML pipelines.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+import numpy as np
+A = np.array([[1,2],[3,4]])
+print("A:\n", A)
+print("inv(A):\n", np.linalg.inv(A))
+  </pre>
+</div>
+
+<!-- 4. Pandas -->
+<div class="topic-card">
+  <h3>4. Pandas (DataFrames)</h3>
+  <p><strong>Description:</strong> Use DataFrames for loading, cleaning, transforming, and inspecting tabular datasets.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+import pandas as pd
+df = pd.DataFrame({"age":[25,30,22], "score":[88,92,79]})
+print(df.head())
+print(df.describe())
+  </pre>
+</div>
+
+<!-- 5. Data Visualization -->
+<div class="topic-card">
+  <h3>5. Data Visualization (Matplotlib / Seaborn)</h3>
+  <p><strong>Description:</strong> Visualize distributions, correlations, and model diagnostics using plots and heatmaps.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+import matplotlib.pyplot as plt
+import seaborn as sns
+x = [1,2,3,4]
+y = [2,4,6,8]
+plt.plot(x,y)
+plt.title("Simple Line")
+plt.show()
+  </pre>
+</div>
+
+<!-- 6. Scikit-learn Intro -->
+<div class="topic-card">
+  <h3>6. scikit-learn (Classic ML)</h3>
+  <p><strong>Description:</strong> scikit-learn provides ready-to-use implementations for regression, classification, clustering, and model selection utilities.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+from sklearn.linear_model import LinearRegression
+import numpy as np
+X = np.array([[1],[2],[3]])
+y = np.array([2,4,6])
+lr = LinearRegression().fit(X,y)
+print("coef, intercept:", lr.coef_, lr.intercept_)
+  </pre>
+</div>
+
+<!-- ========== SECTION 2: CORE MACHINE LEARNING ========== -->
+
+<!-- 7. ML Workflow -->
+<div class="topic-card">
+  <h3>7. Machine Learning Workflow</h3>
+  <p><strong>Description:</strong> Pipeline: data collection → preprocessing → feature engineering → training → validation → testing → deployment.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+# pseudo steps (scikit-learn)
+# 1) load -> pd.read_csv
+# 2) preprocess -> fillna, encode
+# 3) train/test split -> model.fit -> model.predict -> metrics
+  </pre>
+</div>
+
+<!-- 8. Train/Test Split -->
+<div class="topic-card">
+  <h3>8. Train / Validation / Test Split</h3>
+  <p><strong>Description:</strong> Keep unseen test data to evaluate final performance; use validation for hyperparameter tuning.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+  </pre>
+</div>
+
+<!-- 9. Feature Engineering -->
+<div class="topic-card">
+  <h3>9. Feature Engineering</h3>
+  <p><strong>Description:</strong> Create, transform, and select features — scaling, one-hot encoding, polynomial features, and domain-based features.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+from sklearn.preprocessing import StandardScaler
+scaler = StandardScaler().fit(X_train)
+X_train_scaled = scaler.transform(X_train)
+  </pre>
+</div>
+
+<!-- 10. Model Evaluation -->
+<div class="topic-card">
+  <h3>10. Model Evaluation Metrics</h3>
+  <p><strong>Description:</strong> Regression: MSE, MAE, R². Classification: accuracy, precision, recall, F1, AUC, confusion matrix.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+from sklearn.metrics import mean_squared_error, accuracy_score
+# regression: mean_squared_error(y_true, y_pred)
+# classification: accuracy_score(y_true, y_pred)
+  </pre>
+</div>
+
+<!-- 11. Bias-Variance Tradeoff -->
+<div class="topic-card">
+  <h3>11. Bias–Variance Tradeoff</h3>
+  <p><strong>Description:</strong> High bias → underfitting; high variance → overfitting. Use regularization, more data, or simpler/larger models accordingly.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+# Detect (simple)
+train_score = model.score(X_train, y_train)
+test_score = model.score(X_test, y_test)
+print("Train:", train_score, "Test:", test_score)
+  </pre>
+</div>
+
+<!-- 12. Cross-Validation -->
+<div class="topic-card">
+  <h3>12. Cross-Validation</h3>
+  <p><strong>Description:</strong> Use K-Fold CV to estimate model generalization and tune hyperparameters robustly.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+from sklearn.model_selection import cross_val_score
+scores = cross_val_score(model, X, y, cv=5)
+print("CV scores:", scores)
+  </pre>
+</div>
+
+<!-- 13. Regression Algorithms -->
+<div class="topic-card">
+  <h3>13. Regression (Linear, Ridge, Lasso)</h3>
+  <p><strong>Description:</strong> Linear regression is the baseline; add Ridge/Lasso for regularization to reduce overfitting.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+from sklearn.linear_model import Ridge
+ridge = Ridge(alpha=1.0).fit(X_train, y_train)
+print("Ridge coef:", ridge.coef_)
+  </pre>
+</div>
+
+<!-- 14. Classification Algorithms -->
+<div class="topic-card">
+  <h3>14. Classification (Logistic, KNN, SVM)</h3>
+  <p><strong>Description:</strong> Logistic regression for binary problems, KNN for simple non-parametric, SVM for margin-based classification.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+from sklearn.linear_model import LogisticRegression
+clf = LogisticRegression().fit(X_train, y_train)
+print("Acc:", clf.score(X_test, y_test))
+  </pre>
+</div>
+
+<!-- 15. Decision Trees & Random Forest -->
+<div class="topic-card">
+  <h3>15. Decision Trees & Random Forests</h3>
+  <p><strong>Description:</strong> Trees are interpretable; ensembles (Random Forest) reduce variance and improve performance.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+from sklearn.ensemble import RandomForestClassifier
+rf = RandomForestClassifier(n_estimators=100).fit(X_train, y_train)
+print("RF Acc:", rf.score(X_test, y_test))
+  </pre>
+</div>
+
+<!-- 16. Clustering -->
+<div class="topic-card">
+  <h3>16. Clustering (K-Means, Hierarchical)</h3>
+  <p><strong>Description:</strong> Unsupervised learning to find groups; useful for segmentation and preprocessing.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+from sklearn.cluster import KMeans
+km = KMeans(n_clusters=3).fit(X)
+print(km.cluster_centers_)
+  </pre>
+</div>
+
+<!-- 17. Dimensionality Reduction -->
+<div class="topic-card">
+  <h3>17. Dimensionality Reduction (PCA)</h3>
+  <p><strong>Description:</strong> Reduce features while preserving variance; speeds up models and helps visualization.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+from sklearn.decomposition import PCA
+pca = PCA(n_components=2).fit_transform(X)
+print(pca.shape)
+  </pre>
+</div>
+
+<!-- 18. Model Selection & Hyperparams -->
+<div class="topic-card">
+  <h3>18. Model Selection & Hyperparameter Tuning</h3>
+  <p><strong>Description:</strong> Use GridSearchCV or RandomizedSearchCV to find best hyperparameters and avoid leakage.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+from sklearn.model_selection import GridSearchCV
+# GridSearchCV(estimator, param_grid, cv=5).fit(X_train,y_train)
+  </pre>
+</div>
+
+<!-- ========== SECTION 3: DEEP LEARNING ========== -->
+
+<!-- 19. Neural Networks Basics -->
+<div class="topic-card">
+  <h3>19. Neural Networks (Basics)</h3>
+  <p><strong>Description:</strong> Layers of neurons with activation functions; trained with gradient descent and backpropagation.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+# simple conceptual example (pseudo)
+# input -> Dense -> activation -> Dense -> output
+# use Keras for real implementation
+  </pre>
+</div>
+
+<!-- 20. TensorFlow / Keras -->
+<div class="topic-card">
+  <h3>20. TensorFlow & Keras</h3>
+  <p><strong>Description:</strong> Keras (high-level TF API) for rapid prototyping; TensorFlow for scalable training and deployment.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
+model = Sequential([Dense(16, activation='relu', input_shape=(X.shape[1],)),
+                    Dense(1, activation='sigmoid')])
+model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+  </pre>
+</div>
+
+<!-- 21. CNN (Convolutional Neural Networks) -->
+<div class="topic-card">
+  <h3>21. Convolutional Neural Networks (CNNs)</h3>
+  <p><strong>Description:</strong> CNNs process images using convolutions, pooling, and fully connected layers — standard for vision tasks.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+# Keras CNN skeleton
+# Conv2D -> MaxPool -> Conv2D -> Flatten -> Dense
+  </pre>
+</div>
+
+<!-- 22. RNN / LSTM -->
+<div class="topic-card">
+  <h3>22. RNN & LSTM</h3>
+  <p><strong>Description:</strong> Recurrent networks for sequence data (time series, text). LSTM/GRU handle long-term dependencies better than vanilla RNNs.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+# simple LSTM skeleton (Keras)
+# Embedding -> LSTM -> Dense
+  </pre>
+</div>
+
+<!-- 23. Transfer Learning -->
+<div class="topic-card">
+  <h3>23. Transfer Learning</h3>
+  <p><strong>Description:</strong> Reuse pre-trained models (e.g., ResNet, MobileNet) for new tasks — huge speed and performance advantage on small datasets.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+# example: tf.keras.applications.MobileNetV2 for feature extraction
+  </pre>
+</div>
+
+<!-- 24. Optimization Techniques -->
+<div class="topic-card">
+  <h3>24. Optimization & Regularization</h3>
+  <p><strong>Description:</strong> Adam/SGD optimizers, learning rate scheduling, dropout, batch normalization, early stopping to improve training.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+# use callbacks for early stopping in Keras:
+# EarlyStopping(monitor='val_loss', patience=5)
+  </pre>
+</div>
+
+<!-- ========== SECTION 4: PROJECTS ========== -->
+
+<!-- 25. House Price Prediction (Regression) -->
+<div class="topic-card">
+  <h3>25. Project: House Price Prediction</h3>
+  <p><strong>Description:</strong> Classic regression project — features: sqft, bedrooms, location; target: price.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+# small example pipeline (sketch)
+# load -> preprocess -> train_test_split -> LinearRegression -> evaluate
+  </pre>
+</div>
+
+<!-- 26. Iris Flower Classifier (Classification) -->
+<div class="topic-card">
+  <h3>26. Project: Iris Flower Classifier</h3>
+  <p><strong>Description:</strong> Small classification project using sepal/petal measurements — ideal for learning basics.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+from sklearn.datasets import load_iris
+from sklearn.ensemble import RandomForestClassifier
+X,y = load_iris(return_X_y=True)
+clf = RandomForestClassifier().fit(X,y)
+print("Acc:", clf.score(X,y))
+  </pre>
+</div>
+
+<!-- 27. Image Classification (CNN) -->
+<div class="topic-card">
+  <h3>27. Project: Image Recognition using CNN</h3>
+  <p><strong>Description:</strong> Train a CNN on CIFAR or custom images — include data augmentation and transfer learning for best results.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+# Keras example: use ImageDataGenerator for augmentation and model.fit for training
+  </pre>
+</div>
+
+<!-- 28. Sentiment Analysis (NLP) -->
+<div class="topic-card">
+  <h3>28. Project: Sentiment Analysis</h3>
+  <p><strong>Description:</strong> Text classification pipeline: tokenization, embeddings, LSTM or transformer-based classifier for sentiment.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+# sklearn pipeline example:
+# CountVectorizer -> TfidfTransformer -> LogisticRegression
+  </pre>
+</div>
+
+<!-- 29. Custom Predictive App -->
+<div class="topic-card">
+  <h3>29. Project: Build a Predictive Web App</h3>
+  <p><strong>Description:</strong> Deploy simple models with Flask or Streamlit for interactive demos and quick feedback from users.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+# Streamlit quick example:
+# import streamlit as st
+# st.title('Predictor')
+# model = joblib.load('model.joblib')
+# features = st.text_input("features")
+# st.write(model.predict([features]))
+  </pre>
+</div>
+
+<!-- ========== SECTION 5: ADVANCED TOPICS ========== -->
+
+<!-- 31. Reinforcement Learning -->
+<div class="topic-card">
+  <h3>30. Reinforcement Learning (Overview)</h3>
+  <p><strong>Description:</strong> Agents learn via interaction using rewards — topics: Q-learning, policy gradients, DQN (advanced).</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+# RL is advanced; use OpenAI Gym + stable-baselines3 for experiments.
+  </pre>
+</div>
+
+<!-- 32. NLP & Transformers -->
+<div class="topic-card">
+  <h3>31. NLP & Transformers (Overview)</h3>
+  <p><strong>Description:</strong> Modern NLP uses transformers (BERT/GPT). Learn tokenization, embeddings, fine-tuning transformer models.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+# Hugging Face transformers: tokenizer + model.from_pretrained + trainer API
+  </pre>
+</div>
+
+<!-- 33. MLOps & Deployment -->
+<div class="topic-card">
+  <h3>32. MLOps & Deployment</h3>
+  <p><strong>Description:</strong> Production topics: model versioning, CI/CD for ML, Docker, monitoring, A/B testing, and model serving.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+# Example tools: Docker, FastAPI/Flask, MLflow, Seldon, KFServing
+  </pre>
+</div>
+
+<!-- 34. AutoML & Explainability -->
+<div class="topic-card">
+  <h3>33. AutoML & Explainable AI</h3>
+  <p><strong>Description:</strong> AutoML automates model search; explainability (SHAP, LIME) helps interpret predictions for stakeholders.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+# Try: TPOT, Auto-sklearn for AutoML; SHAP for interpretability
+  </pre>
+</div>
+<!-- 30. FULL PROJECT: Heart Disease Prediction (Complete Working Code) -->
+<div class="topic-card">
+  <h3>34. Full Project — Heart Disease Prediction</h3>
+  <p><strong>Description:</strong> End-to-end classification pipeline using a typical heart disease CSV (place `heart.csv` in the same folder). Steps: load, clean, feature processing, train/test, evaluate, save model.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+# Full working pipeline (save as heart_disease_pipeline.py)
+# Requirements: pandas, numpy, scikit-learn, joblib
+# Place a CSV named 'heart.csv' (commonly used UCI heart dataset schema) in same folder.
+
+import pandas as pd
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
+import joblib
+
+# 1) Load data
+# Expected: 'heart.csv' with common columns like:
+# age, sex, cp, trestbps, chol, fbs, restecg, thalach, exang,
+# oldpeak, slope, ca, thal, target
+df = pd.read_csv('heart.csv')
+
+# 2) Quick preprocessing
+# Drop rows with missing values (or impute in production)
+df = df.dropna()
+
+# Convert categorical-ish columns to numeric if needed
+# (Many heart.csv variants already encode categories numerically)
+# Example: if 'thal' column contains strings, encode:
+if df['thal'].dtype == 'object':
+    df['thal'] = df['thal'].astype('category').cat.codes
+
+# 3) Features and target
+X = df.drop(columns=['target'])
+y = df['target']
+
+# 4) Train/test split
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42, stratify=y
+)
+
+# 5) Scale numeric features
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+# 6) Train classifier
+clf = RandomForestClassifier(n_estimators=200, random_state=42, n_jobs=-1)
+clf.fit(X_train_scaled, y_train)
+
+# 7) Evaluate
+y_pred = clf.predict(X_test_scaled)
+print("Accuracy:", accuracy_score(y_test, y_pred))
+print("Confusion Matrix:\\n", confusion_matrix(y_test, y_pred))
+print("Classification Report:\\n", classification_report(y_test, y_pred))
+
+# 8) Save model and scaler
+joblib.dump(clf, 'heart_rf_model.joblib')
+joblib.dump(scaler, 'heart_scaler.joblib')
+
+# Quick predict example (uncomment to use)
+# sample = X_test.iloc[0:1]
+# sample_scaled = scaler.transform(sample)
+# print("Sample true:", y_test.iloc[0], "Pred:", clf.predict(sample_scaled)[0])
+
+# Notes:
+# - If your version of dataset has different columns, inspect df.head() and adjust.
+# - For improved results: hyperparameter tuning (GridSearchCV), feature selection,
+#   class imbalance handling (SMOTE), and model explainability (SHAP).
+  </pre>
+</div>
+
+<!-- 31. FULL PROJECT: House Price Prediction (Complete Working Code) -->
+<div class="topic-card">
+  <h3>35. Full Project — House Price Prediction</h3>
+  <p><strong>Description:</strong> Real-world regression pipeline that predicts house prices based on area, bedrooms, and other features. Uses linear and random forest models for comparison.</p>
+  <button class="toggle-code">Show Example</button>
+  <pre class="code-snippet" style="display:none;">
+# Full working project: House Price Prediction
+# Requirements: pandas, numpy, scikit-learn, joblib
+# Dataset: house_prices.csv
+# Columns: area, bedrooms, bathrooms, stories, parking, price
+
+import pandas as pd
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LinearRegression
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+import joblib
+
+# 1) Load dataset
+df = pd.read_csv('house_prices.csv')
+print("Shape:", df.shape)
+print("Columns:", df.columns.tolist())
+
+# 2) Handle missing values if any
+df = df.dropna()
+
+# 3) Separate features & target
+X = df.drop(columns=['price'])
+y = df['price']
+
+# 4) Train-test split
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+# 5) Feature scaling
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+# 6) Train models
+lr = LinearRegression().fit(X_train_scaled, y_train)
+rf = RandomForestRegressor(n_estimators=200, random_state=42, n_jobs=-1).fit(X_train_scaled, y_train)
+
+# 7) Evaluate both
+def evaluate(model, name):
+    preds = model.predict(X_test_scaled)
+    mae = mean_absolute_error(y_test, preds)
+    rmse = np.sqrt(mean_squared_error(y_test, preds))
+    r2 = r2_score(y_test, preds)
+    print(f"=== {name} ===")
+    print("MAE:", round(mae,2), "| RMSE:", round(rmse,2), "| R²:", round(r2,3))
+    return r2
+
+evaluate(lr, "Linear Regression")
+evaluate(rf, "Random Forest")
+
+# 8) Save the better model and scaler
+joblib.dump(rf, 'house_price_model.joblib')
+joblib.dump(scaler, 'house_price_scaler.joblib')
+
+# 9) Predict a sample
+sample = X_test.iloc[0:1]
+scaled = scaler.transform(sample)
+print("Actual Price:", y_test.iloc[0])
+print("Predicted Price:", rf.predict(scaled)[0])
+
+# Note:
+# - Works on small custom CSV (e.g. scraped or Kaggle "Housing" dataset)
+# - For better results, include more engineered features (location, furnishing, etc.)
+# - Extend to a web app via Streamlit or Flask for user input & instant prediction
+  </pre>
+</div>
+
+</section>
+
+<script>
+document.querySelectorAll('.toggle-code').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const code = btn.nextElementSibling;
+    if (code.style.display === 'none' || code.style.display === "") {
+      code.style.display = 'block';
+      code.style.maxHeight = code.scrollHeight + "px";
+    } else {
+      code.style.display = 'none';
+      code.style.maxHeight = 0;
+    }
+  });
+});
+
+</script>
+
+
+<footer>
+  Contact: kommala50@gmail.com | © 2025 TechPath
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
