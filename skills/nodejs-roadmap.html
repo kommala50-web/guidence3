@@ -8,6 +8,27 @@
 <script defer src="../skills/script.js"></script>
 </head>
 <body>
+  <div id="navbar-placeholder"></div>
+<script>
+fetch("../navbar.html")
+  .then(r => r.text())
+  .then(html => {
+    document.getElementById("navbar-placeholder").innerHTML = html;
+    markActiveLink();
+  })
+  .catch(e => console.error("Navbar load failed:", e));
+
+function markActiveLink(){
+  try{
+    const links = document.querySelectorAll('#navbar-placeholder .site-nav a');
+    const current = location.pathname.split('/').pop() || 'index.html';
+    links.forEach(a => {
+      if(a.getAttribute('href') === current) a.classList.add('active');
+    });
+  }catch(e){/* ignore */}
+}
+</script>
+
 
 <header>
   <h1>TechPath</h1>
@@ -26,8 +47,8 @@
 
 <div class="top-buttons">
   <a href="../skills.html" class="btn">← Back to Skills</a>
-  <a href="../pdf/Node_Notes_Part1.pdf" download="Node_Roadmap.pdf" class="btn">Download PDF</a>
-  <a href="../pdf/Node_Notes_Part2.pdf" download="Node_Notes.pdf" class="btn">Notes</a>
+  <a href="../pdf/Node_Roadmap.pdf" download="Node_Roadmap.pdf" class="btn">Download PDF</a>
+  <a href="../pdf/Node_Roadmap.pdf" download="Node_Notes.pdf" class="btn">Notes</a>
   <a href="https://www.youtube.com/playlist?list=PLillGF-RfqbbRA-CIUxlxkUpbq0IFkX60" target="_blank" class="btn">Video Resource</a>
 </div>
 
@@ -1089,6 +1110,7 @@ app.use(compression());</code></pre>
   <label><input type="checkbox" class="mark-done"> Mark as Done</label>
 </div>
 </section>
+
 <script>
 document.querySelectorAll('.toggle-code').forEach(btn => {
   btn.addEventListener('click', () => {
