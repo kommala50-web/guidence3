@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TechPath - Choose Your Sector</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+    body {
+      background: radial-gradient(circle at top, #0f172a, #1e293b);
+      color: #e2e8f0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 40px;
+      color: #00b4d8;
+      margin-bottom: 50px;
+      letter-spacing: 1px;
+      text-shadow: 0 0 15px rgba(0,180,216,0.4);
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .container {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+      justify-content: center;
+      animation: fadeInUp 1s ease-in-out;
+    }
+
+    .card {
+      width: 250px;
+      height: 250px;
+      background: rgba(0,180,216,0.08);
+      border: 2px solid rgba(0,180,216,0.3);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,180,216,0.3);
+      transition: all 0.4s ease;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      transform: translateY(20px);
+    }
+
+    .card:hover {
+      transform: scale(1.08) translateY(-10px);
+      background: rgba(0,180,216,0.15);
+      box-shadow: 0 20px 40px rgba(0,180,216,0.5);
+    }
+
+    .card h2 {
+      font-size: 26px;
+      color: #00b4d8;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: #a0c4ff;
+      font-size: 14px;
+      max-width: 180px;
+    }
+
+    footer {
+      position: absolute;
+      bottom: 20px;
+      color: #90e0ef;
+      font-size: 14px;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      .container { flex-direction: column; gap: 30px; }
+      .card { width: 80%; height: 200px; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Choose Your Sector</h1>
+  <div class="container">
+    <div class="card" onclick="window.location.href='index.html'">
+      <h2>IT Sector</h2>
+      <p>Software, AI, Web Development, Cloud & Cybersecurity</p>
+    </div>
+    <div class="card" onclick="window.location.href='hardware.html'">
+      <h2>Hardware Sector</h2>
+      <p>Circuits, Robotics, IoT & Embedded Systems</p>
+    </div>
+  </div>
+
+  <footer>© 2025 TechPath — kommala50@gmail.com</footer>
+
+</body>
+</html>
